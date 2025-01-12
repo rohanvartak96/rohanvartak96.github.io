@@ -1,0 +1,420 @@
+:root{
+    --text-color: #1a1c20;
+    --link-color: #4a76ee;
+    --background-color: #eeeff1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+a {
+    color : var(--link-color);
+    text-decoration: none;
+}
+
+/* NAVBAR */ 
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 80px;
+    align-items: center;
+    margin-bottom: 100px;
+    z-index: 1;
+    position: sticky;
+    transition: all 0.3s ease;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+nav .left a {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .right a {
+    color: var(--text-color);
+    font-size: 15px;
+    margin: 0 10px;
+}
+
+nav .right a:last-child {
+    color: var(--background-color);
+    background-color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+nav .right a span {
+    margin-left:2px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    background-color: var(--background-color);
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    transform: translateY(0);
+    max-width: 1400px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.sticky + main {
+    margin-top: 80px;
+}
+
+nav.sticky {
+    height: 80px; /* Slightly reduce the height to indicate it's in sticky state */
+    margin-bottom: 100px;
+    transition: all 0.3s ease; /* Smooth transition for height and padding */
+}
+
+/* Section1: Hero */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin: 50px 0;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 300px;
+}
+
+.hero-section .text {
+    flex: 5;
+}
+
+.hero-section .text h2 {
+    font-size: 45px;
+
+}
+
+.hero-section .text h3.job-title {
+    font-size: 35px;
+    color: #7239f7;
+}
+
+.hero-section .text .links {
+    margin-top: 25px;
+}
+
+.hero-section .text .links a.resume {
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--background-color);
+    background-color: #c73939;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: .1s;
+}
+
+.hero-section .text .links a.resume:hover {
+    background-color: #f47070;
+}
+
+.hero-section .text .links a.linkedin {
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--background-color);
+    background-color: #0072b1;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: .1s;
+}
+
+.hero-section .text .links a.linkedin:hover {
+    background-color: #089ee4;
+}
+
+.hero-section .text .links a.email {
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--background-color);
+    background-color: var(--text-color);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: .1s;
+}
+
+.hero-section .text .links a.email:hover {
+    background-color: #5d5d5e;
+}
+
+.hero-section .headshot {
+    flex: 2;
+    display: flex;
+    justify-content: left;
+}
+
+.hero-section .headshot img {
+    width: 300px;
+    border-radius: 50%;
+}
+
+/* Section 2: Skills */
+
+.skills-section {
+    padding: 0 50px;
+    margin-bottom: 200px;
+}
+
+.skills-section h2 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.skills-section .text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.skills-section .cells {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.skills-section .cells .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    padding: 10px 20px;
+    border: 1.5px solid #d3d3d3;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.skills-section .cells .cell img {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+/* Section 3: Testimony */
+
+.testimony-section {
+    padding: 0 50px;
+    margin-bottom: 200px;
+}
+
+.testimony-section h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.testimony-section .group {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 70px;
+}
+
+.testimony-section .group .person-details {
+    text-align: center;
+    flex: 2;
+}
+
+.testimony-section .group .person-details p {
+    font-weight: 600;
+}
+
+.testimony-section .group .person-details p:last-child {
+    font-weight: normal;
+}
+
+.testimony-section .group .text {
+    flex: 8;
+}
+
+/* Section 4: Contact */
+
+.contact-section {
+    padding: 0 50px;
+    margin-bottom: 200px;
+}
+
+.contact-section h2 {
+    font-size: 35px;
+}
+
+.contact-section .group {
+    display: flex;
+    gap: 50px;
+
+}
+
+.contact-section .group .text {
+    flex: 3;
+    margin-top: 20px;
+}
+
+.contact-section .group form {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-section .group form input, .contact-section .group form textarea {
+    font-family: 'Poppins', sans-serif;
+    border: 1.5px solid #aeaeae;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 10px;
+    margin-bottom: 15px;
+    outline: none;
+    resize: none;
+}
+
+.contact-section .group form button {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--background-color);
+    background-color: #7239f7;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.contact-section .group form button:hover {
+    background-color: #af8efa;
+}
+
+@media (max-width: 850px) {
+    /* Section 1: Hero */
+    .hero-section .text h2 {
+        font-size: 35px;
+    }
+    .hero-section .text h3.job-title {
+        font-size: 25px;
+    }
+
+    nav {
+        margin-bottom: 50px;
+    }
+
+    .hero-section {
+        margin-bottom: 100px;
+    }
+
+    .skills-section {
+        margin-bottom: 100px;
+    }
+
+    .testimony-section {
+        margin-bottom: 100px;
+    }
+
+    .contact-section {
+        margin-bottom: 100px;
+    }
+
+    .testimony-section .group {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 740px) {
+    /* Section 1: Hero */
+    .hero-section {
+        flex-direction: column-reverse;
+    }
+
+    .hero-section .headshot img {
+        width: 240px;
+    }
+
+    /* Section 3: Testimony */
+
+    .testimony-section {
+        text-align: center;
+    }
+
+    .testimony-section .group {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    /* Section 4: Contact */
+    .contact-section .group {
+        flex-direction: column;
+    }
+
+}
+
+
+
+@media (max-width: 600px) {
+    /* NAVBAR */
+    nav {
+        padding: 0 20px;
+
+    }
+    nav .right a{
+        font-size: 20px;
+    }
+    nav .right a:last-child {
+        color: var(--text-color);
+        background-color: var(--background-color);
+    }
+    nav .right a span{
+        display: none;
+    }
+
+    /* Section 1: Hero */
+
+    .hero-section {
+        padding: 0 20px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 30px;
+    }
+    .hero-section .text h3.job-title {
+        font-size: 20px;
+    }
+
+    /* Section 2: Skills */
+
+    .skills-section {
+        padding: 0 20px;
+    }
+
+    /* Section 3: Testimony */
+
+    .testimony-section {
+        padding: 0 20px;
+    }
+
+    /* Section 4: Contact */
+    .contact-section {
+        padding: 0 20px;
+    }
+}
