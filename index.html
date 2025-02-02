@@ -178,13 +178,17 @@
                 <div class="text">
                     Feel free to reach out to me for any opportunities or collaborations.
                 </div>
-                <form action="https://formsubmit.co/rohanvartak1996@gmail.com" method="POST">
+                <form action="https://formsubmit.co/4dd1a833f16e0b34369ba36dd21ff0d1" method="POST">
+                    <!--Honeypot-->
+                    <input type="text" name="_honey" style="display:none;">
+                    <!--Display Captcha-->
+                    <input type="hidden" name="_captcha" value="false">
                     <label for="name">Name</label>
-                    <input type="text" id="name">
+                    <input type="text" name="name" id="name">
                     <label for="email">Email</label>
-                    <input type="email" id="email">
+                    <input type="email" name="email" id="email">
                     <label for="message">Message</label>
-                    <textarea id="message" cols="30" rows="20"></textarea>
+                    <textarea id="message" name="message" cols="30" rows="20"></textarea>
                     <button type="submit">Send</button>
                 </form>
         </section>
