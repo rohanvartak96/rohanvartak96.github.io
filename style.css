@@ -29,16 +29,25 @@ a {
 }
 
 /* NAVBAR */ 
+.navbar-outer { 
+    position: fixed;
+    top: 0;
+    background-color: var(--background-color);
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     padding: 0 50px;
-    height: 80px;
+    height: 70px;
     align-items: center;
-    margin-bottom: 100px;
     z-index: 1;
-    position: sticky;
-    transition: all 0.3s ease;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -66,29 +75,6 @@ nav .right a span {
     margin-left:2px;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    background-color: var(--background-color);
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 10;
-    transform: translateY(0);
-    max-width: 1400px;
-    margin: 0 auto;
-    transition: all 0.3s ease;
-}
-
-.sticky + main {
-    margin-top: 80px;
-}
-
-nav.sticky {
-    height: 80px; /* Slightly reduce the height to indicate it's in sticky state */
-    margin-bottom: 100px;
-    transition: all 0.3s ease; /* Smooth transition for height and padding */
-}
 
 /* Section1: Hero */
 .hero-section {
@@ -99,6 +85,7 @@ nav.sticky {
     align-items: center;
     gap: 40px;
     margin-bottom: 300px;
+    margin-top: 150px;
 }
 
 .hero-section .text {
@@ -342,10 +329,6 @@ nav.sticky {
     }
     .hero-section .text h3.job-title {
         font-size: 25px;
-    }
-
-    nav {
-        margin-bottom: 50px;
     }
 
     .hero-section {
