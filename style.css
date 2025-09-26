@@ -80,28 +80,46 @@ nav .right a span {
 .hero-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     padding: 0 50px;
-    margin: 50px 0;
-    margin-bottom: 200px;
-    margin-top: 100px;
+    max-width: 1100px;
+    margin: 100px auto 200px;
     gap: 30px;
 }
 
+.hero-section .hero-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
 .hero-section .text {
-    max-width: 800px;
+    width: 100%;
 }
 
-.hero-section .text h2 {
-    font-size: 45px;
+.hero-section .hero-heading {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    text-align: left;
+    align-self: flex-start;
+    width: 100%;
 }
 
-.hero-section .text h3.job-title {
-    font-size: 40px;
+.hero-section .hero-heading h2:first-of-type {
+    font-size: 35px;
+}
+
+.hero-section .job-title {
+    font-size: 35px;
     color: #7239f7;
-    margin-bottom: 30px;
-    margin-top:10px;
+    margin: 0;
 }
 
 .hero-section .text .strenghts {
@@ -122,73 +140,110 @@ nav .right a span {
 .hero-section .text .links {
     margin-top: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 25px;
 }
 
 .hero-section .text .links a.resume {
-    display: inline-block;
-    padding: 12px 20px;
-    color: var(--background-color);
-    background-color: #c73939;
-    border-radius: 5px;
-    margin-right: 0;
-    margin-bottom: 10px;
-    transition: .1s;
-    font-size: 18px;
+    display: inline;
+    padding: 0;
+    color: #c73939;
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0;
+    transition: none;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .hero-section .text .links a.resume:hover {
-    background-color: #f47070;
+    text-decoration: underline;
 }
 
 .hero-section .text .links a.linkedin {
-    display: inline-block;
-    padding: 12px 20px;
-    color: var(--background-color);
-    background-color: #0072b1;
-    border-radius: 5px;
-    margin-right: 0;
-    margin-bottom: 10px;
-    transition: .1s;
-    font-size: 18px;
+    display: inline;
+    padding: 0;
+    color: var(--link-color);
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0;
+    transition: none;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .hero-section .text .links a.linkedin:hover {
-    background-color: #089ee4;
+    text-decoration: underline;
 }
 
 .hero-section .text .links a.email {
-    display: inline-block;
-    padding: 12px 20px;
-    color: var(--background-color);
-    background-color: var(--text-color);
-    border-radius: 5px;
-    margin-right: 0;
-    margin-bottom: 10px;
-    transition: .1s;
-    font-size: 18px;
+    display: inline;
+    padding: 0;
+    color: #000000;
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0;
+    transition: none;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .hero-section .text .links a.email:hover {
-    background-color: #5d5d5e;
+    text-decoration: underline;
 }
 
 .hero-section .headshot {
     flex: 2;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: #f6f6f6;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
 }
 
 .hero-section .headshot img {
     width: 400px;
-    border-radius: 50%;
+    border-radius: 8px;
+    height: auto;
+    max-width: 100%;
+}
+
+.hero-section .headshot .headshot-image {
+    margin-left: auto;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.hero-section .headshot .headshot-text {
+    flex: 1;
+    text-align: left;
+    max-width: 560px;
+}
+
+.hero-section .headshot .headshot-text p {
+    font-size: 20px;
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* Make the first line match the job-title color */
+.hero-section .headshot .headshot-text p:first-of-type {
+    color: #7239f7;
+}
+
+.hero-section .headshot .headshot-text p + p {
+    margin-top: 10px;
 }
 
 .hero-section .text p {
     font-size: 20px;
     line-height: 1.6;
+    text-align: left;
 }
 
 /* Section 2: Skills */
@@ -359,10 +414,13 @@ nav .right a span {
         font-size: 35px;
     }
     .hero-section .text h3.job-title {
-        font-size: 25px;
+        font-size: 35px;
     }
     
     .hero-section .text p {
+        font-size: 17px;
+    }
+    .hero-section .headshot .headshot-text p {
         font-size: 17px;
     }
     
@@ -373,8 +431,8 @@ nav .right a span {
     .hero-section .text .links a.resume,
     .hero-section .text .links a.linkedin,
     .hero-section .text .links a.email {
-        padding: 10px 16px;
-        font-size: 16px;
+        padding: 0;
+        font-size: 17px;
     }
 
     .hero-section {
@@ -403,11 +461,25 @@ nav .right a span {
     /* Section 1: Hero */
     .hero-section {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .hero-section .headshot img {
         width: 240px;
+    }
+
+    .hero-section .headshot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .hero-section .headshot .headshot-image {
+        margin-left: 0;
+        align-self: flex-start;
+        padding-left: 0;
+        margin-top: 10px;
     }
 
     /* Section 3: Testimony */
@@ -454,11 +526,17 @@ nav .right a span {
         font-size: 30px;
     }
     .hero-section .text h3.job-title {
-        font-size: 25px;
+        font-size: 30px;
     }
     
     .hero-section .text p {
         font-size: 17px;
+    }
+    .hero-section .headshot .headshot-text p {
+        font-size: 17px;
+    }
+    .hero-section .headshot .headshot-text p + p {
+        margin-top: 8px;
     }
     
     .hero-section .text .strenghts {
@@ -468,8 +546,8 @@ nav .right a span {
     .hero-section .text .links a.resume,
     .hero-section .text .links a.linkedin,
     .hero-section .text .links a.email {
-        padding: 8px 14px;
-        font-size: 15px;
+        padding: 0;
+        font-size: 17px;
     }
 
     /* Section 2: Skills */
