@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,35 +8,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Rohan Vartak</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
 </head>
+
 <body>
-    <div class="navbar-outer">
+    <header class="navbar-outer">
         <nav>
             <div class="left">
                 <a href="#hero">Rohan Vartak</a>
             </div>
             <div class="right">
-                <a href="#contact">
+                <a href="#contact" class="nav-link">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Contact</span>
                 </a>
             </div>
         </nav>
-    </div>
+    </header>
     <main>
-        <! -- SECTION 1: Hero --> 
-        <section id="hero" class="hero-section">
+        <!-- SECTION 1: Hero -->
+        <section id="hero" class="hero-section reveal">
             <div class="hero-heading">
-                <h2>Hi, I'm Rohan 👋🏻</h2>
-                <h2 class="job-title">Data Scientist</h2>
+                <h2>Hi, I'm Rohan.</h2>
+                <h2 class="job-title">I build <span class="typewriter"></span><span class="cursor">|</span></h2>
             </div>
             <div class="headshot">
                 <div class="headshot-text">
-                    <p>I specialze in:</p>
+                    <p>I specialize in:</p>
                     <p>Transforming data into actionable product insights.</p>
                     <p>Building AI systems to solve real world problems.</p>
                 </div>
@@ -44,25 +52,24 @@
                 </div>
             </div>
             <div class="text">
-                <p>Full-stack data scientist with 5+ years of experience. Currently working at Meta at the intersection of Machine Learning and Product Analytics. I help to build and improve ML models which predict user's data and use them to drive business outcomes for various products throughout Meta. </p>
+                <p>Full-stack data scientist with 5+ years of experience. Currently working at Meta at the intersection
+                    of Machine Learning and Product Analytics. I help to build and improve ML models which predict user
+                    behavior and use them to drive business outcomes for various products throughout Meta. </p>
                 <div class="links">
-                    <a href="https://drive.google.com/file/d/1PUDC0DjATTVsQgPMn2SkvD3DWwnESWjb/view" class="resume">
-                        <span>Resume</span>
+                    <a href="#" id="view-resume-btn" class="btn-view">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>View Resume</span>
+                    </a>
+                    <a href="Rohan Vartak Resume.pdf" download class="btn-download">
                         <i class="fa-solid fa-download"></i>
+                        <span>Download Resume</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/rohanvartak1996/" class="linkedin">
-                        <span>Linkedin</span>
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:rohanvartak1996@gmail.com" class="email">
-                        <span>Email</span>
-                        <i class="fa-solid fa-envelope"></i>
-                    </a>
+
                 </div>
             </div>
         </section>
-        <! -- SECTION 2: Skills -->
-        <section id="skills" class="skills-section">
+        <!-- SECTION 2: Skills -->
+        <section id="skills" class="skills-section reveal">
             <h2>Tech Stack</h2>
             <div class="text">
             </div>
@@ -113,51 +120,64 @@
                     <img src="images/dbt.png" alt="dbt">
                 </div>
                 <div class="cell">
-                    <img src="images/databricks.png" alt="docker">
+                    <img src="images/databricks.png" alt="databricks">
                 </div>
             </div>
         </section>
-        <! -- SECTION 3: What People Are Saying -->
-        <section id="testimonial-highlights" class="testimonial-highlights">
+        <!-- SECTION 3: What People Are Saying -->
+        <section id="testimonial-highlights" class="testimonial-highlights reveal">
             <h2>What People Are Saying</h2>
             <div class="highlights-grid">
                 <div class="highlight-card">
-                    <p class="quote">What stood out most was Rohan's deep understanding of our strategy. He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.</p>
+                    <p class="quote">What stood out most was Rohan's deep understanding of our strategy. He would
+                        proactively explore new areas and suggest data-driven directions for our product roadmap,
+                        demonstrating his ability to think critically and strategically.</p>
                     <div class="testimonial-author">
                         <div class="name">Cristina Fernandez</div>
                         <div class="position">Product Manager, Meta</div>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <p class="quote">One notable highlight was Rohan's swift response to the sudden increase in attention on regulatory driven work.Rohan played a pivotal role in these efforts, conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.</p>
+                    <p class="quote">One notable highlight was Rohan's swift response to the sudden increase in
+                        attention on regulatory driven work. Rohan played a pivotal role in these efforts, conducting
+                        in-depth investigations and analyses, and effectively communicating the status and capabilities
+                        of the location platform to various stakeholders.</p>
                     <div class="testimonial-author">
                         <div class="name">Xiaolu Xiong</div>
                         <div class="position">Engineering Manager, Meta</div>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <p class="quote">Rohan worked on closely with engineers on quality problems which required deep knowledge of data from logging details to complex metric implementation. Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without Rohan's deep technical insights.</p>
+                    <p class="quote">Rohan worked on closely with engineers on quality problems which required deep
+                        knowledge of data from logging details to complex metric implementation. Rohan contributed
+                        directly to a significant portion of his team and pillar's goals which would not have been
+                        possible without Rohan's deep technical insights.</p>
                     <div class="testimonial-author">
                         <div class="name">Jenny Lu</div>
                         <div class="position">Data Science Manager, Meta</div>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <p class="quote">He had great strategic thinking and never shied away from speaking up and sharing his perspectives; he's the fastest Data Engineer that I had worked with during my almost 5 years at Meta who had strong execution and fast turnaround when needed.</p>
+                    <p class="quote">He had great strategic thinking and never shied away from speaking up and sharing
+                        his perspectives; he's the fastest Data Engineer that I had worked with during my almost 5 years
+                        at Meta who had strong execution and fast turnaround when needed.</p>
                     <div class="testimonial-author">
                         <div class="name">Jessie Li</div>
                         <div class="position">Data Science, OpenAI</div>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <p class="quote">Rohan consistently works well across the functions of product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.</p>
+                    <p class="quote">Rohan consistently works well across the functions of product management, software
+                        engineering, and data engineering in order to land collaborative, influential product
+                        enhancements.</p>
                     <div class="testimonial-author">
                         <div class="name">George Schick</div>
                         <div class="position">Data Science Manager, Netflix</div>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <p class="quote"> Rohan was an "idea" guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.</p>
+                    <p class="quote">Rohan was an "idea" guy and it was evident in team meetings and brainstorming
+                        sessions when his suggestions helped others in building their product.</p>
                     <div class="testimonial-author">
                         <div class="name">Aditya Dasnurkar</div>
                         <div class="position">Data Engineering Manager, Meta</div>
@@ -165,8 +185,8 @@
                 </div>
             </div>
         </section>
-        <! -- SECTION 5: Contact -->
-        <section id="contact" class="contact-section">
+        <!-- SECTION 5: Contact -->
+        <section id="contact" class="contact-section reveal">
             <h2>Contact</h2>
             <div class="group">
                 <div class="text">
@@ -178,19 +198,39 @@
                     <!--Display Captcha-->
                     <input type="hidden" name="_captcha" value="false">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" required>
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" required>
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" cols="30" rows="20"></textarea>
+                    <textarea id="message" name="message" cols="30" rows="10" required></textarea>
                     <button type="submit">Send</button>
                 </form>
             </div>
         </section>
-        <! -- SECTION 6: Footer -->
+        <!-- SECTION 6: Footer -->
         <footer class="footer-section">
-            <p>Designed by Rohan Vartak</p>
+            <p>Designed by Rohan Vartak &copy; 2025</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
         </footer>
     </main>
+    <!-- PDF Viewer Modal -->
+    <div id="pdf-modal" class="pdf-modal">
+        <div class="pdf-controls">
+            <button id="pdf-close" class="pdf-control-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="zoom-controls">
+                <button id="pdf-zoom-out" class="pdf-control-btn"><i class="fa-solid fa-minus"></i></button>
+                <span id="zoom-level">100%</span>
+                <button id="pdf-zoom-in" class="pdf-control-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="pdf-container">
+            <canvas id="pdf-render"></canvas>
+        </div>
+    </div>
 </body>
+
 </html>
