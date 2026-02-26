@@ -184,8 +184,20 @@ nav .right a:last-child:hover {
     color: #555;
 }
 
+.hero-section .text .role-target {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--primary-color);
+    background-color: rgba(114, 57, 247, 0.08);
+    border: 1px solid rgba(114, 57, 247, 0.25);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-weight: 500;
+}
+
 .hero-section .text .links {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 20px;
     display: flex;
     gap: 20px;
@@ -246,9 +258,29 @@ nav .right a:last-child:hover {
     margin-bottom: 50px;
 }
 
+.skill-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.skill-group-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+}
+
 .skills-section .cells {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -279,7 +311,100 @@ nav .right a:last-child:hover {
     object-fit: contain;
 }
 
-/* Section 3: Testimonials */
+/* Section 3: Projects */
+.projects-section {
+    max-width: 1200px;
+    margin: 0 auto 150px;
+    padding: 0 50px;
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 60px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+.project-card-body {
+    flex: 1;
+}
+
+.project-card .project-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.project-card .project-outcome {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.project-tags .tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: rgba(114, 57, 247, 0.08);
+    border: 1px solid rgba(114, 57, 247, 0.2);
+    border-radius: 50px;
+    padding: 4px 12px;
+}
+
+.project-card .project-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+    gap: 4px;
+}
+
+.project-card .project-link:hover {
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Section 4: Testimonials */
 .testimonial-highlights {
     max-width: 1200px;
     margin: 0 auto 150px;
@@ -315,12 +440,25 @@ nav .right a:last-child:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.highlight-card .quote {
-    font-size: 16px;
-    line-height: 1.7;
-    color: #555;
+.highlight-card .quote-content {
     margin-bottom: 25px;
+    flex: 1;
+}
+
+.highlight-card .pull-quote {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.highlight-card .quote {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #888;
     font-style: italic;
+    margin-bottom: 0;
 }
 
 .highlight-card .testimonial-author {

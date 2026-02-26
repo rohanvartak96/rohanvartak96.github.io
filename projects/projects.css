@@ -1,0 +1,336 @@
+/* Project Pages Stylesheet */
+/* Imports the same fonts/vars from the main site via the root stylesheet link */
+
+:root {
+    --text-color: #1a1c20;
+    --link-color: #4a76ee;
+    --background-color: #ffffff;
+    --primary-color: #7239f7;
+    --secondary-color: #f6f6f6;
+    --accent-color: #af8efa;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    max-width: 1400px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* NAVBAR */
+.navbar-outer {
+    position: fixed;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 70px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+nav .left a {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+nav .right a {
+    color: var(--text-color);
+    font-size: 16px;
+    margin-left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+nav .right a:last-child {
+    color: var(--background-color);
+    background-color: var(--text-color);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+nav .right a:last-child:hover {
+    background-color: var(--primary-color);
+}
+
+/* Back link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: gap 0.2s ease;
+}
+
+.back-link:hover {
+    gap: 10px;
+}
+
+/* Project Hero */
+.project-hero {
+    padding: 120px 50px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.project-hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.project-hero .impact-statement {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.project-hero .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.project-hero .tag-row .tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: rgba(114, 57, 247, 0.08);
+    border: 1px solid rgba(114, 57, 247, 0.2);
+    border-radius: 50px;
+    padding: 5px 14px;
+}
+
+.project-hero .repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 8px 18px;
+    transition: all 0.3s ease;
+}
+
+.project-hero .repo-link:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Project Content Sections */
+.project-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 50px 80px;
+}
+
+.project-section {
+    margin-bottom: 60px;
+}
+
+.project-section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(114, 57, 247, 0.15);
+}
+
+.project-section p {
+    font-size: 17px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.project-section ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+.project-section ul li {
+    font-size: 17px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+/* Stat Callout Block */
+.stat-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 30px 0;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, rgba(114, 57, 247, 0.06), rgba(175, 142, 250, 0.06));
+    border: 1px solid rgba(114, 57, 247, 0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+}
+
+.stat-item .stat-number {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.stat-item .stat-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Tech Stack Icon Row (project page) */
+.project-tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.project-tech-row .tech-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 72px;
+    padding: 14px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-tech-row .tech-cell:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.project-tech-row .tech-cell img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Footer */
+.footer-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--background-color);
+    border-top: 1px solid #f0f0f0;
+    margin-top: 50px;
+}
+
+.footer-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    font-size: 22px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 20px;
+    }
+
+    .project-hero {
+        padding: 100px 20px 40px;
+    }
+
+    .project-hero h1 {
+        font-size: 30px;
+    }
+
+    .project-hero .impact-statement {
+        font-size: 17px;
+    }
+
+    .project-content {
+        padding: 0 20px 60px;
+    }
+
+    .stat-block {
+        flex-direction: column;
+    }
+
+    .stat-item {
+        min-width: unset;
+    }
+}
