@@ -43,7 +43,7 @@ window.addEventListener("scroll", () => {
 });
 
 // Typewriter Effect
-const words = ["Machine Learning Models", "Scalable Data Pipelines", "Product Insights", "AI Solutions"];
+const words = ["ML systems that move product metrics at scale", "data pipelines that turn user behavior into decisions", "AI-powered features shipped to billions of users"];
 let i = 0;
 let timer;
 
