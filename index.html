@@ -11,35 +11,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Rohan Vartak</title>
+    <title>Rohan Vartak | Data Scientist &amp; ML Engineer at Meta</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <meta name="description" content="Full-stack data scientist with 5+ years of experience building ML systems at Meta. Specializing in user behavior prediction, product analytics, and AI-driven product decisions.">
+
+    <!-- Open Graph / LinkedIn / Slack previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rohanvartak96.github.io/">
+    <meta property="og:title" content="Rohan Vartak | Data Scientist &amp; ML Engineer">
+    <meta property="og:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
+    <meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rohan Vartak | Data Scientist &amp; ML Engineer">
+    <meta name="twitter:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
+    <meta name="twitter:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
+
+    <!-- AOS Animate on Scroll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        // Apply saved theme before paint to prevent flash
+        (function(){var t=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t===null&&p))document.documentElement.setAttribute('data-theme','dark');})();
     </script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
     <header class="navbar-outer">
         <nav>
             <div class="left">
-                <a href="#hero">Rohan Vartak</a>
+                <a href="#hero">🚀 Rohan Vartak</a>
             </div>
             <div class="right">
-                <a href="#contact" class="nav-link">
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#testimonial-highlights" class="nav-link" data-section="testimonial-highlights">Testimonials</a>
+                <a href="#contact" class="nav-link nav-link--cta" data-section="contact">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Contact</span>
                 </a>
+                <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </div>
         </nav>
     </header>
     <main>
         <!-- SECTION 1: Hero -->
-        <section id="hero" class="hero-section reveal">
+        <section id="hero" class="hero-section">
             <div class="hero-heading">
                 <h2>Hi, I'm Rohan.</h2>
-                <h2 class="job-title">I build <span class="typewriter"></span><span class="cursor">|</span></h2>
+                <h2 class="job-title">I build <span class="flip-words"><span class="flip-word">ML models</span><span class="flip-word">Data pipelines</span><span class="flip-word">Strategic analysis</span><span class="flip-word">AI agents</span></span></h2>
             </div>
             <div class="headshot">
                 <div class="headshot-text">
@@ -53,134 +76,206 @@
             </div>
             <div class="text">
                 <p>Full-stack data scientist with 5+ years of experience. Currently working at Meta at the intersection
-                    of Machine Learning and Product Analytics. I help to build and improve ML models which predict user
-                    behavior and use them to drive business outcomes for various products throughout Meta. </p>
+                    of Machine Learning and Product Analytics. I build and improve ML models serving billions of users,
+                    translating user behavior signals into measurable business outcomes across Meta's product suite.</p>
+                <p class="role-target"><i class="fa-solid fa-circle-dot"></i> Open to Senior ML / Data Science roles at product-led companies</p>
                 <div class="links">
-                    <a href="#" id="view-resume-btn" class="btn-view">
+                    <a href="resume.html" class="btn-view">
                         <i class="fa-solid fa-eye"></i>
                         <span>View Resume</span>
                     </a>
-                    <a href="Rohan Vartak Resume.pdf" download class="btn-download">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Download Resume</span>
+                    <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank" class="btn-linkedin">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>LinkedIn</span>
                     </a>
+                </div>
+            </div>
+        </section>
+        <!-- Metrics Bar -->
+        <div class="metrics-bar">
+            <div class="metric">
+                <span class="metric-value">5+</span>
+                <span class="metric-label">Years Experience</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric">
+                <span class="metric-value">$116M+</span>
+                <span class="metric-label">ARR Impact</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric">
+                <span class="metric-value">1B+</span>
+                <span class="metric-label">Users Reached</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric">
+                <span class="metric-value">Meta · Instagram · Threads</span>
+                <span class="metric-label">Products Shipped</span>
+            </div>
+        </div>
 
+        <!-- SECTION 3: Projects -->
+        <section id="projects" class="projects-section reveal">
+            <h2 data-aos="fade-up">Projects</h2>
+
+            <div class="projects-subsection">
+                <h3 class="projects-subsection-title" data-aos="fade-up">Professional Projects</h3>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="project-card-body">
+                            <h3 class="project-title">User Language Prediction Model</h3>
+                            <p class="project-outcome">Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR by matching ads to users' actual language preferences.</p>
+                            <div class="project-tags">
+                                <span class="tag">Gradient Boosting</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">Ads Targeting</span>
+                                <span class="tag">ML</span>
+                            </div>
+                        </div>
+                        <a href="projects/user-language-model.html" class="project-link">View Project →</a>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-card-body">
+                            <h3 class="project-title">Instagram Shopping Latency Optimization</h3>
+                            <p class="project-outcome">Analyzed and optimized the Instagram Shopping product description page load time, achieving a 40–50% latency reduction, 10% lift in conversions, and $80M ARR for Meta.</p>
+                            <div class="project-tags">
+                                <span class="tag">Product Analytics</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Experimentation</span>
+                                <span class="tag">Funnel Analysis</span>
+                            </div>
+                        </div>
+                        <a href="projects/instagram-latency.html" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-subsection">
+                <h3 class="projects-subsection-title" data-aos="fade-up">Vibe Coded</h3>
+                <div class="projects-grid">
+                    <!-- Vibe Project 1 -->
+                    <div class="project-card project-card--featured" data-aos="fade-up">
+                        <div class="project-card-preview">
+                            <img src="images/App retention curve atlas.png" alt="App Retention Curves Atlas preview">
+                            <div class="preview-overlay">
+                                <a href="https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba" target="_blank" class="preview-open-btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    Open App
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-title">App Retention Curves Atlas</h3>
+                            <p class="project-outcome">Interactive explorer of 12-month retention benchmarks across 15 app categories — surfacing behavioral patterns, churn drivers, and retention strategies for social, gaming, finance, and more.</p>
+                            <div class="project-tags">
+                                <span class="tag">Data Visualization</span>
+                                <span class="tag">Retention</span>
+                                <span class="tag">Product Analytics</span>
+                            </div>
+                        </div>
+                        <a href="https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba" target="_blank" class="project-link">Open App →</a>
+                    </div>
+                    <!-- Vibe Project 2 -->
+                    <div class="project-card project-card--featured" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-card-preview">
+                            <img src="images/8 bit logo.png" alt="Fire Pixel Editor preview">
+                            <div class="preview-overlay">
+                                <a href="https://claude.ai/public/artifacts/ce616bc7-b327-45a1-a230-3828cbdc5e0f" target="_blank" class="preview-open-btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    Open App
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-title">Fire Pixel Editor</h3>
+                            <p class="project-outcome">A browser-based pixel art editor with a canvas grid, color palette, and drawing tools — built entirely in a single HTML file for instant, zero-install creative sessions.</p>
+                            <div class="project-tags">
+                                <span class="tag">Creative Tool</span>
+                                <span class="tag">Pixel Art</span>
+                                <span class="tag">Interactive</span>
+                            </div>
+                        </div>
+                        <a href="https://claude.ai/public/artifacts/ce616bc7-b327-45a1-a230-3828cbdc5e0f" target="_blank" class="project-link">Open App →</a>
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- SECTION 2: Skills -->
-        <section id="skills" class="skills-section reveal">
-            <h2>Tech Stack</h2>
-            <div class="text">
-            </div>
-            <div class="cells">
-                <div class="cell">
-                    <img src="images/Python0logo.png" alt="Python">
-                </div>
-                <div class="cell">
-                    <img src="images/Sql_data_base_with_logo.png" alt="SQL">
-                </div>
-                <div class="cell">
-                    <img src="images/PyTorch_logo_black.svg.png" alt="Pytorch">
-                </div>
-                <div class="cell">
-                    <img src="images/Pandas_logo.svg.png" alt="Pandas">
-                </div>
-                <div class="cell">
-                    <img src="images/Tableau-Logo.png" alt="Tableau">
-                </div>
-                <div class="cell">
-                    <img src="images/Scikit_learn_logo_small.svg.png" alt="Scikit-learn">
-                </div>
-                <div class="cell">
-                    <img src="images/Plotly-logo.png" alt="plotly">
-                </div>
-                <div class="cell">
-                    <img src="images/Apache_Spark_logo.svg.png" alt="spark">
-                </div>
-                <div class="cell">
-                    <img src="images/AirflowLogo.png" alt="airflow">
-                </div>
-                <div class="cell">
-                    <img src="images/keras-logo.png" alt="keras">
-                </div>
-                <div class="cell">
-                    <img src="images/xgboost.png" alt="xgboost">
-                </div>
-                <div class="cell">
-                    <img src="images/AWS.png" alt="aws">
-                </div>
-                <div class="cell">
-                    <img src="images/git-logo.png" alt="git">
-                </div>
-                <div class="cell">
-                    <img src="images/Docker-Logo.png" alt="docker">
-                </div>
-                <div class="cell">
-                    <img src="images/dbt.png" alt="dbt">
-                </div>
-                <div class="cell">
-                    <img src="images/databricks.png" alt="databricks">
-                </div>
-            </div>
-        </section>
-        <!-- SECTION 3: What People Are Saying -->
+        <!-- SECTION 5: What People Are Saying -->
         <section id="testimonial-highlights" class="testimonial-highlights reveal">
-            <h2>What People Are Saying</h2>
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <p class="quote">What stood out most was Rohan's deep understanding of our strategy. He would
-                        proactively explore new areas and suggest data-driven directions for our product roadmap,
-                        demonstrating his ability to think critically and strategically.</p>
+            <h2 data-aos="fade-up">What People Are Saying</h2>
+            <div class="highlights-masonry">
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">CF</div>
+                    <blockquote class="testimonial-quote">He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">Cristina Fernandez</div>
-                        <div class="position">Product Manager, Meta</div>
+                        <span class="name">Cristina Fernandez</span>
+                        <span class="separator">—</span>
+                        <span class="position">Product Manager, Meta</span>
                     </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="quote">One notable highlight was Rohan's swift response to the sudden increase in
-                        attention on regulatory driven work. Rohan played a pivotal role in these efforts, conducting
-                        in-depth investigations and analyses, and effectively communicating the status and capabilities
-                        of the location platform to various stakeholders.</p>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">XX</div>
+                    <blockquote class="testimonial-quote">Rohan played a pivotal role in these efforts, conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">Xiaolu Xiong</div>
-                        <div class="position">Engineering Manager, Meta</div>
+                        <span class="name">Xiaolu Xiong</span>
+                        <span class="separator">—</span>
+                        <span class="position">Engineering Manager, Meta</span>
                     </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="quote">Rohan worked on closely with engineers on quality problems which required deep
-                        knowledge of data from logging details to complex metric implementation. Rohan contributed
-                        directly to a significant portion of his team and pillar's goals which would not have been
-                        possible without Rohan's deep technical insights.</p>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">JL</div>
+                    <blockquote class="testimonial-quote">Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without his deep technical insights.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">Jenny Lu</div>
-                        <div class="position">Data Science Manager, Meta</div>
+                        <span class="name">Jenny Lu</span>
+                        <span class="separator">—</span>
+                        <span class="position">Data Science Manager, Meta</span>
                     </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="quote">He had great strategic thinking and never shied away from speaking up and sharing
-                        his perspectives; he's the fastest Data Engineer that I had worked with during my almost 5 years
-                        at Meta who had strong execution and fast turnaround when needed.</p>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">JL</div>
+                    <blockquote class="testimonial-quote">He's the fastest Data Engineer that I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">Jessie Li</div>
-                        <div class="position">Data Science, OpenAI</div>
+                        <span class="name">Jessie Li</span>
+                        <span class="separator">—</span>
+                        <span class="position">Data Science, OpenAI</span>
                     </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="quote">Rohan consistently works well across the functions of product management, software
-                        engineering, and data engineering in order to land collaborative, influential product
-                        enhancements.</p>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">GS</div>
+                    <blockquote class="testimonial-quote">Rohan consistently works well across the functions of product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">George Schick</div>
-                        <div class="position">Data Science Manager, Netflix</div>
+                        <span class="name">George Schick</span>
+                        <span class="separator">—</span>
+                        <span class="position">Data Science Manager, Netflix</span>
                     </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="quote">Rohan was an "idea" guy and it was evident in team meetings and brainstorming
-                        sessions when his suggestions helped others in building their product.</p>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">AD</div>
+                    <blockquote class="testimonial-quote">Rohan was an idea guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.</blockquote>
                     <div class="testimonial-author">
-                        <div class="name">Aditya Dasnurkar</div>
-                        <div class="position">Data Engineering Manager, Meta</div>
+                        <span class="name">Aditya Dasnurkar</span>
+                        <span class="separator">—</span>
+                        <span class="position">Data Engineering Manager, Meta</span>
+                    </div>
+                </div>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">JZ</div>
+                    <blockquote class="testimonial-quote">He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle. Rohan would be a massive asset to any team looking for a senior-level DS who can navigate ambiguity and drive clear, measurable product impact.</blockquote>
+                    <div class="testimonial-author">
+                        <span class="name">Jessica Zhou</span>
+                        <span class="separator">—</span>
+                        <span class="position">Staff Data Scientist, Meta</span>
+                    </div>
+                </div>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="testimonial-avatar">AJ</div>
+                    <blockquote class="testimonial-quote">Rohan showcased strong ownership of data artifacts, distinctly addressed the needs of his cross-functional partners, and demonstrated a strong product sense — quickly conceptualizing and building a robust data foundation for new products.</blockquote>
+                    <div class="testimonial-author">
+                        <span class="name">Apoorvi Jain</span>
+                        <span class="separator">—</span>
+                        <span class="position">Director, Meta AI Wearables Data Engineering</span>
                     </div>
                 </div>
             </div>
@@ -217,20 +312,16 @@
             </div>
         </footer>
     </main>
-    <!-- PDF Viewer Modal -->
-    <div id="pdf-modal" class="pdf-modal">
-        <div class="pdf-controls">
-            <button id="pdf-close" class="pdf-control-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
-            <div class="zoom-controls">
-                <button id="pdf-zoom-out" class="pdf-control-btn"><i class="fa-solid fa-minus"></i></button>
-                <span id="zoom-level">100%</span>
-                <button id="pdf-zoom-in" class="pdf-control-btn"><i class="fa-solid fa-plus"></i></button>
-            </div>
-        </div>
-        <div class="pdf-container">
-            <canvas id="pdf-render"></canvas>
-        </div>
-    </div>
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({ duration: 500, once: true, offset: 80 });
+        });
+    </script>
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
 </body>
 
 </html>

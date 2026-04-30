@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <title>Resume | Rohan Vartak</title>
+    <style>
+        :root {
+            --primary: #7239f7;
+            --text: #1a1c20;
+            --muted: #888;
+            --border: #e8e8e8;
+            --font: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: #f7f7f8;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Top nav */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover { color: var(--text); }
+
+        /* Page content */
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* Header row */
+        .resume-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .resume-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.3px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: #5f2de0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(114, 57, 247, 0.35);
+            color: #fff;
+        }
+
+        /* iframe wrapper */
+        .resume-frame-wrapper {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .resume-frame-wrapper iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 8.5 / 11;
+            min-height: 640px;
+            border: none;
+        }
+
+        /* Helper note */
+        .resume-note {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .resume-note a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resume-note a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .resume-header h1 { font-size: 22px; }
+            .page { padding: 32px 16px 60px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+    </div>
+
+    <div class="page">
+        <div class="resume-header">
+            <h1>Resume</h1>
+            <a href="Rohan Vartak Resume.pdf" download class="download-btn">
+                <i class="fa-solid fa-download"></i>
+                Download PDF
+            </a>
+        </div>
+
+        <div class="resume-frame-wrapper">
+            <iframe src="Rohan Vartak Resume.pdf" title="Rohan Vartak Resume"></iframe>
+        </div>
+
+        <p class="resume-note">
+            Download the <a href="Rohan Vartak Resume.pdf" download>PDF</a> for clickable links.
+        </p>
+    </div>
+</body>
+
+</html>

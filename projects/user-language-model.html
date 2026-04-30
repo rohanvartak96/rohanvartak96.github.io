@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+    <title>User Language Prediction Model | Rohan Vartak</title>
+    <meta name="description" content="Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR.">
+    <meta property="og:title" content="User Language Prediction Model | Rohan Vartak">
+    <meta property="og:description" content="Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR.">
+    <meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
+    <meta property="og:url" content="https://rohanvartak96.github.io/projects/user-language-model.html">
+
+    <link rel="stylesheet" href="projects.css">
+</head>
+
+<body>
+    <header class="navbar-outer">
+        <nav>
+            <div class="left">
+                <a href="../index.html">Rohan Vartak</a>
+            </div>
+            <div class="right">
+                <a href="../index.html#contact" class="nav-link">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Project Hero -->
+        <section class="project-hero">
+            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+            <h1>User Language Prediction Model</h1>
+            <p class="impact-statement">Built a multilabel language classifier to fix Ads misdelivery at Meta — correctly predicting the languages each user understands, driving $36M incremental ARR.</p>
+            <div class="tag-row">
+                <span class="tag">Gradient Boosting</span>
+                <span class="tag">Python</span>
+                <span class="tag">Ads Targeting</span>
+                <span class="tag">ML</span>
+            </div>
+        </section>
+
+        <!-- Project Content -->
+        <div class="project-content">
+
+            <!-- Overview -->
+            <div class="project-section" data-aos="fade-up">
+                <h2>Overview</h2>
+                <p>Meta's Ads platform allows advertisers to target users by language. However, when ads were targeted at the language + country level, many were reaching users who didn't actually speak those languages — a misdelivery problem that hurt advertiser ROI and user experience alike.</p>
+                <p><strong>Role &amp; Scope:</strong> I was tasked with building an ML model to predict the best languages for each user — specifically, the languages they understand and are most likely to engage with in an ad context. I owned the full pipeline: ground truth design, feature engineering, model development, evaluation, and production deployment via a real-time Web API.</p>
+            </div>
+
+            <!-- Approach -->
+            <div class="project-section" data-aos="fade-up">
+                <h2>Approach</h2>
+                <p>The model was a multilabel Gradient Boosted Decision Tree (GBDT) that classified languages per user and predicted the probability of understanding each language based on historical activity signals.</p>
+
+                <h3>Ground Truth</h3>
+                <p>Ground truth was derived from user surveys, with careful experimentation across survey formats to ensure signal quality and minimize response bias.</p>
+
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Activity signals:</strong> Past impressions, likes, shares, and comment history</li>
+                    <li><strong>Geographic attributes:</strong> Country, region, locale in country</li>
+                    <li><strong>Social graph:</strong> Close friend attributes (language inference from BFFs)</li>
+                    <li><strong>Device signals:</strong> Default device locale, keyboard language</li>
+                    <li><strong>Name-based attributes</strong> for cold-start inference</li>
+                </ul>
+
+                <h3>Algorithm Choice: Gradient Boosted Decision Tree</h3>
+                <ul>
+                    <li>Handles non-linearity and complex feature interactions well — important given the mix of categorical and numerical features</li>
+                    <li>Robust to outliers and missing data, which was common in activity signals for low-engagement users</li>
+                    <li>Some user cohorts required a higher degree of learning; GBDT's boosting approach handled these uneven cohorts better than simpler models</li>
+                </ul>
+                <p>Other algorithms tested: KNN (simple user-to-user language mapping), Logistic Regression (too linear for this problem), and Random Forests (too slow at scale). GBDT offered the best balance of accuracy, precision/recall, and compute efficiency for a large, balanced dataset.</p>
+
+                <h3>Key Challenges</h3>
+                <ul>
+                    <li><strong>Predicting secondary and tertiary languages:</strong> Harder to learn from activity alone — BFF graph features and geographic attributes were critical here</li>
+                    <li><strong>Cold-start users:</strong> Device locale and keyboard signals provided reliable signal for new users with sparse history</li>
+                    <li><strong>Country-level variation:</strong> Different countries have very different language distributions. Applied country-level thresholds calibrated using external data to tune precision/recall tradeoffs per market</li>
+                    <li><strong>Ground truth quality:</strong> Tested multiple survey formats before settling on one that produced clean, reliable labels</li>
+                </ul>
+
+                <h3>Deployment</h3>
+                <p>The model was deployed as a low-latency Web API built in Hack (PHP) via Meta's internal Distillery framework. On each call: permission check → feature retrieval by user ID → model inference → thresholding + fallback logic → result returned to caller + real-time log written.</p>
+
+                <h3>Online Monitoring</h3>
+                <ul>
+                    <li><strong>Sanity checks:</strong> Average number of languages per user per country; language distribution per country</li>
+                    <li><strong>Model metrics:</strong> Precision, Recall, F1 score</li>
+                    <li><strong>Product metrics:</strong> Language Mismatch Rate, negative language feedback on posts, cross-over rates</li>
+                </ul>
+            </div>
+
+            <!-- Results -->
+            <div class="project-section" data-aos="fade-up">
+                <h2>Results</h2>
+                <div class="stat-block">
+                    <div class="stat-item">
+                        <div class="stat-number">$36M</div>
+                        <div class="stat-label">Incremental ARR from improved Ads language targeting</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">+0.03%</div>
+                        <div class="stat-label">Incremental revenue lift in experiment</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">↓</div>
+                        <div class="stat-label">Language Mismatch Rate — ads now reach users in languages they actually understand</div>
+                    </div>
+                </div>
+                <p>The experiment demonstrated that showing ads matching a user's actual language preferences drove measurable incremental revenue, validating the approach and leading to a full production rollout.</p>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="project-section" data-aos="fade-up">
+                <h2>Tech Stack</h2>
+                <div class="project-tech-row">
+                    <div class="tech-cell">
+                        <img src="../images/xgboost.png" alt="XGBoost / GBDT">
+                    </div>
+                    <div class="tech-cell">
+                        <img src="../images/Python0logo.png" alt="Python">
+                    </div>
+                    <div class="tech-cell">
+                        <img src="../images/Sql_data_base_with_logo.png" alt="SQL">
+                    </div>
+                </div>
+            </div>
+
+            <a href="../index.html#projects" class="back-link" data-aos="fade-up">← Back to Projects</a>
+        </div>
+    </main>
+
+    <footer class="footer-section">
+        <p>Designed by Rohan Vartak &copy; 2025</p>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 500, once: true, offset: 80 });
+    </script>
+</body>
+
+</html>

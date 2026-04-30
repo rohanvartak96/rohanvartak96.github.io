@@ -1,3 +1,14 @@
+// Navbar transparency on scroll
+(function () {
+    const nav = document.querySelector('.navbar-outer');
+    if (!nav) return;
+    function updateNav() {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+})();
+
 // Reveal sections on scroll
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
@@ -21,176 +32,87 @@ window.addEventListener("scroll", reveal);
 reveal();
 
 // Active link highlighting
-const sections = document.querySelectorAll("section");
-const navLi = document.querySelectorAll("nav .right a");
+const navLinks = document.querySelectorAll("nav .right a[data-section]");
 
-window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - sectionHeight / 3) {
-            current = section.getAttribute("id");
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("data-section") === id) {
+                    link.classList.add("active");
+                }
+            });
         }
     });
+}, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
 
-    navLi.forEach((li) => {
-        li.classList.remove("active");
-        if (li.getAttribute("href").includes(current)) {
-            li.classList.add("active");
-        }
-    });
+document.querySelectorAll("section[id]").forEach((section) => {
+    observer.observe(section);
 });
 
-// Typewriter Effect
-const words = ["Machine Learning Models", "Scalable Data Pipelines", "Product Insights", "AI Solutions"];
-let i = 0;
-let timer;
+// Dark mode toggle
+(function () {
+    const toggle = document.getElementById('dark-toggle');
+    const icon = toggle ? toggle.querySelector('i') : null;
+    const html = document.documentElement;
 
-function typeWriter() {
-    const heading = document.querySelector(".typewriter");
-    if (!heading) return;
-
-    const word = words[i];
-    const speed = 100;
-    const deleteSpeed = 50;
-    const pause = 3000;
-
-    let text = heading.textContent;
-
-    if (!heading.classList.contains("deleting")) {
-        // Typing
-        heading.textContent = word.substring(0, text.length + 1);
-        if (heading.textContent === word) {
-            heading.classList.add("deleting");
-            timer = setTimeout(typeWriter, pause);
+    function applyTheme(dark) {
+        if (dark) {
+            html.setAttribute('data-theme', 'dark');
+            if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); }
         } else {
-            timer = setTimeout(typeWriter, speed);
-        }
-    } else {
-        // Deleting
-        heading.textContent = word.substring(0, text.length - 1);
-        if (heading.textContent === "") {
-            heading.classList.remove("deleting");
-            i = (i + 1) % words.length;
-            timer = setTimeout(typeWriter, speed);
-        } else {
-            timer = setTimeout(typeWriter, deleteSpeed);
+            html.removeAttribute('data-theme');
+            if (icon) { icon.classList.replace('fa-sun', 'fa-moon'); }
         }
     }
-}
 
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved ? saved === 'dark' : prefersDark);
+
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            applyTheme(!isDark);
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+    }
+})();
+
+// Back to top
+(function () {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+
+// Flip Words Effect
 document.addEventListener('DOMContentLoaded', () => {
-    typeWriter();
+    const flipWords = document.querySelectorAll('.flip-word');
+    if (!flipWords.length) return;
+
+    let current = 0;
+    flipWords[current].classList.add('is-active');
+
+    setInterval(() => {
+        const prev = current;
+        current = (current + 1) % flipWords.length;
+
+        flipWords[prev].classList.remove('is-active');
+        flipWords[prev].classList.add('is-exit');
+        flipWords[current].classList.add('is-active');
+
+        setTimeout(() => {
+            flipWords[prev].classList.remove('is-exit');
+        }, 600);
+    }, 2500);
 });
 
 
-// PDF Viewer Logic
-const pdfUrl = 'Rohan Vartak Resume.pdf';
-let pdfDoc = null;
-let pageNum = 1;
-let pageRendering = false;
-let pageNumPending = null;
-let scale = 3.0;
-const canvas = document.getElementById('pdf-render');
-const ctx = canvas.getContext('2d');
-const zoomLevel = document.getElementById('zoom-level');
-
-/**
- * Get page info from document, resize canvas accordingly, and render page.
- * @param num Page number.
- */
-function renderPage(num) {
-    pageRendering = true;
-    // Fetch page
-    pdfDoc.getPage(num).then(function (page) {
-        const viewport = page.getViewport({
-            scale: scale
-        });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        // Render PDF page into canvas context
-        const renderContext = {
-            canvasContext: ctx,
-            viewport: viewport
-        };
-        const renderTask = page.render(renderContext);
-
-        // Wait for render to finish
-        renderTask.promise.then(function () {
-            pageRendering = false;
-            if (pageNumPending !== null) {
-                // New page rendering is pending
-                renderPage(pageNumPending);
-                pageNumPending = null;
-            }
-        });
-    });
-
-    // Update zoom level display
-    zoomLevel.textContent = `${Math.round(scale * 100)}%`;
-}
-
-/**
- * If another page rendering in progress, waits until the rendering is
- * finised. Otherwise, executes rendering immediately.
- */
-function queueRenderPage(num) {
-    if (pageRendering) {
-        pageNumPending = num;
-    } else {
-        renderPage(num);
-    }
-}
-
-// Zoom In
-document.getElementById('pdf-zoom-in').addEventListener('click', () => {
-    scale += 0.25;
-    renderPage(pageNum);
-});
-
-// Zoom Out
-document.getElementById('pdf-zoom-out').addEventListener('click', () => {
-    if (scale <= 0.5) return;
-    scale -= 0.25;
-    renderPage(pageNum);
-});
-
-// Modal Logic
-const modal = document.getElementById('pdf-modal');
-const viewResumeBtn = document.getElementById('view-resume-btn');
-const closeBtn = document.getElementById('pdf-close');
-
-viewResumeBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-
-    // Load PDF if not already loaded
-    if (!pdfDoc) {
-        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc_) {
-            pdfDoc = pdfDoc_;
-            renderPage(pageNum);
-        }).catch(function (error) {
-            console.error('Error loading PDF:', error);
-            // Fallback: open in new tab if PDF.js fails
-            window.open(pdfUrl, '_blank');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-});
-
-closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-// Close modal when clicking outside content
-modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target.classList.contains('pdf-container')) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
