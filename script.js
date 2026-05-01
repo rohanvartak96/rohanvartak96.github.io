@@ -52,34 +52,6 @@ document.querySelectorAll("section[id]").forEach((section) => {
     observer.observe(section);
 });
 
-// Dark mode toggle
-(function () {
-    const toggle = document.getElementById('dark-toggle');
-    const icon = toggle ? toggle.querySelector('i') : null;
-    const html = document.documentElement;
-
-    function applyTheme(dark) {
-        if (dark) {
-            html.setAttribute('data-theme', 'dark');
-            if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); }
-        } else {
-            html.removeAttribute('data-theme');
-            if (icon) { icon.classList.replace('fa-sun', 'fa-moon'); }
-        }
-    }
-
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(saved ? saved === 'dark' : prefersDark);
-
-    if (toggle) {
-        toggle.addEventListener('click', () => {
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            applyTheme(!isDark);
-            localStorage.setItem('theme', isDark ? 'light' : 'dark');
-        });
-    }
-})();
 
 // Back to top
 (function () {
@@ -90,6 +62,26 @@ document.querySelectorAll("section[id]").forEach((section) => {
     }, { passive: true });
     btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+
+// Hamburger menu toggle
+(function () {
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+
+    // Close menu when any nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+        });
     });
 })();
 
