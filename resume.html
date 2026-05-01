@@ -6,65 +6,190 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <title>Resume | Rohan Vartak</title>
+    <script src="script.js" defer></script>
     <style>
         :root {
-            --primary: #7239f7;
-            --text: #1a1c20;
+            --primary-color: #7239f7;
+            --text-color: #1a1c20;
+            --background-color: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e8e8e8;
             --muted: #888;
-            --border: #e8e8e8;
-            --font: 'Poppins', sans-serif;
+            --font-family: 'Geist', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
         body {
-            font-family: var(--font);
+            font-family: var(--font-family);
             background: #f7f7f8;
-            color: var(--text);
+            color: var(--text-color);
             min-height: 100vh;
         }
 
-        /* Top nav */
-        .topbar {
-            position: sticky;
+        /* Navbar — matches main site */
+        .navbar-outer {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 32px;
-            height: 60px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-outer.scrolled {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+            height: 70px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav .left a {
+            color: var(--text-color);
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        nav .right {
             display: flex;
             align-items: center;
         }
 
-        .back-link {
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .right a {
+            color: #666;
+            font-size: 15px;
+            margin-left: 8px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
-            transition: color 0.2s ease;
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: color 0.2s ease, background 0.2s ease;
         }
 
-        .back-link:hover { color: var(--text); }
+        nav .right a:hover {
+            color: var(--text-color);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        nav .right a.nav-link--active {
+            color: var(--primary-color);
+            background: rgba(114, 57, 247, 0.07);
+            font-weight: 600;
+        }
+
+        nav .right a.nav-link--cta {
+            color: #fff;
+            background-color: var(--text-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-left: 12px;
+            transition: background-color 0.2s ease;
+        }
+
+        nav .right a.nav-link--cta:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+            margin-left: 8px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-color);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-hamburger { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(14px);
+                padding: 12px 20px 20px;
+                gap: 4px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.open { display: flex; }
+
+            nav .right a.nav-link {
+                padding: 12px 16px;
+                border-radius: 10px;
+                margin-left: 0;
+                font-size: 16px;
+            }
+
+            nav .right a.nav-link--cta {
+                margin-left: 0;
+                margin-top: 8px;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+        }
 
         /* Page content */
         .page {
             max-width: 860px;
             margin: 0 auto;
-            padding: 48px 24px 80px;
+            padding: 100px 24px 80px;
         }
 
-        /* Header row */
         .resume-header {
             display: flex;
             align-items: center;
@@ -75,7 +200,7 @@
         .resume-header h1 {
             font-size: 28px;
             font-weight: 600;
-            color: var(--text);
+            color: var(--text-color);
             letter-spacing: -0.3px;
         }
 
@@ -83,7 +208,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--primary);
+            background: var(--primary-color);
             color: #fff;
             text-decoration: none;
             padding: 9px 20px;
@@ -100,10 +225,9 @@
             color: #fff;
         }
 
-        /* iframe wrapper */
         .resume-frame-wrapper {
             background: #fff;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 24px rgba(0,0,0,0.07);
@@ -117,7 +241,6 @@
             border: none;
         }
 
-        /* Helper note */
         .resume-note {
             margin-top: 14px;
             font-size: 13px;
@@ -126,29 +249,100 @@
         }
 
         .resume-note a {
-            color: var(--primary);
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
         }
 
         .resume-note a:hover { text-decoration: underline; }
 
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 28px;
+            transition: gap 0.2s ease;
+        }
+
+        .back-link:hover { gap: 10px; color: var(--primary-color); }
+
+        /* Footer */
+        .footer-section {
+            text-align: center;
+            padding: 48px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            font-size: 22px;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            opacity: 1;
+        }
+
         @media (max-width: 600px) {
+            .resume-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .resume-header h1 { font-size: 22px; }
-            .page { padding: 32px 16px 60px; }
+            .page { padding: 90px 16px 60px; }
         }
     </style>
 </head>
 
 <body>
-    <div class="topbar">
-        <a href="index.html" class="back-link">
-            <i class="fa-solid fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
-    </div>
+    <header class="navbar-outer">
+        <nav>
+            <div class="left">
+                <a href="index.html">🚀 Rohan Vartak</a>
+            </div>
+            <div class="right">
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html#projects" class="nav-link">Projects</a>
+                    <a href="index.html#testimonial-highlights" class="nav-link">Testimonials</a>
+                    <a href="resume.html" class="nav-link nav-link--active">Resume</a>
+                    <a href="index.html#contact" class="nav-link nav-link--cta">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
     <div class="page">
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+        </a>
         <div class="resume-header">
             <h1>Resume</h1>
             <a href="Rohan Vartak Resume.pdf" download class="download-btn">
@@ -165,6 +359,14 @@
             Download the <a href="Rohan Vartak Resume.pdf" download>PDF</a> for clickable links.
         </p>
     </div>
+
+    <footer class="footer-section">
+        <p>Designed by Rohan Vartak &copy; 2025</p>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </footer>
 </body>
 
 </html>

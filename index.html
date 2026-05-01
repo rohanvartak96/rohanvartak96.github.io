@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -31,10 +31,6 @@
     <!-- AOS Animate on Scroll -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <link rel="stylesheet" href="style.css">
-    <script>
-        // Apply saved theme before paint to prevent flash
-        (function(){var t=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t===null&&p))document.documentElement.setAttribute('data-theme','dark');})();
-    </script>
     <script src="script.js" defer></script>
 </head>
 
@@ -45,14 +41,19 @@
                 <a href="#hero">🚀 Rohan Vartak</a>
             </div>
             <div class="right">
-                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-                <a href="#testimonial-highlights" class="nav-link" data-section="testimonial-highlights">Testimonials</a>
-                <a href="#contact" class="nav-link nav-link--cta" data-section="contact">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
-                <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon"></i>
+                <div class="nav-links" id="nav-links">
+                    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                    <a href="#testimonial-highlights" class="nav-link" data-section="testimonial-highlights">Testimonials</a>
+                    <a href="resume.html" class="nav-link" data-section="resume">Resume</a>
+                    <a href="#contact" class="nav-link nav-link--cta" data-section="contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </nav>
@@ -69,6 +70,11 @@
                     <p>I specialize in:</p>
                     <p>Transforming data into actionable product insights.</p>
                     <p>Building AI systems to solve real world problems.</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="hero-btn hero-btn--primary">View Projects</a>
+                        <a href="resume.html" class="hero-btn hero-btn--secondary"><i class="fa-solid fa-file-lines"></i> Resume</a>
+                        <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank" class="hero-btn hero-btn--linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    </div>
                 </div>
                 <div class="headshot-image">
                     <img src="images/Rohan2.webp" alt="Rohan Headshot">
@@ -78,17 +84,7 @@
                 <p>Full-stack data scientist with 5+ years of experience. Currently working at Meta at the intersection
                     of Machine Learning and Product Analytics. I build and improve ML models serving billions of users,
                     translating user behavior signals into measurable business outcomes across Meta's product suite.</p>
-                <p class="role-target"><i class="fa-solid fa-circle-dot"></i> Open to Senior ML / Data Science roles at product-led companies</p>
-                <div class="links">
-                    <a href="resume.html" class="btn-view">
-                        <i class="fa-solid fa-eye"></i>
-                        <span>View Resume</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank" class="btn-linkedin">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                </div>
+                <p class="role-target"><i class="fa-solid fa-circle-dot pulse-green"></i> Open to Senior ML / Data Science roles at product-led companies</p>
             </div>
         </section>
         <!-- Metrics Bar -->
@@ -122,7 +118,7 @@
                 <h3 class="projects-subsection-title" data-aos="fade-up">Professional Projects</h3>
                 <div class="projects-grid">
                     <!-- Project 1 -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-color="purple" data-aos="fade-up">
                         <div class="project-card-body">
                             <h3 class="project-title">User Language Prediction Model</h3>
                             <p class="project-outcome">Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR by matching ads to users' actual language preferences.</p>
@@ -136,7 +132,7 @@
                         <a href="projects/user-language-model.html" class="project-link">View Project →</a>
                     </div>
                     <!-- Project 2 -->
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card" data-color="blue" data-aos="fade-up" data-aos-delay="100">
                         <div class="project-card-body">
                             <h3 class="project-title">Instagram Shopping Latency Optimization</h3>
                             <p class="project-outcome">Analyzed and optimized the Instagram Shopping product description page load time, achieving a 40–50% latency reduction, 10% lift in conversions, and $80M ARR for Meta.</p>
@@ -156,7 +152,7 @@
                 <h3 class="projects-subsection-title" data-aos="fade-up">Vibe Coded</h3>
                 <div class="projects-grid">
                     <!-- Vibe Project 1 -->
-                    <div class="project-card project-card--featured" data-aos="fade-up">
+                    <div class="project-card project-card--featured" data-color="emerald" data-aos="fade-up">
                         <div class="project-card-preview">
                             <img src="images/App retention curve atlas.png" alt="App Retention Curves Atlas preview">
                             <div class="preview-overlay">
@@ -178,7 +174,7 @@
                         <a href="https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba" target="_blank" class="project-link">Open App →</a>
                     </div>
                     <!-- Vibe Project 2 -->
-                    <div class="project-card project-card--featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card project-card--featured" data-color="orange" data-aos="fade-up" data-aos-delay="100">
                         <div class="project-card-preview">
                             <img src="images/8 bit logo.png" alt="Fire Pixel Editor preview">
                             <div class="preview-overlay">
@@ -282,24 +278,29 @@
         </section>
         <!-- SECTION 5: Contact -->
         <section id="contact" class="contact-section reveal">
-            <h2>Contact</h2>
-            <div class="group">
-                <div class="text">
-                    Feel free to reach out to me for any opportunities or collaborations.
+            <div class="contact-inner">
+                <div class="contact-left" data-aos="fade-up">
+                    <p class="section-eyebrow">Contact</p>
+                    <h2 class="contact-heading">Have a project in mind or want to collaborate?</h2>
+                    <p class="contact-subheading">Get in touch!</p>
+                    <div class="contact-social">
+                        <p class="connect-label">Connect with me</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <form action="https://formsubmit.co/4dd1a833f16e0b34369ba36dd21ff0d1" method="POST">
-                    <!--Honeypot-->
-                    <input type="text" name="_honey" style="display:none;">
-                    <!--Display Captcha-->
-                    <input type="hidden" name="_captcha" value="false">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" required>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" required>
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" cols="30" rows="10" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
+                <div class="contact-right" data-aos="fade-up" data-aos-delay="100">
+                    <form action="https://formsubmit.co/4dd1a833f16e0b34369ba36dd21ff0d1" method="POST">
+                        <input type="text" name="_honey" style="display:none;">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        <input type="email" name="email" id="email" placeholder="Your Email" required>
+                        <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
             </div>
         </section>
         <!-- SECTION 6: Footer -->

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,20 +20,32 @@
     <meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
     <meta property="og:url" content="https://rohanvartak96.github.io/projects/instagram-latency.html">
 
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <link rel="stylesheet" href="projects.css">
+    <script src="../script.js" defer></script>
 </head>
 
 <body>
     <header class="navbar-outer">
         <nav>
             <div class="left">
-                <a href="../index.html">Rohan Vartak</a>
+                <a href="../index.html">🚀 Rohan Vartak</a>
             </div>
             <div class="right">
-                <a href="../index.html#contact" class="nav-link">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
+                <div class="nav-links" id="nav-links">
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                    <a href="../index.html#testimonial-highlights" class="nav-link">Testimonials</a>
+                    <a href="../resume.html" class="nav-link">Resume</a>
+                    <a href="../index.html#contact" class="nav-link nav-link--cta">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
     </header>
