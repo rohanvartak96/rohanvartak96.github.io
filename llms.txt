@@ -1,0 +1,58 @@
+# Rohan Vartak
+
+> Data Scientist & ML Engineer with 5+ years at Meta. I build production ML systems and run data-driven product experiments — with a track record of driving $116M+ ARR through applied machine learning and deep funnel analysis.
+
+## About
+
+Rohan Vartak is a full-stack data scientist at the intersection of ML Engineering and Product Analytics. He has built and shipped production ML models at Meta scale, designed AI agents and LLM-powered tools, and led data initiatives for products serving billions of users.
+
+Core capabilities:
+- **ML Engineering** — Classifiers, rankers, embeddings, GBDTs, XGBoost, PyTorch, scikit-learn, and end-to-end deployment
+- **Product Analytics** — Metrics design, A/B experimentation, funnel analysis, Tableau dashboards
+- **AI Systems** — LLM-powered tools, RAG pipelines, AI agents
+
+Contact: rohanvartak1996@gmail.com
+
+## Professional Projects
+
+- [User Language Prediction Model](https://rohanvartak96.github.io/projects/user-language-model.html): Built a multilabel Gradient Boosted Decision Tree (GBDT) classifier at Meta to predict which languages each user understands. Used activity signals, geo attributes, social graph, device locale, and name-based cold-start features. Deployed as a real-time Web API via Meta's Distillery framework. Drove $36M incremental ARR and a statistically significant +0.03% revenue lift. Model recall: 95%.
+
+- [Instagram Shopping Latency Optimization](https://rohanvartak96.github.io/projects/instagram-latency.html): Answered a director-level question on latency ROI by mapping page load time against conversion rate and cancellations. Developed the TTRC% metric (share of page loads completing within 1 second). Identified lazy-loading opportunities, async tax/shipping computation, and CTA simplification as wins. Proposed 4 experiments; 2 were greenlit. Result: 40–50% latency reduction, +10% conversions, $80M incremental ARR. Methodology was adopted across other shopping pages.
+
+## Personal Projects
+
+- [App Retention Curves Atlas](https://rohanvartak96.github.io/): Interactive explorer of 12-month retention benchmarks across 15 app categories — surfacing behavioral patterns, churn drivers, and product strategies. Open source.
+
+- [Fire Pixel Editor](https://rohanvartak96.github.io/): Browser-based pixel art editor with canvas grid, color palette, and drawing tools — built entirely in a single HTML file.
+
+## Key Achievements
+
+- **$36M ARR** — Multilabel language prediction model improving Meta Ads targeting (language classifier, GBDT, 95% recall)
+- **$80M ARR** — Instagram Shopping latency optimization (40–50% page load reduction, +10% conversion lift)
+- **$116M+ total incremental ARR** driven at Meta through ML and analytics work
+
+## Skills
+
+**Languages & Libraries:** Python, SQL, Hack (PHP), PyTorch, scikit-learn, XGBoost, Pandas, Plotly
+**Data & ML Platforms:** Apache Spark, Airflow, dbt, Databricks, AWS
+**Analytics & Visualization:** Tableau, A/B Testing, Funnel Analysis, Statistical Modeling
+**AI & LLMs:** LLM-powered tools, RAG pipelines, AI agents, prompt engineering
+
+## Testimonials
+
+- Jessica Zhou, Staff Data Scientist, Meta: "He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle."
+- George Schick, Data Science Manager, Netflix: "Rohan consistently works well across product management, software engineering, and data engineering in order to land collaborative, influential product enhancements."
+- Jessie Li, Data Science, OpenAI: "He's the fastest Data Engineer I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed."
+- Apoorvi Jain, Director, Meta AI Wearables: "Rohan showcased strong ownership and demonstrated a strong product sense — quickly building a robust data foundation for new products."
+
+## Pages
+
+- [Portfolio Home](https://rohanvartak96.github.io/): Full portfolio with projects, skills, and testimonials
+- [Resume](https://rohanvartak96.github.io/resume.html): Full resume PDF
+- [User Language Model — Project Deep Dive](https://rohanvartak96.github.io/projects/user-language-model.html): Problem framing, feature engineering, GBDT rationale, deployment architecture, and results
+- [Instagram Latency — Project Deep Dive](https://rohanvartak96.github.io/projects/instagram-latency.html): Funnel decomposition, TTRC% metric, experiment design, and revenue impact
+
+## External Profiles
+
+- LinkedIn: https://www.linkedin.com/in/rohanvartak1996/
+- GitHub: https://github.com/rohanvartak96
