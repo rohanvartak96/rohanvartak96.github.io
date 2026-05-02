@@ -1,372 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-    <title>Resume | Rohan Vartak</title>
-    <script src="script.js" defer></script>
-    <style>
-        :root {
-            --primary-color: #7239f7;
-            --text-color: #1a1c20;
-            --background-color: #ffffff;
-            --nav-bg: rgba(255, 255, 255, 0.95);
-            --border-color: #e8e8e8;
-            --muted: #888;
-            --font-family: 'Geist', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
-        body {
-            font-family: var(--font-family);
-            background: #f7f7f8;
-            color: var(--text-color);
-            min-height: 100vh;
-        }
-
-        /* Navbar — matches main site */
-        .navbar-outer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: transparent;
-            backdrop-filter: none;
-            box-shadow: none;
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .navbar-outer.scrolled {
-            background-color: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 50px;
-            height: 70px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        nav .left a {
-            color: var(--text-color);
-            font-size: 24px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        nav .right {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        nav .right a {
-            color: #666;
-            font-size: 15px;
-            margin-left: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            padding: 6px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: color 0.2s ease, background 0.2s ease;
-        }
-
-        nav .right a:hover {
-            color: var(--text-color);
-            background: rgba(0, 0, 0, 0.04);
-        }
-
-        nav .right a.nav-link--active {
-            color: var(--primary-color);
-            background: rgba(114, 57, 247, 0.07);
-            font-weight: 600;
-        }
-
-        nav .right a.nav-link--cta {
-            color: #fff;
-            background-color: var(--text-color);
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-left: 12px;
-            transition: background-color 0.2s ease;
-        }
-
-        nav .right a.nav-link--cta:hover {
-            background-color: var(--primary-color);
-            color: #fff;
-        }
-
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px 4px;
-            margin-left: 8px;
-        }
-
-        .nav-hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-color);
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.2s ease;
-        }
-
-        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        @media (max-width: 768px) {
-            nav { padding: 0 20px; }
-            .nav-hamburger { display: flex; }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                align-items: stretch;
-                background: rgba(255, 255, 255, 0.97);
-                backdrop-filter: blur(14px);
-                padding: 12px 20px 20px;
-                gap: 4px;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .nav-links.open { display: flex; }
-
-            nav .right a.nav-link {
-                padding: 12px 16px;
-                border-radius: 10px;
-                margin-left: 0;
-                font-size: 16px;
-            }
-
-            nav .right a.nav-link--cta {
-                margin-left: 0;
-                margin-top: 8px;
-                justify-content: center;
-                padding: 12px 20px;
-            }
-        }
-
-        /* Page content */
-        .page {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 100px 24px 80px;
-        }
-
-        .resume-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 28px;
-        }
-
-        .resume-header h1 {
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--text-color);
-            letter-spacing: -0.3px;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary-color);
-            color: #fff;
-            text-decoration: none;
-            padding: 9px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .download-btn:hover {
-            background: #5f2de0;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(114, 57, 247, 0.35);
-            color: #fff;
-        }
-
-        .resume-frame-wrapper {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-        }
-
-        .resume-frame-wrapper iframe {
-            display: block;
-            width: 100%;
-            aspect-ratio: 8.5 / 11;
-            min-height: 640px;
-            border: none;
-        }
-
-        .resume-note {
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--muted);
-            text-align: center;
-        }
-
-        .resume-note a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .resume-note a:hover { text-decoration: underline; }
-
-        /* Back link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
-            margin-bottom: 28px;
-            transition: gap 0.2s ease;
-        }
-
-        .back-link:hover { gap: 10px; color: var(--primary-color); }
-
-        /* Footer */
-        .footer-section {
-            text-align: center;
-            padding: 48px 20px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
-        }
-
-        .footer-section p {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-color);
-            font-size: 22px;
-            opacity: 0.8;
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            opacity: 1;
-        }
-
-        @media (max-width: 600px) {
-            .resume-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .resume-header h1 { font-size: 22px; }
-            .page { padding: 90px 16px 60px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume | Rohan Vartak</title>
+<meta name="description" content="Rohan Vartak's resume — Data Scientist & ML Engineer at Meta.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D95F2B'/><text x='50' y='76' font-family='Playfair Display,serif' font-weight='900' font-size='68' fill='%23fff' text-anchor='middle'>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #F4EFE6; color: #1C1810; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; transition: background 0.25s ease, color 0.25s ease; }
+html.dark body { background: #1C1A17; color: #F0EBE1; }
+::selection { background: #D95F2B; color: #fff; }
+</style>
+<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})()</script>
 </head>
-
 <body>
-    <header class="navbar-outer">
-        <nav>
-            <div class="left">
-                <a href="index.html">🚀 Rohan Vartak</a>
-            </div>
-            <div class="right">
-                <div class="nav-links" id="nav-links">
-                    <a href="index.html#projects" class="nav-link">Projects</a>
-                    <a href="index.html#testimonial-highlights" class="nav-link">Testimonials</a>
-                    <a href="resume.html" class="nav-link nav-link--active">Resume</a>
-                    <a href="index.html#contact" class="nav-link nav-link--cta">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </div>
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect } = React;
 
-    <div class="page">
-        <a href="index.html" class="back-link">
-            <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+const ACC = '#D95F2B';
+const C = {
+  cream: '#F4EFE6', creamDark: '#EDE5D8', creamCard: '#EAE3D5',
+  white: '#FFFFFF', ink: '#1C1810', inkMid: '#4A3F32', inkLight: '#8A7E70',
+  border: 'rgba(28,24,16,0.11)', borderMid: 'rgba(28,24,16,0.18)',
+};
+const CD = {
+  cream: '#1C1A17', creamDark: '#232019', creamCard: '#2B2722',
+  white: '#332E28', ink: '#F0EBE1', inkMid: '#B5A99A', inkLight: '#7A7065',
+  border: 'rgba(240,235,225,0.09)', borderMid: 'rgba(240,235,225,0.14)',
+};
+const ThemeCtx = React.createContext(false);
+function useC() { const dark = React.useContext(ThemeCtx); return dark ? CD : C; }
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  useEffect(() => {
+    const fn = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return width;
+}
+
+function hPad(w) {
+  if (w < 768) return '20px';
+  if (w < 1024) return '32px';
+  return 'max(56px, calc((100vw - 1280px) / 2))';
+}
+
+function Nav({ dark, setDark }) {
+  const C = useC();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  const navLinks = [['Projects','index.html#projects'],['Skills','index.html#skills'],['Testimonials','index.html#testimonials'],['Resume','resume.html']];
+
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+      background: (scrolled || menuOpen) ? `${C.cream}f0` : 'transparent',
+      backdropFilter: (scrolled || menuOpen) ? 'blur(16px)' : 'none',
+      borderBottom: (scrolled || menuOpen) ? `1px solid ${C.border}` : '1px solid transparent',
+      transition: 'all 0.3s ease',
+    }}>
+      <div style={{
+        padding: isMobile ? '14px 20px' : `16px ${hPad(w)}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
+        <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 16, color: '#fff' }}>R</div>
+          <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 15, color: C.ink, letterSpacing: '-0.01em' }}>Rohan Vartak</span>
         </a>
-        <div class="resume-header">
-            <h1>Resume</h1>
-            <a href="Rohan Vartak Resume.pdf" download class="download-btn">
-                <i class="fa-solid fa-download"></i>
-                Download PDF
-            </a>
-        </div>
 
-        <div class="resume-frame-wrapper">
-            <iframe src="Rohan Vartak Resume.pdf" title="Rohan Vartak Resume"></iframe>
-        </div>
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+            {navLinks.map(([l,h]) => (
+              <a key={l} href={h} style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, color: C.inkMid, textDecoration: 'none', letterSpacing: '0.01em', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = ACC}
+                onMouseLeave={e => e.target.style.color = C.inkMid}
+              >{l}</a>
+            ))}
+          </div>
+        )}
 
-        <p class="resume-note">
-            Download the <a href="Rohan Vartak Resume.pdf" download>PDF</a> for clickable links.
-        </p>
-    </div>
-
-    <footer class="footer-section">
-        <p>Designed by Rohan Vartak &copy; 2025</p>
-        <div class="footer-links">
-            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <button onClick={() => setDark(d => !d)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.inkMid, transition: 'color 0.2s, background 0.2s', outline: 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.color = C.ink; e.currentTarget.style.background = C.creamCard; }}
+            onMouseLeave={e => { e.currentTarget.style.color = C.inkMid; e.currentTarget.style.background = 'none'; }}
+            title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4.5"/>
+                <line x1="12" y1="2" x2="12" y2="4.5"/>
+                <line x1="12" y1="19.5" x2="12" y2="22"/>
+                <line x1="4.22" y1="4.22" x2="5.93" y2="5.93"/>
+                <line x1="18.07" y1="18.07" x2="19.78" y2="19.78"/>
+                <line x1="2" y1="12" x2="4.5" y2="12"/>
+                <line x1="19.5" y1="12" x2="22" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.93" y2="18.07"/>
+                <line x1="18.07" y1="5.93" x2="19.78" y2="4.22"/>
+              </svg>
+            )}
+          </button>
+          {isMobile ? (
+            <button onClick={() => setMenuOpen(o => !o)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center', color: C.inkMid }}>
+              {menuOpen ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              )}
+            </button>
+          ) : (
+            <a href="index.html#contact" style={{
+              background: ACC, color: '#fff', border: 'none', borderRadius: 100,
+              padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >Get in Touch</a>
+          )}
         </div>
+      </div>
+
+      {isMobile && menuOpen && (
+        <div style={{ padding: '8px 20px 20px', borderTop: `1px solid ${C.border}`, display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {navLinks.map(([l,h]) => (
+            <a key={l} href={h} onClick={() => setMenuOpen(false)} style={{ fontFamily: 'DM Sans', fontSize: 15, fontWeight: 500, color: C.inkMid, textDecoration: 'none', padding: '10px 0', borderBottom: `1px solid ${C.border}`, transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = ACC}
+              onMouseLeave={e => e.target.style.color = C.inkMid}
+            >{l}</a>
+          ))}
+          <a href="index.html#contact" onClick={() => setMenuOpen(false)} style={{ background: ACC, color: '#fff', borderRadius: 100, padding: '12px 24px', fontSize: 14, fontWeight: 600, textDecoration: 'none', textAlign: 'center', marginTop: 8 }}>Get in Touch</a>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function Footer() {
+  const dark = React.useContext(ThemeCtx);
+  const w = useWindowWidth();
+  const isMobile = w < 640;
+  return (
+    <footer style={{ background: dark ? '#0D0B09' : '#1C1810', padding: `${isMobile ? 48 : 56}px ${hPad(w)} ${isMobile ? 24 : 32}px` }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? 32 : 40, paddingBottom: isMobile ? 32 : 48, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+            <div style={{ width: 28, height: 28, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 13, color: '#fff' }}>R</div>
+            <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 14, color: '#fff' }}>Rohan Vartak</span>
+          </div>
+          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, maxWidth: 240 }}>A data scientist on every team — building ML models that move the needle.</p>
+        </div>
+        {[
+          { label: 'Work', links: [['Projects','index.html#projects'],['Skills','index.html#skills'],['Resume','resume.html']] },
+          { label: 'Social', links: [['LinkedIn','https://www.linkedin.com/in/rohanvartak1996/'],['GitHub','https://github.com/rohanvartak96']] },
+          { label: 'Contact', links: [['Get in Touch','index.html#contact']] },
+        ].map(col => (
+          <div key={col.label}>
+            <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>{col.label}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {col.links.map(([label, href]) => (
+                <a key={label} href={href} style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  onMouseEnter={e => e.target.style.color = ACC}
+                  onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}
+                >{label}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', paddingTop: 24, gap: isMobile ? 8 : 0 }}>
+        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>Designed by Rohan Vartak © 2025</span>
+        <a href="mailto:rohanvartak1996@gmail.com" style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.2s' }}
+          onMouseEnter={e => e.target.style.color = ACC}
+          onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.3)'}
+        >rohanvartak1996@gmail.com</a>
+      </div>
     </footer>
-</body>
+  );
+}
 
+function ResumePage() {
+  const [dark, setDark] = useState(() => { try { return localStorage.getItem('theme') === 'dark'; } catch(e) { return false; } });
+  const T = dark ? CD : C;
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+
+  useEffect(() => {
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
+    document.documentElement.classList.toggle('dark', dark);
+  }, [dark]);
+
+  return (
+    <ThemeCtx.Provider value={dark}>
+    <div style={{ background: T.cream, minHeight: '100vh', display: 'flex', flexDirection: 'column', transition: 'background 0.25s ease' }}>
+      <Nav dark={dark} setDark={setDark} />
+
+      <main style={{ flex: 1, paddingTop: 100, paddingBottom: 80, maxWidth: 900, margin: '0 auto', width: '100%', paddingLeft: isMobile ? 20 : 24, paddingRight: isMobile ? 20 : 24 }}>
+        <div style={{ marginBottom: 40 }}>
+          <p style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: T.inkLight, marginBottom: 14 }}>Career History</p>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(34px, 4vw, 56px)', letterSpacing: '-0.025em', color: T.ink, lineHeight: 1.0, marginBottom: 24 }}>
+            Rohan's <span style={{ fontStyle: 'italic', color: ACC }}>résumé.</span>
+          </h1>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>
+            <a href="https://rohanvartak96.github.io/Rohan%20Vartak%20Resume.pdf" download
+              style={{ background: ACC, color: '#fff', border: 'none', borderRadius: 100, padding: '11px 24px', fontSize: 16, fontWeight: 600, cursor: 'pointer', fontFamily: 'DM Sans', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'opacity 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="index.html"
+              style={{ background: 'transparent', color: T.ink, border: `1.5px solid ${T.borderMid}`, borderRadius: 100, padding: '10px 24px', fontSize: 16, fontWeight: 500, fontFamily: 'DM Sans', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = ACC; e.currentTarget.style.color = ACC; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; }}
+            >← Back to Portfolio</a>
+          </div>
+          <p style={{ fontSize: 14, color: T.inkLight }}>Download the PDF for clickable links.</p>
+        </div>
+
+        <div style={{ background: T.white, border: `1px solid ${T.border}`, borderRadius: 16, overflow: 'hidden', boxShadow: '0 8px 48px rgba(28,24,16,0.10)' }}>
+          <div style={{ background: T.creamCard, borderBottom: `1px solid ${T.border}`, padding: '12px 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#EC6B5E' }}></div>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#F5BE4F' }}></div>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#67C65E' }}></div>
+            <span style={{ marginLeft: 8, fontSize: 13, color: T.inkLight, fontWeight: 500 }}>
+              <span style={{ color: T.ink, fontWeight: 600 }}>Rohan Vartak Resume.pdf</span> · 1 page
+            </span>
+          </div>
+          <iframe
+            src="https://rohanvartak96.github.io/Rohan%20Vartak%20Resume.pdf"
+            title="Rohan Vartak Resume"
+            style={{ width: '100%', height: isMobile ? '70vh' : '85vh', border: 'none', display: 'block' }}
+          ></iframe>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+    </ThemeCtx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ResumePage />);
+</script>
+</body>
 </html>

@@ -1,152 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-
-    <title>Instagram Shopping Latency Optimization | Rohan Vartak</title>
-    <meta name="description" content="Optimized Instagram Shopping page load time, achieving 40–50% latency reduction, 10% conversion lift, and $80M ARR.">
-    <meta property="og:title" content="Instagram Shopping Latency Optimization | Rohan Vartak">
-    <meta property="og:description" content="Optimized Instagram Shopping page load time, achieving 40–50% latency reduction, 10% conversion lift, and $80M ARR.">
-    <meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
-    <meta property="og:url" content="https://rohanvartak96.github.io/projects/instagram-latency.html">
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-    <link rel="stylesheet" href="projects.css">
-    <script src="../script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Shopping Latency Optimization | Rohan Vartak</title>
+<meta name="description" content="How Rohan cut Instagram Shopping latency by 45% and drove $80M ARR through funnel analysis and experimentation.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D95F2B'/><text x='50' y='76' font-family='Playfair Display,serif' font-weight='900' font-size='68' fill='%23fff' text-anchor='middle'>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #F4EFE6; color: #1C1810; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; transition: background 0.25s ease, color 0.25s ease; }
+html.dark body { background: #1C1A17; color: #F0EBE1; }
+::selection { background: #D95F2B; color: #fff; }
+</style>
+<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})()</script>
 </head>
-
 <body>
-    <header class="navbar-outer">
-        <nav>
-            <div class="left">
-                <a href="../index.html">🚀 Rohan Vartak</a>
-            </div>
-            <div class="right">
-                <div class="nav-links" id="nav-links">
-                    <a href="../index.html#projects" class="nav-link">Projects</a>
-                    <a href="../index.html#testimonial-highlights" class="nav-link">Testimonials</a>
-                    <a href="../resume.html" class="nav-link">Resume</a>
-                    <a href="../index.html#contact" class="nav-link nav-link--cta">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </div>
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
 
-    <main>
-        <!-- Project Hero -->
-        <section class="project-hero">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Instagram Shopping Latency Optimization</h1>
-            <p class="impact-statement">Answered a director-level question on latency ROI through deep funnel analysis — identifying and driving experiments that cut page load time by 40–50%, translating to a 10% lift in conversions and $80M ARR.</p>
-            <div class="tag-row">
-                <span class="tag">Product Analytics</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Experimentation</span>
-                <span class="tag">Funnel Analysis</span>
-            </div>
-        </section>
+const ACC = '#D95F2B';
+const C = {
+  cream: '#F4EFE6', creamDark: '#EDE5D8', creamCard: '#EAE3D5',
+  white: '#FFFFFF', ink: '#1C1810', inkMid: '#4A3F32', inkLight: '#8A7E70',
+  border: 'rgba(28,24,16,0.11)', borderMid: 'rgba(28,24,16,0.18)',
+};
+const CD = {
+  cream: '#1C1A17', creamDark: '#232019', creamCard: '#2B2722',
+  white: '#332E28', ink: '#F0EBE1', inkMid: '#B5A99A', inkLight: '#7A7065',
+  border: 'rgba(240,235,225,0.09)', borderMid: 'rgba(240,235,225,0.14)',
+};
+const ThemeCtx = React.createContext(false);
+function useC() { const dark = React.useContext(ThemeCtx); return dark ? CD : C; }
 
-        <!-- Project Content -->
-        <div class="project-content">
+function useInView(ref, threshold = 0.1) {
+  const [v, setV] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setV(true); obs.disconnect(); } }, { threshold });
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return v;
+}
 
-            <!-- Overview -->
-            <div class="project-section" data-aos="fade-up">
-                <h2>Overview</h2>
-                <p>Instagram has a native in-app shopping flow integrated with Ads, allowing users to browse and purchase products without leaving the app. My team owned the latency of the Product Description Page (PDP) — the core page in the shopping funnel where users decide whether to convert.</p>
-                <p><strong>Role &amp; Scope:</strong> The Director of the Ads org asked a direct question: what is the ROI on maintaining latency? I structured and led the full analysis to answer it, then identified the highest-impact engineering improvements and drove two experiments to production.</p>
-            </div>
+function useCounter(target, visible, duration = 1200) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!visible) return;
+    let start = null;
+    const step = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      setVal(Math.round((1 - Math.pow(1 - p, 3)) * target));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [visible, target]);
+  return val;
+}
 
-            <!-- Approach -->
-            <div class="project-section" data-aos="fade-up">
-                <h2>Approach</h2>
-                <p>The analysis was structured in two parts: first establishing the business value of latency, then diagnosing where time was being lost.</p>
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  useEffect(() => {
+    const fn = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return width;
+}
 
-                <h3>Part 1 — Establishing the Value of Latency</h3>
-                <p>I mapped page load time against conversion rate, transaction volume, and cancellation rates across the user base. This analysis revealed a clear threshold: pages loading beyond 1 second saw conversion rates fall sharply and cancellation rates spike.</p>
-                <p><strong>1 second became the golden standard</strong> for PDP load duration — anything above it was treated as a conversion risk.</p>
-                <p>To operationalize this, I developed a new metric: <strong>TTRC % (Time To Responsive Content %)</strong> — measuring the share of page loads completing within 1 second per session. Baseline: only 40% of page loads were meeting the 1s threshold.</p>
+function hPad(w) {
+  if (w < 768) return '20px';
+  if (w < 1024) return '32px';
+  return 'max(56px, calc((100vw - 1280px) / 2))';
+}
 
-                <h3>Part 2 — Diagnosing the Remaining 60%</h3>
-                <p>I conducted a full funnel breakdown of the PDP loading sequence, decomposing total load time by individual component and analyzing each by device type, network condition, and user cohort. Key findings:</p>
-                <ul>
-                    <li><strong>Image loading:</strong> Images were loading eagerly, but 60% of users never scrolled past the first 3 images — a clear opportunity for lazy loading the rest</li>
-                    <li><strong>Async shipping/tax/coupon calculations:</strong> These were computed synchronously on page load; converting them to async based on a user's predicted conversion probability eliminated a significant blocking delay</li>
-                    <li><strong>CTA button complexity:</strong> The call-to-action button had unnecessary complexity contributing to render time; simplifying it yielded a quick win</li>
-                    <li><strong>Preloading strategies:</strong> Explored preloading key assets to reclaim time earlier in the loading sequence</li>
-                </ul>
-                <p>I proposed 4 experiments based on these findings. Two were greenlit and implemented by engineering.</p>
-            </div>
+function Nav({ dark, setDark }) {
+  const C = useC();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
 
-            <!-- Results -->
-            <div class="project-section" data-aos="fade-up">
-                <h2>Results</h2>
-                <div class="stat-block">
-                    <div class="stat-item">
-                        <div class="stat-number">40–50%</div>
-                        <div class="stat-label">Reduction in page load time</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">+10%</div>
-                        <div class="stat-label">Increase in shopping conversions</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">$80M</div>
-                        <div class="stat-label">Incremental ARR for Meta</div>
-                    </div>
-                </div>
-                <p>Beyond the direct impact, the methodology — establishing a latency threshold first, then optimizing against it — was adopted across other pages in the shopping flow and later extended throughout the session experience.</p>
-            </div>
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
 
-            <!-- Tech Stack -->
-            <div class="project-section" data-aos="fade-up">
-                <h2>Tech Stack</h2>
-                <div class="project-tech-row">
-                    <div class="tech-cell">
-                        <img src="../images/Sql_data_base_with_logo.png" alt="SQL">
-                    </div>
-                    <div class="tech-cell">
-                        <img src="../images/Python0logo.png" alt="Python">
-                    </div>
-                    <div class="tech-cell">
-                        <img src="../images/Tableau-Logo.png" alt="Tableau">
-                    </div>
-                </div>
-            </div>
+  const navLinks = [['Projects','../index.html#projects'],['Skills','../index.html#skills'],['Testimonials','../index.html#testimonials'],['Resume','../resume.html']];
 
-            <a href="../index.html#projects" class="back-link" data-aos="fade-up">← Back to Projects</a>
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+      background: (scrolled || menuOpen) ? `${C.cream}f0` : 'transparent',
+      backdropFilter: (scrolled || menuOpen) ? 'blur(16px)' : 'none',
+      borderBottom: (scrolled || menuOpen) ? `1px solid ${C.border}` : '1px solid transparent',
+      transition: 'all 0.3s ease',
+    }}>
+      <div style={{
+        padding: isMobile ? '14px 20px' : `16px ${hPad(w)}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
+        <a href="../index.html" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 16, color: '#fff' }}>R</div>
+          <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 15, color: C.ink, letterSpacing: '-0.01em' }}>Rohan Vartak</span>
+        </a>
+
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+            {navLinks.map(([l,h]) => (
+              <a key={l} href={h} style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, color: C.inkMid, textDecoration: 'none', letterSpacing: '0.01em', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = ACC} onMouseLeave={e => e.target.style.color = C.inkMid}
+              >{l}</a>
+            ))}
+          </div>
+        )}
+
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <button onClick={() => setDark(d => !d)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.inkMid, transition: 'color 0.2s, background 0.2s', outline: 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.color = C.ink; e.currentTarget.style.background = C.creamCard; }}
+            onMouseLeave={e => { e.currentTarget.style.color = C.inkMid; e.currentTarget.style.background = 'none'; }}
+            title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4.5"/>
+                <line x1="12" y1="2" x2="12" y2="4.5"/>
+                <line x1="12" y1="19.5" x2="12" y2="22"/>
+                <line x1="4.22" y1="4.22" x2="5.93" y2="5.93"/>
+                <line x1="18.07" y1="18.07" x2="19.78" y2="19.78"/>
+                <line x1="2" y1="12" x2="4.5" y2="12"/>
+                <line x1="19.5" y1="12" x2="22" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.93" y2="18.07"/>
+                <line x1="18.07" y1="5.93" x2="19.78" y2="4.22"/>
+              </svg>
+            )}
+          </button>
+          {isMobile ? (
+            <button onClick={() => setMenuOpen(o => !o)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center', color: C.inkMid }}>
+              {menuOpen ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              )}
+            </button>
+          ) : (
+            <a href="../index.html#contact" style={{
+              background: ACC, color: '#fff', border: 'none', borderRadius: 100,
+              padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >Get in Touch</a>
+          )}
         </div>
-    </main>
+      </div>
 
-    <footer class="footer-section">
-        <p>Designed by Rohan Vartak &copy; 2025</p>
-        <div class="footer-links">
-            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      {isMobile && menuOpen && (
+        <div style={{ padding: '8px 20px 20px', borderTop: `1px solid ${C.border}`, display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {navLinks.map(([l,h]) => (
+            <a key={l} href={h} onClick={() => setMenuOpen(false)} style={{ fontFamily: 'DM Sans', fontSize: 15, fontWeight: 500, color: C.inkMid, textDecoration: 'none', padding: '10px 0', borderBottom: `1px solid ${C.border}`, transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = ACC} onMouseLeave={e => e.target.style.color = C.inkMid}
+            >{l}</a>
+          ))}
+          <a href="../index.html#contact" onClick={() => setMenuOpen(false)} style={{ background: ACC, color: '#fff', borderRadius: 100, padding: '12px 24px', fontSize: 14, fontWeight: 600, textDecoration: 'none', textAlign: 'center', marginTop: 8 }}>Get in Touch</a>
         </div>
+      )}
+    </nav>
+  );
+}
+
+function Footer() {
+  const dark = React.useContext(ThemeCtx);
+  const w = useWindowWidth();
+  const isMobile = w < 640;
+  return (
+    <footer style={{ background: dark ? '#0D0B09' : '#1C1810', padding: `${isMobile ? 48 : 56}px ${hPad(w)} ${isMobile ? 24 : 32}px` }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? 32 : 40, paddingBottom: isMobile ? 32 : 48, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+            <div style={{ width: 28, height: 28, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 13, color: '#fff' }}>R</div>
+            <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 14, color: '#fff' }}>Rohan Vartak</span>
+          </div>
+          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, maxWidth: 240 }}>A data scientist on every team — building ML models that move the needle.</p>
+        </div>
+        {[
+          { label: 'Work', links: [['Projects','../index.html#projects'],['Skills','../index.html#skills'],['Resume','../resume.html']] },
+          { label: 'Social', links: [['LinkedIn','https://www.linkedin.com/in/rohanvartak1996/'],['GitHub','https://github.com/rohanvartak96']] },
+          { label: 'Contact', links: [['Get in Touch','../index.html#contact']] },
+        ].map(col => (
+          <div key={col.label}>
+            <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>{col.label}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {col.links.map(([label, href]) => (
+                <a key={label} href={href} style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  onMouseEnter={e => e.target.style.color = ACC} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}
+                >{label}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', paddingTop: 24, gap: isMobile ? 8 : 0 }}>
+        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>Designed by Rohan Vartak © 2025</span>
+        <a href="mailto:rohanvartak1996@gmail.com" style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.2s' }}
+          onMouseEnter={e => e.target.style.color = ACC} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.3)'}
+        >rohanvartak1996@gmail.com</a>
+      </div>
     </footer>
+  );
+}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({ duration: 500, once: true, offset: 80 });
-    </script>
+function ResultCard({ prefix, value, suffix, label, sub }) {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const count = useCounter(value, visible);
+  return (
+    <div ref={ref} style={{ background: C.creamCard, border: `1px solid ${C.border}`, borderRadius: 14, padding: '28px 24px', textAlign: 'center' }}>
+      <div style={{ fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 48, color: ACC, letterSpacing: '-0.03em', lineHeight: 1 }}>{prefix}{count}{suffix}</div>
+      <div style={{ fontSize: 14, fontWeight: 600, color: C.ink, marginTop: 10 }}>{label}</div>
+      {sub && <div style={{ fontSize: 12, color: C.inkLight, marginTop: 4 }}>{sub}</div>}
+    </div>
+  );
+}
+
+function Section({ children }) {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  return (
+    <div ref={ref} style={{ padding: '64px 0', borderTop: `1px solid ${C.border}`, opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(20px)', transition: 'all 0.55s ease' }}>
+      {children}
+    </div>
+  );
+}
+
+function SectionLabel({ children }) {
+  const C = useC();
+  return <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.inkLight, marginBottom: 16 }}>{children}</p>;
+}
+function SectionTitle({ children }) {
+  const C = useC();
+  return <h2 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 'clamp(26px, 3vw, 38px)', letterSpacing: '-0.02em', color: C.ink, lineHeight: 1.15, marginBottom: 24 }}>{children}</h2>;
+}
+function SubTitle({ children }) {
+  const C = useC();
+  return <h3 style={{ fontFamily: 'DM Sans', fontWeight: 700, fontSize: 17, color: C.ink, letterSpacing: '-0.01em', marginBottom: 12, marginTop: 32 }}>{children}</h3>;
+}
+function Body({ children }) {
+  const C = useC();
+  return <p style={{ fontFamily: 'DM Sans', fontSize: 15, lineHeight: 1.75, color: C.inkMid, marginBottom: 16 }}>{children}</p>;
+}
+function BulletList({ items }) {
+  const C = useC();
+  return (
+    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {items.map((item, i) => (
+        <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: ACC, flexShrink: 0, marginTop: 8 }}></span>
+          <span style={{ fontFamily: 'DM Sans', fontSize: 15, lineHeight: 1.7, color: C.inkMid }}>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Callout({ children }) {
+  const C = useC();
+  return (
+    <div style={{ background: `${ACC}10`, border: `1px solid ${ACC}30`, borderLeft: `3px solid ${ACC}`, borderRadius: '0 10px 10px 0', padding: '16px 20px', margin: '20px 0' }}>
+      <p style={{ fontFamily: 'DM Sans', fontSize: 15, lineHeight: 1.7, color: C.inkMid }}>{children}</p>
+    </div>
+  );
+}
+
+function ProjectPage() {
+  const [dark, setDark] = useState(() => { try { return localStorage.getItem('theme') === 'dark'; } catch(e) { return false; } });
+  const T = dark ? CD : C;
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  const contentPad = isMobile ? '0 20px' : w < 1024 ? '0 32px' : '0 56px';
+
+  useEffect(() => {
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
+    document.documentElement.classList.toggle('dark', dark);
+  }, [dark]);
+
+  return (
+    <ThemeCtx.Provider value={dark}>
+    <div style={{ background: T.cream, minHeight: '100vh', transition: 'background 0.25s ease' }}>
+      <Nav dark={dark} setDark={setDark} />
+
+      <section style={{ padding: '120px 0 0', background: T.cream, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(circle, ${T.border} 1px, transparent 1px)`, backgroundSize: '28px 28px', pointerEvents: 'none', opacity: 0.5 }}></div>
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: contentPad, position: 'relative' }}>
+          <a href="../index.html#projects" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, color: T.inkMid, textDecoration: 'none', marginBottom: 24, transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = ACC} onMouseLeave={e => e.currentTarget.style.color = T.inkMid}
+          >← Back to Projects</a>
+          <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: T.inkLight, marginBottom: 16 }}>Professional · Product Analytics</p>
+          <h1 style={{ fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 'clamp(36px, 5vw, 68px)', letterSpacing: '-0.025em', color: T.ink, lineHeight: 1.0, marginBottom: 24 }}>
+            Instagram Shopping<br /><span style={{ fontStyle: 'italic', color: ACC }}>Latency Optimization</span>
+          </h1>
+          <p style={{ fontFamily: 'DM Sans', fontSize: isMobile ? 15 : 17, lineHeight: 1.7, color: T.inkMid, maxWidth: 620, marginBottom: 32 }}>
+            Answered a director-level question on latency ROI through deep funnel analysis — identifying and driving experiments that cut page load time by 40–50%, translating to a 10% lift in conversions and $80M ARR.
+          </p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 56 }}>
+            {['Product Analytics','SQL','Experimentation','Funnel Analysis'].map(t => (
+              <span key={t} style={{ background: `${ACC}15`, color: ACC, border: `1px solid ${ACC}30`, borderRadius: 100, padding: '5px 14px', fontSize: 12, fontWeight: 500 }}>{t}</span>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ background: dark ? '#0D0B09' : '#1C1810', borderTop: `1px solid ${T.border}` }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? '32px 20px' : '40px 56px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 0 : 0 }}>
+            {[
+              { num: '40–50%', label: 'Reduction in page load time', sub: 'Product Description Page' },
+              { num: '+10%', label: 'Increase in conversions', sub: 'Instagram Shopping' },
+              { num: '$80M', label: 'Incremental ARR', sub: 'Meta Shopping' },
+            ].map((s, i) => (
+              <div key={i} style={{
+                padding: isMobile ? '20px 0' : '0 32px',
+                borderRight: !isMobile && i < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                borderBottom: isMobile && i < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+              }}>
+                <div style={{ fontFamily: 'Playfair Display', fontWeight: 900, fontSize: isMobile ? 36 : 44, color: ACC, lineHeight: 1, letterSpacing: '-0.03em', marginBottom: 8 }}>{s.num}</div>
+                <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 500, color: 'rgba(255,255,255,0.85)', marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>{s.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: contentPad }}>
+
+        <Section>
+          <SectionLabel>Overview</SectionLabel>
+          <SectionTitle>The problem</SectionTitle>
+          <Body>Instagram has a native in-app shopping flow integrated with Ads, allowing users to browse and purchase products without leaving the app. My team owned the latency of the Product Description Page (PDP) — the core page in the shopping funnel where users decide whether to convert.</Body>
+          <Body><strong>Role &amp; Scope:</strong> The Director of the Ads org asked a direct question: what is the ROI on maintaining latency? I structured and led the full analysis to answer it, then identified the highest-impact engineering improvements and drove two experiments to production.</Body>
+        </Section>
+
+        <Section>
+          <SectionLabel>Approach</SectionLabel>
+          <SectionTitle>Two-part analysis</SectionTitle>
+          <Body>The analysis was structured in two parts: first establishing the business value of latency, then diagnosing where time was being lost.</Body>
+
+          <SubTitle>Part 1 — Establishing the Value of Latency</SubTitle>
+          <Body>I mapped page load time against conversion rate, transaction volume, and cancellation rates across the user base. This analysis revealed a clear threshold: pages loading beyond 1 second saw conversion rates fall sharply and cancellation rates spike.</Body>
+          <Callout>1 second became the golden standard for PDP load duration — anything above it was treated as a conversion risk. To operationalize this, I developed a new metric: TTRC % (Time To Responsive Content %) — measuring the share of page loads completing within 1 second per session. Baseline: only 40% of page loads were meeting the 1s threshold.</Callout>
+
+          <SubTitle>Part 2 — Diagnosing the Remaining 60%</SubTitle>
+          <Body>I conducted a full funnel breakdown of the PDP loading sequence, decomposing total load time by individual component and analyzing each by device type, network condition, and user cohort. Key findings:</Body>
+          <BulletList items={[
+            "Image loading: Images were loading eagerly, but 60% of users never scrolled past the first 3 images — a clear opportunity for lazy loading the rest",
+            "Async shipping/tax/coupon calculations: These were computed synchronously on page load; converting them to async based on a user's predicted conversion probability eliminated a significant blocking delay",
+            'CTA button complexity: The call-to-action button had unnecessary complexity contributing to render time; simplifying it yielded a quick win',
+            'Preloading strategies: Explored preloading key assets to reclaim time earlier in the loading sequence',
+          ]} />
+          <Body>I proposed 4 experiments based on these findings. Two were greenlit and implemented by engineering.</Body>
+        </Section>
+
+        <Section>
+          <SectionLabel>Results</SectionLabel>
+          <SectionTitle>Measured business impact</SectionTitle>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 24 }}>
+            <ResultCard prefix="" value={45} suffix="%" label="Latency reduction" sub="Page load time improvement" />
+            <ResultCard prefix="+" value={10} suffix="%" label="Conversion lift" sub="Instagram Shopping" />
+            <ResultCard prefix="$" value={80} suffix="M" label="Incremental ARR" sub="Meta Shopping" />
+          </div>
+          <Body>Beyond the direct impact, the methodology — establishing a latency threshold first, then optimizing against it — was adopted across other pages in the shopping flow and later extended throughout the session experience.</Body>
+        </Section>
+
+        <Section>
+          <SectionLabel>Tech Stack</SectionLabel>
+          <SectionTitle>Tools &amp; technologies</SectionTitle>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            {['SQL','Python','Tableau','A/B Testing','Funnel Analysis','Statistical Modeling'].map(t => (
+              <span key={t} style={{ background: T.creamCard, border: `1px solid ${T.border}`, borderRadius: 8, padding: '10px 16px', fontSize: 13, fontWeight: 500, color: T.inkMid }}>{t}</span>
+            ))}
+          </div>
+        </Section>
+
+        <div style={{ padding: '48px 0', borderTop: `1px solid ${T.border}`, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <a href="../index.html#projects" style={{ background: 'transparent', color: T.ink, border: `1.5px solid ${T.borderMid}`, borderRadius: 100, padding: '11px 24px', fontSize: 14, fontWeight: 500, fontFamily: 'DM Sans', textDecoration: 'none', transition: 'all 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = ACC; e.currentTarget.style.color = ACC; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; }}
+          >← Back to Projects</a>
+          <a href="user-language-model.html" style={{ background: ACC, color: '#fff', border: 'none', borderRadius: 100, padding: '11px 24px', fontSize: 14, fontWeight: 600, fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.85'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >Other Project →</a>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+    </ThemeCtx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ProjectPage />);
+</script>
 </body>
-
 </html>

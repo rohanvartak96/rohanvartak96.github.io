@@ -73,13 +73,13 @@ nav {
 
 nav .left a {
     color: var(--text-color);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 600;
 }
 
 nav .right a {
     color: #666;
-    font-size: 15px;
+    font-size: 17px;
     margin-left: 8px;
     display: inline-flex;
     align-items: center;
@@ -181,7 +181,7 @@ nav .right a.nav-link--cta.active {
         padding: 12px 16px;
         border-radius: 10px;
         margin-left: 0;
-        font-size: 16px;
+        font-size: 18px;
     }
 
     nav .right a.nav-link--cta {
@@ -249,14 +249,14 @@ nav .right a.nav-link--cta.active {
 }
 
 .hero-section .hero-heading h2 {
-    font-size: 48px;
+    font-size: 50px;
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 10px;
 }
 
 .hero-section .job-title {
-    font-size: 48px;
+    font-size: 50px;
     color: var(--primary-color);
     margin: 0;
     font-weight: 700;
@@ -279,7 +279,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .hero-section .headshot .headshot-text p {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 10px;
     color: var(--text-color);
 }
@@ -287,7 +287,7 @@ nav .right a.nav-link--cta.active {
 .hero-section .headshot .headshot-text p:first-of-type {
     color: var(--primary-color);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
@@ -339,7 +339,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .hero-section .text p:not(.role-target) {
-    font-size: 20px;
+    font-size: 22px;
     color: var(--muted-text);
     line-height: 1.7;
     margin-bottom: 10px;
@@ -349,7 +349,7 @@ nav .right a.nav-link--cta.active {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text-color);
     background-color: rgba(34, 197, 94, 0.08);
     border: 1px solid rgba(34, 197, 94, 0.25);
@@ -360,7 +360,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .pulse-green {
-    font-size: 10px;
+    font-size: 12px;
     color: #22c55e;
     animation: pulse-green 1.8s ease-in-out infinite;
 }
@@ -381,7 +381,7 @@ nav .right a.nav-link--cta.active {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     padding: 9px 20px;
     border-radius: 50px;
@@ -440,7 +440,7 @@ nav .right a.nav-link--cta.active {
 
 .skills-section h2 {
     text-align: center;
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 50px;
 }
 
@@ -457,7 +457,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .skill-group-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -521,7 +521,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .metric-value {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--text-color);
     letter-spacing: -0.3px;
@@ -529,7 +529,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .metric-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: #888;
     text-transform: uppercase;
@@ -561,11 +561,11 @@ nav .right a.nav-link--cta.active {
     }
     .metric-divider { display: none; }
     .metric { flex: 1 1 40%; }
-    .metric-value { font-size: 18px; }
+    .metric-value { font-size: 20px; }
 
-    .hero-section .headshot .headshot-text p { font-size: 16px; }
-    .hero-section .headshot .headshot-text p:first-of-type { font-size: 18px; }
-    .hero-section .text p:not(.role-target) { font-size: 16px; }
+    .hero-section .headshot .headshot-text p { font-size: 18px; }
+    .hero-section .headshot .headshot-text p:first-of-type { font-size: 20px; }
+    .hero-section .text p:not(.role-target) { font-size: 18px; }
     .hero-cta { justify-content: center; }
 
     .project-card:not(.project-card--featured) { padding: 20px; }
@@ -599,7 +599,7 @@ nav .right a.nav-link--cta.active {
 
 .projects-section h2 {
     text-align: center;
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 60px;
 }
 
@@ -608,7 +608,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .projects-subsection-title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--text-color);
     letter-spacing: 0.04em;
@@ -732,7 +732,7 @@ nav .right a.nav-link--cta.active {
     gap: 8px;
     background: #fff;
     color: var(--primary-color);
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     padding: 9px 20px;
     border-radius: 50px;
@@ -770,14 +770,14 @@ nav .right a.nav-link--cta.active {
 }
 
 .project-card .project-title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 12px;
 }
 
 .project-card .project-outcome {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--muted-text);
     line-height: 1.6;
     margin-bottom: 20px;
@@ -791,7 +791,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .project-tags .tag {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--primary-color);
     background-color: rgba(114, 57, 247, 0.08);
@@ -803,7 +803,7 @@ nav .right a.nav-link--cta.active {
 .project-card .project-link {
     display: inline-flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--primary-color);
     text-decoration: none;
@@ -836,7 +836,7 @@ nav .right a.nav-link--cta.active {
 
 .testimonial-highlights h2 {
     text-align: center;
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 60px;
 }
 
@@ -878,7 +878,7 @@ nav .right a.nav-link--cta.active {
     border-radius: 50%;
     background: rgba(114, 57, 247, 0.1);
     color: var(--primary-color);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -888,7 +888,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .testimonial-quote {
-    font-size: 15px;
+    font-size: 17px;
     font-style: normal;
     line-height: 1.75;
     color: var(--text-color);
@@ -906,18 +906,18 @@ nav .right a.nav-link--cta.active {
 }
 
 .highlight-card .testimonial-author .name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-color);
 }
 
 .highlight-card .testimonial-author .separator {
-    font-size: 14px;
+    font-size: 16px;
     color: #aaa;
 }
 
 .highlight-card .testimonial-author .position {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     color: #888;
     text-transform: uppercase;
@@ -943,7 +943,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .section-eyebrow {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -952,7 +952,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .contact-heading {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.4px;
@@ -961,7 +961,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .contact-subheading {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 52px;
@@ -969,7 +969,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .connect-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -984,7 +984,7 @@ nav .right a.nav-link--cta.active {
 
 .social-links a {
     color: var(--text-color);
-    font-size: 36px;
+    font-size: 38px;
     opacity: 0.75;
     transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
@@ -1012,7 +1012,7 @@ nav .right a.nav-link--cta.active {
     padding: 14px 18px;
     outline: none;
     width: 100%;
-    font-size: 15px;
+    font-size: 17px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1033,7 +1033,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .contact-right button {
-    font-size: 15px;
+    font-size: 17px;
     font-family: var(--font-family);
     color: #fff;
     background: var(--primary-color);
@@ -1065,8 +1065,8 @@ nav .right a.nav-link--cta.active {
         gap: 40px;
     }
 
-    .contact-heading { font-size: 26px; }
-    .contact-subheading { font-size: 24px; }
+    .contact-heading { font-size: 28px; }
+    .contact-subheading { font-size: 26px; }
 }
 
 /* Footer */
@@ -1079,7 +1079,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .footer-section p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--muted-text);
     margin-bottom: 20px;
     font-weight: 500;
@@ -1093,7 +1093,7 @@ nav .right a.nav-link--cta.active {
 
 .footer-links a {
     color: var(--text-color);
-    font-size: 22px;
+    font-size: 24px;
     transition: all 0.3s ease;
     opacity: 0.8;
 }
@@ -1123,14 +1123,14 @@ nav .right a.nav-link--cta.active {
 
     .hero-section .hero-heading h2,
     .hero-section .job-title {
-        font-size: 36px;
+        font-size: 38px;
     }
 }
 
 @media (max-width: 600px) {
     .hero-section .hero-heading h2,
     .hero-section .job-title {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     .hero-section {
@@ -1218,7 +1218,7 @@ nav .right a.nav-link--cta.active {
     border-radius: 8px;
     cursor: pointer;
     font-family: var(--font-family);
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -1240,7 +1240,7 @@ nav .right a.nav-link--cta.active {
 }
 
 .pdf-name {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     color: #fff;
     font-family: var(--font-family);
@@ -1248,12 +1248,12 @@ nav .right a.nav-link--cta.active {
 
 .pdf-dot {
     color: rgba(255, 255, 255, 0.3);
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
 }
 
 .pdf-label {
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.45);
     font-family: var(--font-family);
 }
@@ -1275,7 +1275,7 @@ nav .right a.nav-link--cta.active {
     padding: 5px 12px;
     color: rgba(255, 255, 255, 0.7);
     font-family: var(--font-family);
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -1285,7 +1285,7 @@ nav .right a.nav-link--cta.active {
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     padding: 2px 4px;
-    font-size: 12px;
+    font-size: 14px;
     transition: color 0.2s ease;
     line-height: 1;
 }
@@ -1310,7 +1310,7 @@ nav .right a.nav-link--cta.active {
     border-radius: 8px;
     cursor: pointer;
     font-family: var(--font-family);
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -1394,7 +1394,7 @@ nav .right a.nav-link--cta.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
     box-shadow: 0 4px 20px rgba(114, 57, 247, 0.4);
     opacity: 0;
     transform: translateY(12px);
