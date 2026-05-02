@@ -1,328 +1,800 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Rohan Vartak | Data Scientist &amp; ML Engineer at Meta</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-    <meta name="description" content="Full-stack data scientist with 5+ years of experience building ML systems at Meta. Specializing in user behavior prediction, product analytics, and AI-driven product decisions.">
-
-    <!-- Open Graph / LinkedIn / Slack previews -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rohanvartak96.github.io/">
-    <meta property="og:title" content="Rohan Vartak | Data Scientist &amp; ML Engineer">
-    <meta property="og:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
-    <meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rohan Vartak | Data Scientist &amp; ML Engineer">
-    <meta name="twitter:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
-    <meta name="twitter:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
-
-    <!-- AOS Animate on Scroll -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan Vartak | Data Scientist & ML Engineer</title>
+<meta name="description" content="Full-stack data scientist with 5+ years of experience building ML systems at Meta. Specializing in user behavior prediction, product analytics, and AI-driven product decisions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rohanvartak96.github.io/">
+<meta property="og:title" content="Rohan Vartak | Data Scientist & ML Engineer">
+<meta property="og:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
+<meta property="og:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rohan Vartak | Data Scientist & ML Engineer">
+<meta name="twitter:description" content="Building ML systems that move product metrics at scale. Currently at Meta.">
+<meta name="twitter:image" content="https://rohanvartak96.github.io/images/Rohan2.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D95F2B'/><text x='50' y='76' font-family='Playfair Display,serif' font-weight='900' font-size='68' fill='%23fff' text-anchor='middle'>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #F4EFE6; color: #1C1810; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; transition: background 0.25s ease, color 0.25s ease; }
+html.dark body { background: #1C1A17; color: #F0EBE1; }
+::selection { background: #D95F2B; color: #fff; }
+</style>
+<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})()</script>
 </head>
-
 <body>
-    <header class="navbar-outer">
-        <nav>
-            <div class="left">
-                <a href="#hero">🚀 Rohan Vartak</a>
-            </div>
-            <div class="right">
-                <div class="nav-links" id="nav-links">
-                    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-                    <a href="#testimonial-highlights" class="nav-link" data-section="testimonial-highlights">Testimonials</a>
-                    <a href="resume.html" class="nav-link" data-section="resume">Resume</a>
-                    <a href="#contact" class="nav-link nav-link--cta" data-section="contact">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </div>
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <!-- SECTION 1: Hero -->
-        <section id="hero" class="hero-section">
-            <div class="hero-heading">
-                <h2>Hi, I'm Rohan.</h2>
-                <h2 class="job-title">I build <span class="flip-words"><span class="flip-word">ML models</span><span class="flip-word">Data pipelines</span><span class="flip-word">Strategic analysis</span><span class="flip-word">AI agents</span></span></h2>
-            </div>
-            <div class="headshot">
-                <div class="headshot-text">
-                    <p>I specialize in:</p>
-                    <p>Transforming data into actionable product insights.</p>
-                    <p>Building AI systems to solve real world problems.</p>
-                    <div class="hero-cta">
-                        <a href="#projects" class="hero-btn hero-btn--primary">View Projects</a>
-                        <a href="resume.html" class="hero-btn hero-btn--secondary"><i class="fa-solid fa-file-lines"></i> Resume</a>
-                        <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank" class="hero-btn hero-btn--linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    </div>
-                </div>
-                <div class="headshot-image">
-                    <img src="images/Rohan2.webp" alt="Rohan Headshot">
-                </div>
-            </div>
-            <div class="text">
-                <p>Full-stack data scientist with 5+ years of experience. Currently working at Meta at the intersection
-                    of Machine Learning and Product Analytics. I build and improve ML models serving billions of users,
-                    translating user behavior signals into measurable business outcomes across Meta's product suite.</p>
-                <p class="role-target"><i class="fa-solid fa-circle-dot pulse-green"></i> Open to Senior ML / Data Science roles at product-led companies</p>
-            </div>
-        </section>
-        <!-- Metrics Bar -->
-        <div class="metrics-bar">
-            <div class="metric">
-                <span class="metric-value">5+</span>
-                <span class="metric-label">Years Experience</span>
-            </div>
-            <div class="metric-divider"></div>
-            <div class="metric">
-                <span class="metric-value">$116M+</span>
-                <span class="metric-label">ARR Impact</span>
-            </div>
-            <div class="metric-divider"></div>
-            <div class="metric">
-                <span class="metric-value">1B+</span>
-                <span class="metric-label">Users Reached</span>
-            </div>
-            <div class="metric-divider"></div>
-            <div class="metric">
-                <span class="metric-value">Meta · Instagram · Threads</span>
-                <span class="metric-label">Products Shipped</span>
-            </div>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+const ACC = '#D95F2B';
+const C = {
+  cream:     '#F4EFE6',
+  creamDark: '#EDE5D8',
+  creamCard: '#EAE3D5',
+  white:     '#FFFFFF',
+  ink:       '#1C1810',
+  inkMid:    '#4A3F32',
+  inkLight:  '#8A7E70',
+  border:    'rgba(28,24,16,0.11)',
+  borderMid: 'rgba(28,24,16,0.18)',
+};
+
+const CD = {
+  cream:     '#1C1A17',
+  creamDark: '#232019',
+  creamCard: '#2B2722',
+  white:     '#332E28',
+  ink:       '#F0EBE1',
+  inkMid:    '#B5A99A',
+  inkLight:  '#7A7065',
+  border:    'rgba(240,235,225,0.09)',
+  borderMid: 'rgba(240,235,225,0.14)',
+};
+
+const ThemeCtx = React.createContext(false);
+function useC() { const dark = React.useContext(ThemeCtx); return dark ? CD : C; }
+
+function useInView(ref, threshold = 0.1) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold });
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return visible;
+}
+
+function useCounter(target, visible, duration = 1200) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!visible) return;
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(ease * target));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [visible, target]);
+  return val;
+}
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  useEffect(() => {
+    const fn = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return width;
+}
+
+function hPad(w) {
+  if (w < 768) return '20px';
+  if (w < 1024) return '32px';
+  return 'max(56px, calc((100vw - 1280px) / 2))';
+}
+
+function Nav({ dark, setDark }) {
+  const C = useC();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  const navLinks = [['Projects','#projects'],['Skills','#skills'],['Testimonials','#testimonials'],['Resume','resume.html']];
+
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+      background: (scrolled || menuOpen) ? `${C.cream}f0` : 'transparent',
+      backdropFilter: (scrolled || menuOpen) ? 'blur(16px)' : 'none',
+      borderBottom: (scrolled || menuOpen) ? `1px solid ${C.border}` : '1px solid transparent',
+      transition: 'all 0.3s ease',
+    }}>
+      <div style={{
+        padding: isMobile ? '14px 20px' : `16px ${hPad(w)}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
+        <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 16, color: '#fff' }}>R</div>
+          <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 15, color: C.ink, letterSpacing: '-0.01em' }}>Rohan Vartak</span>
+        </a>
+
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+            {navLinks.map(([l,h]) => (
+              <a key={l} href={h} style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, color: C.inkMid, textDecoration: 'none', letterSpacing: '0.01em', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = ACC}
+                onMouseLeave={e => e.target.style.color = C.inkMid}
+              >{l}</a>
+            ))}
+          </div>
+        )}
+
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <button onClick={() => setDark(d => !d)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.inkMid, transition: 'color 0.2s, background 0.2s', outline: 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.color = C.ink; e.currentTarget.style.background = C.creamCard; }}
+            onMouseLeave={e => { e.currentTarget.style.color = C.inkMid; e.currentTarget.style.background = 'none'; }}
+            title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4.5"/>
+                <line x1="12" y1="2" x2="12" y2="4.5"/>
+                <line x1="12" y1="19.5" x2="12" y2="22"/>
+                <line x1="4.22" y1="4.22" x2="5.93" y2="5.93"/>
+                <line x1="18.07" y1="18.07" x2="19.78" y2="19.78"/>
+                <line x1="2" y1="12" x2="4.5" y2="12"/>
+                <line x1="19.5" y1="12" x2="22" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.93" y2="18.07"/>
+                <line x1="18.07" y1="5.93" x2="19.78" y2="4.22"/>
+              </svg>
+            )}
+          </button>
+          {isMobile ? (
+            <button onClick={() => setMenuOpen(o => !o)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center', color: C.inkMid }}>
+              {menuOpen ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              )}
+            </button>
+          ) : (
+            <a href="#contact" style={{
+              background: ACC, color: '#fff', border: 'none', borderRadius: 100,
+              padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >Get in Touch</a>
+          )}
+        </div>
+      </div>
+
+      {isMobile && menuOpen && (
+        <div style={{ padding: '8px 20px 20px', borderTop: `1px solid ${C.border}`, display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {navLinks.map(([l,h]) => (
+            <a key={l} href={h} onClick={() => setMenuOpen(false)} style={{ fontFamily: 'DM Sans', fontSize: 15, fontWeight: 500, color: C.inkMid, textDecoration: 'none', padding: '10px 0', borderBottom: `1px solid ${C.border}`, transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = ACC}
+              onMouseLeave={e => e.target.style.color = C.inkMid}
+            >{l}</a>
+          ))}
+          <a href="#contact" onClick={() => setMenuOpen(false)} style={{ background: ACC, color: '#fff', borderRadius: 100, padding: '12px 24px', fontSize: 14, fontWeight: 600, textDecoration: 'none', textAlign: 'center', marginTop: 8 }}>Get in Touch</a>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+const ROLES = ['ML models', 'Data pipelines', 'AI agents', 'Strategic analysis'];
+
+function Hero() {
+  const C = useC();
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  const isTablet = w < 1024;
+
+  useEffect(() => {
+    const iv = setInterval(() => {
+      setFading(true);
+      setTimeout(() => { setRoleIdx(i => (i+1) % ROLES.length); setFading(false); }, 280);
+    }, 2400);
+    return () => clearInterval(iv);
+  }, []);
+
+  return (
+    <section id="hero" style={{
+      minHeight: '100vh',
+      background: C.cream,
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      alignItems: isMobile ? 'flex-start' : 'center',
+      justifyContent: isMobile ? 'flex-start' : 'space-between',
+      padding: isMobile ? `80px 20px 48px` : `0 ${hPad(w)}`,
+      position: 'relative',
+      overflow: 'hidden',
+      gap: isMobile ? 16 : 0,
+    }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(circle, ${C.border} 1px, transparent 1px)`, backgroundSize: '28px 28px', pointerEvents: 'none', opacity: 0.6 }}></div>
+
+      <div style={{ flex: '1 1 0', maxWidth: isMobile ? '100%' : 620, paddingTop: isMobile ? 0 : 80, paddingBottom: isMobile ? 0 : 80, position: 'relative', width: '100%' }}>
+        <div style={{ height: isMobile ? 0 : 37, marginBottom: isMobile ? 16 : 28 }}></div>
+
+        <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.inkLight, marginBottom: 18 }}>Data Scientist &amp; ML Engineer at Meta</p>
+
+        <h1 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: isMobile ? 'clamp(45px, 11vw, 59px)' : 'clamp(49px, 5vw, 67px)', lineHeight: 1.0, letterSpacing: '-0.025em', color: C.ink, marginBottom: 4 }}>
+          Hi, I'm Rohan.<br />I build
+        </h1>
+        <div style={{
+          fontFamily: 'Playfair Display, serif',
+          fontWeight: 800,
+          fontStyle: 'italic',
+          fontSize: isMobile ? 'clamp(45px, 11vw, 59px)' : 'clamp(49px, 5vw, 67px)',
+          lineHeight: 1.05,
+          letterSpacing: '-0.025em',
+          color: ACC,
+          opacity: fading ? 0 : 1,
+          transform: fading ? 'translateY(8px)' : 'translateY(0)',
+          transition: 'opacity 0.28s ease, transform 0.28s ease',
+          minHeight: '1.05em',
+          marginBottom: 28,
+        }}>{ROLES[roleIdx]}</div>
+
+        <div style={{ fontFamily: 'DM Sans', fontSize: 16, lineHeight: 1.7, color: C.inkMid, maxWidth: 480, marginBottom: 36 }}>
+          <p style={{ marginBottom: 10 }}>Full-stack data scientist with 5+ years at Meta. I specialize in:</p>
+          <p style={{ paddingLeft: 16, borderLeft: `2px solid ${ACC}`, marginBottom: 8 }}>Transforming data into actionable product insights.</p>
+          <p style={{ paddingLeft: 16, borderLeft: `2px solid ${ACC}` }}>Building AI systems to solve real world problems.</p>
         </div>
 
-        <!-- SECTION 3: Projects -->
-        <section id="projects" class="projects-section reveal">
-            <h2 data-aos="fade-up">Projects</h2>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: isMobile ? 0 : 52 }}>
+          {[
+            { label: 'View Projects', href: '#projects', primary: true },
+            { label: 'Resume', href: 'resume.html', primary: false },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rohanvartak1996/', primary: false },
+          ].map(b => (
+            <a key={b.label} href={b.href} target={b.href.startsWith('http') ? '_blank' : undefined} style={{
+              background: b.primary ? ACC : 'transparent',
+              color: b.primary ? '#fff' : C.ink,
+              border: b.primary ? 'none' : `1.5px solid ${C.borderMid}`,
+              borderRadius: 100, padding: b.primary ? '12px 26px' : '11px 24px',
+              fontSize: 14, fontWeight: 600, fontFamily: 'DM Sans',
+              textDecoration: 'none', display: 'inline-block',
+              transition: 'all 0.2s',
+            }}
+              onMouseEnter={e => { if (b.primary) e.currentTarget.style.opacity = '0.88'; else { e.currentTarget.style.borderColor = ACC; e.currentTarget.style.color = ACC; } }}
+              onMouseLeave={e => { if (b.primary) e.currentTarget.style.opacity = '1'; else { e.currentTarget.style.borderColor = C.borderMid; e.currentTarget.style.color = C.ink; } }}
+            >{b.label}</a>
+          ))}
+        </div>
+      </div>
 
-            <div class="projects-subsection">
-                <h3 class="projects-subsection-title" data-aos="fade-up">Professional Projects</h3>
-                <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-card" data-color="purple" data-aos="fade-up">
-                        <div class="project-card-body">
-                            <h3 class="project-title">User Language Prediction Model</h3>
-                            <p class="project-outcome">Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR by matching ads to users' actual language preferences.</p>
-                            <div class="project-tags">
-                                <span class="tag">Gradient Boosting</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Ads Targeting</span>
-                                <span class="tag">ML</span>
-                            </div>
-                        </div>
-                        <a href="projects/user-language-model.html" class="project-link">View Project →</a>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card" data-color="blue" data-aos="fade-up" data-aos-delay="100">
-                        <div class="project-card-body">
-                            <h3 class="project-title">Instagram Shopping Latency Optimization</h3>
-                            <p class="project-outcome">Analyzed and optimized the Instagram Shopping product description page load time, achieving a 40–50% latency reduction, 10% lift in conversions, and $80M ARR for Meta.</p>
-                            <div class="project-tags">
-                                <span class="tag">Product Analytics</span>
-                                <span class="tag">SQL</span>
-                                <span class="tag">Experimentation</span>
-                                <span class="tag">Funnel Analysis</span>
-                            </div>
-                        </div>
-                        <a href="projects/instagram-latency.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
+      {!isMobile && (
+        <div style={{ flex: isTablet ? '0 0 320px' : '0 0 420px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', paddingTop: 80 }}>
+          <div style={{ position: 'relative' }}>
+            <img
+              src="https://rohanvartak96.github.io/images/Rohan2.webp"
+              alt="Rohan Vartak"
+              style={{ width: isTablet ? 260 : 340, height: isTablet ? 310 : 400, objectFit: 'cover', objectPosition: 'top', borderRadius: 18, display: 'block', border: `1px solid ${C.border}`, boxShadow: '0 16px 60px rgba(28,24,16,0.13)' }}
+            />
+            <div style={{ position: 'absolute', bottom: -18, left: isTablet ? -16 : -32, background: C.white, border: `1px solid ${C.border}`, borderRadius: 14, padding: '14px 18px', boxShadow: '0 8px 32px rgba(28,24,16,0.12)', minWidth: 170 }}>
+              <div style={{ fontSize: 11, fontWeight: 600, color: C.inkLight, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Impact</div>
+              <div style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 26, color: C.ink, letterSpacing: '-0.02em', lineHeight: 1 }}>$116M+</div>
+              <div style={{ fontSize: 12, color: C.inkMid, marginTop: 4 }}>ARR at Meta</div>
             </div>
+            <div style={{ position: 'absolute', top: -14, right: isTablet ? -12 : -28, background: ACC, borderRadius: 12, padding: '10px 16px', boxShadow: '0 6px 24px rgba(217,95,43,0.35)' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Meta · IG · Threads</div>
+            </div>
+          </div>
+        </div>
+      )}
 
-            <div class="projects-subsection">
-                <h3 class="projects-subsection-title" data-aos="fade-up">Vibe Coded</h3>
-                <div class="projects-grid">
-                    <!-- Vibe Project 1 -->
-                    <div class="project-card project-card--featured" data-color="emerald" data-aos="fade-up">
-                        <div class="project-card-preview">
-                            <img src="images/App retention curve atlas.png" alt="App Retention Curves Atlas preview">
-                            <div class="preview-overlay">
-                                <a href="https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba" target="_blank" class="preview-open-btn">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    Open App
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-card-body">
-                            <h3 class="project-title">App Retention Curves Atlas</h3>
-                            <p class="project-outcome">Interactive explorer of 12-month retention benchmarks across 15 app categories — surfacing behavioral patterns, churn drivers, and retention strategies for social, gaming, finance, and more.</p>
-                            <div class="project-tags">
-                                <span class="tag">Data Visualization</span>
-                                <span class="tag">Retention</span>
-                                <span class="tag">Product Analytics</span>
-                            </div>
-                        </div>
-                        <a href="https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba" target="_blank" class="project-link">Open App →</a>
-                    </div>
-                    <!-- Vibe Project 2 -->
-                    <div class="project-card project-card--featured" data-color="orange" data-aos="fade-up" data-aos-delay="100">
-                        <div class="project-card-preview">
-                            <img src="images/8 bit logo.png" alt="Fire Pixel Editor preview">
-                            <div class="preview-overlay">
-                                <a href="https://claude.ai/public/artifacts/ce616bc7-b327-45a1-a230-3828cbdc5e0f" target="_blank" class="preview-open-btn">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    Open App
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-card-body">
-                            <h3 class="project-title">Fire Pixel Editor</h3>
-                            <p class="project-outcome">A browser-based pixel art editor with a canvas grid, color palette, and drawing tools — built entirely in a single HTML file for instant, zero-install creative sessions.</p>
-                            <div class="project-tags">
-                                <span class="tag">Creative Tool</span>
-                                <span class="tag">Pixel Art</span>
-                                <span class="tag">Interactive</span>
-                            </div>
-                        </div>
-                        <a href="https://claude.ai/public/artifacts/ce616bc7-b327-45a1-a230-3828cbdc5e0f" target="_blank" class="project-link">Open App →</a>
-                    </div>
-                </div>
+      {isMobile && (
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', position: 'relative', paddingBottom: 20 }}>
+          <div style={{ position: 'relative' }}>
+            <img
+              src="https://rohanvartak96.github.io/images/Rohan2.webp"
+              alt="Rohan Vartak"
+              style={{ width: Math.min(w - 40, 300), height: Math.min((w - 40) * 1.18, 354), objectFit: 'cover', objectPosition: 'top', borderRadius: 14, display: 'block', border: `1px solid ${C.border}`, boxShadow: '0 8px 32px rgba(28,24,16,0.1)' }}
+            />
+            <div style={{ position: 'absolute', bottom: -14, left: -8, background: C.white, border: `1px solid ${C.border}`, borderRadius: 10, padding: '10px 14px', boxShadow: '0 4px 16px rgba(28,24,16,0.1)' }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: C.inkLight, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>Impact</div>
+              <div style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 20, color: C.ink, letterSpacing: '-0.02em', lineHeight: 1 }}>$116M+</div>
+              <div style={{ fontSize: 11, color: C.inkMid, marginTop: 3 }}>ARR at Meta</div>
             </div>
-        </section>
-        <!-- SECTION 5: What People Are Saying -->
-        <section id="testimonial-highlights" class="testimonial-highlights reveal">
-            <h2 data-aos="fade-up">What People Are Saying</h2>
-            <div class="highlights-masonry">
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">CF</div>
-                    <blockquote class="testimonial-quote">He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Cristina Fernandez</span>
-                        <span class="separator">—</span>
-                        <span class="position">Product Manager, Meta</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">XX</div>
-                    <blockquote class="testimonial-quote">Rohan played a pivotal role in these efforts, conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Xiaolu Xiong</span>
-                        <span class="separator">—</span>
-                        <span class="position">Engineering Manager, Meta</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">JL</div>
-                    <blockquote class="testimonial-quote">Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without his deep technical insights.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Jenny Lu</span>
-                        <span class="separator">—</span>
-                        <span class="position">Data Science Manager, Meta</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">JL</div>
-                    <blockquote class="testimonial-quote">He's the fastest Data Engineer that I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Jessie Li</span>
-                        <span class="separator">—</span>
-                        <span class="position">Data Science, OpenAI</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">GS</div>
-                    <blockquote class="testimonial-quote">Rohan consistently works well across the functions of product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">George Schick</span>
-                        <span class="separator">—</span>
-                        <span class="position">Data Science Manager, Netflix</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">AD</div>
-                    <blockquote class="testimonial-quote">Rohan was an idea guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Aditya Dasnurkar</span>
-                        <span class="separator">—</span>
-                        <span class="position">Data Engineering Manager, Meta</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">JZ</div>
-                    <blockquote class="testimonial-quote">He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle. Rohan would be a massive asset to any team looking for a senior-level DS who can navigate ambiguity and drive clear, measurable product impact.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Jessica Zhou</span>
-                        <span class="separator">—</span>
-                        <span class="position">Staff Data Scientist, Meta</span>
-                    </div>
-                </div>
-                <div class="highlight-card" data-aos="fade-up">
-                    <div class="testimonial-avatar">AJ</div>
-                    <blockquote class="testimonial-quote">Rohan showcased strong ownership of data artifacts, distinctly addressed the needs of his cross-functional partners, and demonstrated a strong product sense — quickly conceptualizing and building a robust data foundation for new products.</blockquote>
-                    <div class="testimonial-author">
-                        <span class="name">Apoorvi Jain</span>
-                        <span class="separator">—</span>
-                        <span class="position">Director, Meta AI Wearables Data Engineering</span>
-                    </div>
-                </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function AboutStrip() {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  return (
+    <section ref={ref} style={{ padding: `${isMobile ? 48 : 64}px ${hPad(w)}`, background: C.creamDark, display: 'flex', gap: isMobile ? 20 : 64, alignItems: isMobile ? 'flex-start' : 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(20px)', transition: 'all 0.6s ease' }}>
+      <p style={{ fontSize: 11, fontWeight: 600, color: C.inkLight, letterSpacing: '0.18em', textTransform: 'uppercase', flex: '0 0 auto' }}>Currently</p>
+      <p style={{ fontFamily: 'Playfair Display', fontWeight: 700, fontSize: isMobile ? 18 : 20, color: C.ink, lineHeight: 1.4, flex: isMobile ? '0 0 auto' : '1 1 280px' }}>
+        "Full-stack data scientist at the intersection of ML and Product Analytics. Building systems that serve <span style={{ fontStyle: 'italic', color: ACC }}>billions of users.</span>"
+      </p>
+      <div style={{ display: 'flex', gap: isMobile ? 16 : 24, flex: '0 0 auto', flexWrap: 'wrap' }}>
+        {['Meta','Instagram','Threads'].map(co => (
+          <div key={co} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: ACC }}></div>
+            <span style={{ fontSize: 13, fontWeight: 500, color: C.inkMid }}>{co}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const PROJECTS = [
+  {
+    num: '01', type: 'professional', category: 'ML Engineering',
+    title: 'User Language Prediction Model',
+    desc: "Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR by matching ads to users' actual language preferences.",
+    impact: '$36M ARR', tags: ['Gradient Boosting','Python','Ads Targeting','ML'],
+    href: 'projects/user-language-model.html',
+  },
+  {
+    num: '02', type: 'professional', category: 'Product Analytics',
+    title: 'Instagram Shopping Latency Optimization',
+    desc: 'Analyzed and optimized the Instagram Shopping product description page, achieving a 40–50% latency reduction, 10% lift in conversions, and $80M ARR.',
+    impact: '$80M ARR', tags: ['Product Analytics','SQL','Experimentation','Funnel Analysis'],
+    href: 'projects/instagram-latency.html',
+  },
+  {
+    num: '03', type: 'personal', category: 'Data Visualization',
+    title: 'App Retention Curves Atlas',
+    desc: 'Interactive explorer of 12-month retention benchmarks across 15 app categories — surfacing behavioral patterns, churn drivers, and strategies.',
+    impact: 'Open Source', tags: ['Data Viz','Retention','Product Analytics'],
+    href: 'https://claude.ai/public/artifacts/85cc15b6-0197-456a-ad02-6390a54a38ba',
+    image: 'https://rohanvartak96.github.io/images/App retention curve atlas.png',
+  },
+  {
+    num: '04', type: 'personal', category: 'Creative Tool',
+    title: 'Fire Pixel Editor',
+    desc: 'A browser-based pixel art editor with canvas grid, color palette, and drawing tools — built entirely in a single HTML file for zero-install creative sessions.',
+    impact: 'Vibe Coded', tags: ['Creative Tool','Pixel Art','Interactive'],
+    href: 'https://claude.ai/public/artifacts/ce616bc7-b327-45a1-a230-3828cbdc5e0f',
+    image: 'https://rohanvartak96.github.io/images/8 bit logo.png',
+  },
+];
+
+function ProjectCard({ project }) {
+  const C = useC();
+  const [hovered, setHovered] = useState(false);
+  const isExternal = project.href.startsWith('http');
+  return (
+    <a href={project.href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}
+      style={{ background: hovered ? C.white : C.creamCard, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', display: 'flex', flexDirection: 'column', transition: 'background 0.2s, box-shadow 0.2s, transform 0.2s', boxShadow: hovered ? '0 12px 40px rgba(28,24,16,0.12)' : '0 2px 8px rgba(28,24,16,0.04)', transform: hovered ? 'translateY(-3px)' : 'none', cursor: 'pointer', textDecoration: 'none' }}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+    >
+      {project.image && (
+        <div style={{ width: '100%', height: 180, overflow: 'hidden', background: C.creamCard, flexShrink: 0, position: 'relative' }}>
+          <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.4s ease', transform: hovered ? 'scale(1.04)' : 'scale(1)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, rgba(28,24,16,0.18) 100%)' }}></div>
+        </div>
+      )}
+      <div style={{ padding: '24px 24px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, flexWrap: 'wrap', gap: '6px 8px' }}>
+          <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.inkLight, flex: '1 1 auto', minWidth: 0 }}>{project.category}</p>
+          <span style={{ background: ACC, color: '#fff', borderRadius: 100, padding: '4px 12px', fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0, whiteSpace: 'nowrap' }}>{project.impact}</span>
+        </div>
+        <h3 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 20, lineHeight: 1.2, color: C.ink, marginBottom: 12, letterSpacing: '-0.01em' }}>{project.title}</h3>
+        <p style={{ fontSize: 13.5, lineHeight: 1.65, color: C.inkMid, marginBottom: 18 }}>{project.desc}</p>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+          {project.tags.map(t => <span key={t} style={{ background: `${ACC}15`, color: ACC, border: `1px solid ${ACC}30`, borderRadius: 100, padding: '3px 10px', fontSize: 11, fontWeight: 500 }}>{t}</span>)}
+        </div>
+        <span style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 600, color: ACC, marginTop: 'auto' }}>View Project →</span>
+      </div>
+    </a>
+  );
+}
+
+function Projects() {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  const professional = PROJECTS.filter(p => p.type === 'professional');
+  const personal = PROJECTS.filter(p => p.type === 'personal');
+
+  const subHeadStyle = {
+    fontFamily: 'DM Sans', fontWeight: 700, fontSize: 13,
+    letterSpacing: '0.12em', textTransform: 'uppercase',
+    color: C.inkLight, marginBottom: 20, marginTop: 48,
+    display: 'flex', alignItems: 'center', gap: 12,
+  };
+  const subLineStyle = { flex: 1, height: 1, background: C.border };
+
+  return (
+    <section id="projects" ref={ref} style={{ padding: `96px ${hPad(w)}`, background: C.cream, opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(20px)', transition: 'all 0.6s ease' }}>
+      <Eyebrow>Work &amp; Side Projects</Eyebrow>
+      <SectionHeading plain="Selected" italic="projects." />
+
+      <div style={subHeadStyle}>
+        <span>Professional Projects</span>
+        <div style={subLineStyle}></div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(340px, 1fr))', gap: isMobile ? 16 : 20 }}>
+        {professional.map(p => <ProjectCard key={p.title} project={p} />)}
+      </div>
+
+      <div style={subHeadStyle}>
+        <span>Personal Projects</span>
+        <div style={subLineStyle}></div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(340px, 1fr))', gap: isMobile ? 16 : 20 }}>
+        {personal.map(p => <ProjectCard key={p.title} project={p} />)}
+      </div>
+    </section>
+  );
+}
+
+const SKILLS = [
+  { num: '01', title: 'ML Engineering', desc: 'Building and shipping production ML models — classifiers, rankers, embeddings — at Meta scale. From feature engineering to A/B tested rollouts.' },
+  { num: '02', title: 'Product Analytics', desc: 'Defining metrics, running experiments, and building dashboards that translate user behavior into product decisions with measurable business impact.' },
+  { num: '03', title: 'AI Systems', desc: 'Designing and prototyping AI agents, RAG pipelines, and LLM-powered tools that solve real user problems — fast, scrappy, and shipped.' },
+];
+
+function SkillRow({ s, idx }) {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  return (
+    <div ref={ref} style={{
+      display: 'grid',
+      gridTemplateColumns: isMobile ? '1fr' : '56px 1fr 1fr',
+      gap: isMobile ? 12 : 40,
+      padding: isMobile ? '36px 0' : '52px 0',
+      borderBottom: `1px solid ${C.border}`,
+      alignItems: 'start',
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'none' : 'translateY(20px)',
+      transition: `all 0.55s ease ${idx * 0.1}s`,
+    }}>
+      {isMobile ? (
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+            <span style={{ fontFamily: 'DM Sans', fontWeight: 700, fontSize: 12, color: C.inkLight }}>{s.num}</span>
+            <h3 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 24, color: C.ink, lineHeight: 1.15, letterSpacing: '-0.02em' }}>{s.title}</h3>
+          </div>
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: C.inkMid }}>{s.desc}</p>
+        </div>
+      ) : (
+        <>
+          <span style={{ fontFamily: 'DM Sans', fontWeight: 700, fontSize: 13, color: C.inkLight, paddingTop: 4 }}>{s.num}</span>
+          <h3 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 28, color: C.ink, lineHeight: 1.15, letterSpacing: '-0.02em' }}>{s.title}</h3>
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: C.inkMid }}>{s.desc}</p>
+        </>
+      )}
+    </div>
+  );
+}
+
+function Skills() {
+  const C = useC();
+  const w = useWindowWidth();
+  return (
+    <section id="skills" style={{ padding: `96px ${hPad(w)}`, background: C.creamDark }}>
+      <Eyebrow>What I Do</Eyebrow>
+      <SectionHeading plain="Three capabilities," italic="one toolkit." />
+      <div style={{ marginTop: 12, borderTop: `1px solid ${C.border}` }}>
+        {SKILLS.map((s,i) => <SkillRow key={s.num} s={s} idx={i} />)}
+      </div>
+    </section>
+  );
+}
+
+function StatStrip() {
+  const dark = React.useContext(ThemeCtx);
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+  const v1 = useCounter(36, visible, 1200);
+  const v2 = useCounter(80, visible, 1400);
+  const v3 = useCounter(50, visible, 1600);
+  const v4 = useCounter(10, visible, 1000);
+
+  const stats = [
+    { val: `$${v1}M`, label: 'ARR from Language Model', sub: 'Meta Ads' },
+    { val: `$${v2}M`, label: 'ARR from Latency Fix', sub: 'Instagram Shopping' },
+    { val: `${v3}%`, label: 'Latency Reduction', sub: 'Page load time' },
+    { val: `${v4}%`, label: 'Conversion Lift', sub: 'Instagram Shopping' },
+  ];
+
+  return (
+    <section ref={ref} style={{ padding: `${isMobile ? 48 : 80}px ${hPad(w)}`, background: dark ? '#0D0B09' : '#1C1810' }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+        gap: isMobile ? 0 : 0,
+        borderLeft: '1px solid rgba(255,255,255,0.08)',
+      }}>
+        {stats.map((s,i) => (
+          <div key={i} style={{
+            padding: isMobile ? '24px 16px' : '0 40px',
+            borderRight: '1px solid rgba(255,255,255,0.08)',
+            borderBottom: isMobile && i < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+          }}>
+            <div style={{ fontFamily: 'Playfair Display', fontWeight: 900, fontSize: isMobile ? 36 : 52, color: ACC, lineHeight: 1, letterSpacing: '-0.03em', marginBottom: isMobile ? 6 : 10 }}>{s.val}</div>
+            <div style={{ fontSize: isMobile ? 12 : 14, fontWeight: 500, color: 'rgba(255,255,255,0.85)', marginBottom: 4 }}>{s.label}</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const TESTIMONIALS = [
+  { initials: 'JZ', name: 'Jessica Zhou', role: 'Staff Data Scientist, Meta', quote: "He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle. A massive asset to any team looking for a senior-level DS." },
+  { initials: 'CF', name: 'Cristina Fernandez', role: 'Product Manager, Meta', quote: 'He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.' },
+  { initials: 'GS', name: 'George Schick', role: 'Data Science Manager, Netflix', quote: 'Rohan consistently works well across product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.' },
+  { initials: 'JL', name: 'Jessie Li', role: 'Data Science, OpenAI', quote: "He's the fastest Data Engineer I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed." },
+  { initials: 'AJ', name: 'Apoorvi Jain', role: 'Director, Meta AI Wearables', quote: 'Rohan showcased strong ownership, distinctly addressed the needs of his cross-functional partners, and demonstrated a strong product sense — quickly building a robust data foundation for new products.' },
+  { initials: 'XX', name: 'Xiaolu Xiong', role: 'Engineering Manager, Meta', quote: 'Rohan played a pivotal role conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.' },
+  { initials: 'JL2', name: 'Jenny Lu', role: 'Data Science Manager, Meta', quote: "Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without his deep technical insights." },
+  { initials: 'AD', name: 'Aditya Dasnurkar', role: 'Data Engineering Manager, Meta', quote: 'Rohan was an idea guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.' },
+];
+
+function TestiCard({ t, delay }) {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+  const [hov, setHov] = useState(false);
+  return (
+    <div ref={ref} style={{
+      background: hov ? C.white : C.cream,
+      border: `1px solid ${C.border}`,
+      borderRadius: 14, padding: '24px',
+      display: 'flex', flexDirection: 'column', gap: 16,
+      transition: visible
+        ? 'background 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.55s'
+        : `background 0.2s, box-shadow 0.2s, transform 0.55s ${delay}s, opacity 0.55s ${delay}s`,
+      boxShadow: hov ? '0 12px 40px rgba(28,24,16,0.12)' : '0 2px 8px rgba(28,24,16,0.04)',
+      transform: hov ? 'translateY(-3px)' : visible ? 'none' : 'translateY(16px)',
+      breakInside: 'avoid', marginBottom: 16,
+      opacity: visible ? 1 : 0,
+    }}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    >
+      <p style={{ fontFamily: 'DM Sans', fontSize: 14, fontWeight: 400, lineHeight: 1.7, color: C.inkMid, flex: 1 }}>{t.quote}</p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, borderTop: `1px solid ${C.border}`, paddingTop: 14 }}>
+        <div style={{ width: 34, height: 34, borderRadius: 8, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'DM Sans', fontWeight: 700, fontSize: 12, color: '#fff', flexShrink: 0 }}>{t.initials.replace('2','')}</div>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: C.ink }}>{t.name}</div>
+          <div style={{ fontSize: 11, color: C.inkLight }}>{t.role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Testimonials() {
+  const C = useC();
+  const dark = React.useContext(ThemeCtx);
+  const w = useWindowWidth();
+  const isMobile = w < 640;
+  const isTablet = w < 960;
+  const cols = isMobile ? '1' : isTablet ? '2' : '320px 3';
+  return (
+    <section id="testimonials" style={{ padding: `${isMobile ? 64 : 96}px ${hPad(w)}`, background: 'linear-gradient(160deg, #c93a06 0%, #decbc3 100%)', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: '-20%', right: '-5%', width: isMobile ? 300 : 600, height: isMobile ? 300 : 600, borderRadius: '50%', background: `radial-gradient(circle, ${ACC}18 0%, transparent 70%)`, pointerEvents: 'none' }}></div>
+      <div style={{ position: 'absolute', bottom: '-20%', left: '5%', width: isMobile ? 200 : 400, height: isMobile ? 200 : 400, borderRadius: '50%', background: `radial-gradient(circle, ${ACC}0d 0%, transparent 70%)`, pointerEvents: 'none' }}></div>
+      <div style={{ position: 'relative' }}>
+        <Eyebrow style={{ color: 'rgba(255,255,255,0.5)' }}>Colleagues &amp; Managers</Eyebrow>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 54px)', letterSpacing: '-0.025em', color: C.ink, lineHeight: 1.0, marginBottom: 0 }}>
+          What people <span style={{ fontStyle: 'italic', color: '#fff' }}>are saying.</span>
+        </h2>
+        <div style={{ columns: cols, columnGap: 16, marginTop: 48 }}>
+          {TESTIMONIALS.map((t,i) => <TestiCard key={i} t={t} delay={i * 0.05} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  const C = useC();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+
+  const inp = { width: '100%', background: 'transparent', border: 'none', borderBottom: `1.5px solid ${C.border}`, padding: '10px 0', fontSize: 15, fontFamily: 'DM Sans', color: C.ink, outline: 'none', marginBottom: 24, transition: 'border-color 0.2s' };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    setError('');
+    fetch('https://formsubmit.co/ajax/rohanvartak1996@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success === 'true' || data.success === true) {
+          setSent(true);
+        } else {
+          setError('Something went wrong. Please try again.');
+        }
+      })
+      .catch(() => setError('Something went wrong. Please try again.'))
+      .finally(() => setSending(false));
+  }
+
+  return (
+    <section id="contact" style={{ padding: `${isMobile ? 64 : 96}px ${hPad(w)}`, background: C.creamDark }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+        gap: isMobile ? 40 : 80,
+        alignItems: 'start',
+      }}>
+        <div>
+          <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.inkLight, marginBottom: 10 }}>Let's work together</p>
+          <h2 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.02em', color: C.ink, lineHeight: 1.05, marginBottom: 20 }}>
+            Have a project <span style={{ fontStyle: 'italic', color: ACC }}>in mind?</span>
+          </h2>
+          <p style={{ fontFamily: 'DM Sans', fontSize: 15, color: C.inkMid, lineHeight: 1.65, marginBottom: 40 }}>
+            Open to Senior ML / Data Science roles at product-led companies. Feel free to reach out.
+          </p>
+        </div>
+        <div>
+          <form onSubmit={handleSubmit}>
+              <input style={inp} placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required onFocus={e => e.target.style.borderBottomColor = ACC} onBlur={e => e.target.style.borderBottomColor = C.border} />
+              <input style={inp} type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} required onFocus={e => e.target.style.borderBottomColor = ACC} onBlur={e => e.target.style.borderBottomColor = C.border} />
+              <textarea style={{ ...inp, resize: 'none', height: 120, display: 'block' }} placeholder="Your message" value={message} onChange={e => setMessage(e.target.value)} required onFocus={e => e.target.style.borderBottomColor = ACC} onBlur={e => e.target.style.borderBottomColor = C.border}></textarea>
+              {error && <p style={{ fontFamily: 'DM Sans', fontSize: 13, color: '#c0392b', marginBottom: 12, marginTop: -12 }}>{error}</p>}
+              <button type="submit" disabled={sending} style={{ background: ACC, color: '#fff', border: 'none', borderRadius: 100, padding: '13px 32px', fontSize: 15, fontWeight: 600, cursor: sending ? 'not-allowed' : 'pointer', fontFamily: 'DM Sans', transition: 'opacity 0.2s', marginTop: 8, opacity: sending ? 0.65 : 1 }}
+                onMouseEnter={e => { if (!sending) e.target.style.opacity = '0.85'; }}
+                onMouseLeave={e => { if (!sending) e.target.style.opacity = '1'; }}
+              >{sending ? 'Sending…' : 'Send Message →'}</button>
+            </form>
+          {sent && (
+            <div style={{ background: `${ACC}15`, border: `1px solid ${ACC}40`, borderRadius: 12, padding: '16px 20px', fontFamily: 'DM Sans', color: C.ink, marginTop: 20 }}>
+              <strong>Message sent!</strong> I'll get back to you soon.
             </div>
-        </section>
-        <!-- SECTION 5: Contact -->
-        <section id="contact" class="contact-section reveal">
-            <div class="contact-inner">
-                <div class="contact-left" data-aos="fade-up">
-                    <p class="section-eyebrow">Contact</p>
-                    <h2 class="contact-heading">Have a project in mind or want to collaborate?</h2>
-                    <p class="contact-subheading">Get in touch!</p>
-                    <div class="contact-social">
-                        <p class="connect-label">Connect with me</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-right" data-aos="fade-up" data-aos-delay="100">
-                    <form action="https://formsubmit.co/4dd1a833f16e0b34369ba36dd21ff0d1" method="POST">
-                        <input type="text" name="_honey" style="display:none;">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="text" name="name" id="name" placeholder="Your Name" required>
-                        <input type="email" name="email" id="email" placeholder="Your Email" required>
-                        <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const dark = React.useContext(ThemeCtx);
+  const w = useWindowWidth();
+  const isMobile = w < 640;
+  return (
+    <footer style={{ background: dark ? '#0D0B09' : '#1C1810', padding: `${isMobile ? 48 : 56}px ${hPad(w)} ${isMobile ? 24 : 32}px` }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? 32 : 40, paddingBottom: isMobile ? 32 : 48, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+            <div style={{ width: 28, height: 28, borderRadius: 6, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 13, color: '#fff' }}>R</div>
+            <span style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: 14, color: '#fff' }}>Rohan Vartak</span>
+          </div>
+          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, maxWidth: 240 }}>A data scientist on every team — building ML models that move the needle.</p>
+        </div>
+        {[
+          { label: 'Work', links: [['Projects','#projects'],['Skills','#skills'],['Resume','resume.html']] },
+          { label: 'Social', links: [['LinkedIn','https://www.linkedin.com/in/rohanvartak1996/'],['GitHub','https://github.com/rohanvartak96']] },
+          { label: 'Contact', links: [['Get in Touch','#contact']] },
+        ].map(col => (
+          <div key={col.label}>
+            <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>{col.label}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {col.links.map(([label, href]) => (
+                <a key={label} href={href} style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  onMouseEnter={e => e.target.style.color = ACC}
+                  onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}
+                >{label}</a>
+              ))}
             </div>
-        </section>
-        <!-- SECTION 6: Footer -->
-        <footer class="footer-section">
-            <p>Designed by Rohan Vartak &copy; 2025</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/rohanvartak1996/" target="_blank"><i
-                        class="fa-brands fa-linkedin"></i></a>
-                <a href="mailto:rohanvartak1996@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </footer>
-    </main>
-    <!-- AOS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            AOS.init({ duration: 500, once: true, offset: 80 });
-        });
-    </script>
-    <button id="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
-    </button>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', paddingTop: 24, gap: isMobile ? 8 : 0 }}>
+        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>Designed by Rohan Vartak © 2025</span>
+        <a href="mailto:rohanvartak1996@gmail.com" style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.2s' }}
+          onMouseEnter={e => e.target.style.color = ACC}
+          onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.3)'}
+        >rohanvartak1996@gmail.com</a>
+      </div>
+    </footer>
+  );
+}
+
+function Eyebrow({ children, style }) {
+  const C = useC();
+  return <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.inkLight, marginBottom: 14, ...style }}>{children}</p>;
+}
+function SectionHeading({ plain, italic, light }) {
+  const C = useC();
+  return (
+    <h2 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 54px)', letterSpacing: '-0.025em', color: light ? '#fff' : C.ink, lineHeight: 1.0, marginBottom: 0 }}>
+      {plain} <span style={{ fontStyle: 'italic', color: ACC }}>{italic}</span>
+    </h2>
+  );
+}
+
+function App() {
+  const [dark, setDark] = useState(() => { try { return localStorage.getItem('theme') === 'dark'; } catch(e) { return false; } });
+
+  useEffect(() => {
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
+    document.documentElement.classList.toggle('dark', dark);
+  }, [dark]);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    requestAnimationFrame(() => {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'instant' });
+    });
+  }, []);
+
+  const bg = dark ? CD.cream : C.cream;
+  return (
+    <ThemeCtx.Provider value={dark}>
+      <div style={{ background: bg, transition: 'background 0.25s ease' }}>
+        <Nav dark={dark} setDark={setDark} />
+        <Hero />
+        <AboutStrip />
+        <StatStrip />
+        <Projects />
+        <Skills />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </div>
+    </ThemeCtx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
 </body>
-
 </html>
