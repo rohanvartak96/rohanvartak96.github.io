@@ -376,6 +376,26 @@ function ProjectPage() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: contentPad }}>
 
         <Section>
+          <SectionLabel>Case Study Deck</SectionLabel>
+          <SectionTitle>The full presentation</SectionTitle>
+          <Body>The complete deck — problem discovery, the GPS-grounded data pipeline, feature engineering, model optimization, evaluation, and business impact. Use the controls to step through, or open it fullscreen.</Body>
+          <div style={{ position: 'relative', width: '100%', paddingBottom: '59.27%', height: 0, borderRadius: 14, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.white, boxShadow: '0 2px 8px rgba(28,24,16,0.04)' }}>
+            <iframe
+              src="https://docs.google.com/presentation/d/1niMuIWZS_9PYP-3Vf9F2LkVRKTWYb7AqfbuialsOVcQ/embed?start=false&loop=false&delayms=5000"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="Region Prediction Model — case study deck"
+            ></iframe>
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <a href="https://docs.google.com/presentation/d/1niMuIWZS_9PYP-3Vf9F2LkVRKTWYb7AqfbuialsOVcQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 600, color: ACC, textDecoration: 'none', transition: 'opacity 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.7'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >Open in Google Slides →</a>
+          </div>
+        </Section>
+
+        <Section>
           <SectionLabel>Overview</SectionLabel>
           <SectionTitle>The problem</SectionTitle>
           <Body>Meta lets advertisers target campaigns by region — but <strong>13–15% of region-targeted ads were being misdelivered</strong>, wasting 6–7% of advertiser spend and creating regulatory exposure. The root cause: a user's state was inferred <em>indirectly</em>, by mapping an IP-driven city prediction to a state. That mapping failed systematically near state borders and for anyone whose work location differed from their home.</Body>
