@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Shopping Latency Optimization | Rohan Vartak</title>
-<meta name="description" content="How Rohan cut Instagram Shopping latency by 45% and drove $80M ARR through funnel analysis and experimentation.">
+<title>Region Prediction Model | Rohan Vartak</title>
+<meta name="description" content="How Rohan built a dedicated GPS-grounded LightGBM model at Meta to predict a user's home state — fixing region-targeted Ads misdelivery and driving $196M ARR.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D95F2B'/><text x='50' y='76' font-family='Playfair Display,serif' font-weight='900' font-size='68' fill='%23fff' text-anchor='middle'>R</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -280,11 +280,37 @@ function BulletList({ items }) {
   );
 }
 
-function Callout({ children }) {
+function ParamTable() {
   const C = useC();
+  const rows = [
+    ['num_iterations', '500', 'Cut from 1000 — faster training/inference and less overfitting'],
+    ['max_depth', '12', 'Reduced from 15 — shallower trees generalize better'],
+    ['num_leaves', '256', 'Lets trees capture fine-grained region interactions'],
+    ['learning_rate', '0.4', 'Converges in few boosting rounds'],
+    ['lambda_l2', '0.2', 'Smooths predictions and curbs overfitting'],
+    ['neg_bagging_fraction', '0.8', 'Rebalances toward positives so the model learns the true boundary'],
+    ['min_gain_to_split', '0.7', 'Prunes marginal splits — a simpler, more robust model'],
+  ];
   return (
-    <div style={{ background: `${ACC}10`, border: `1px solid ${ACC}30`, borderLeft: `3px solid ${ACC}`, borderRadius: '0 10px 10px 0', padding: '16px 20px', margin: '20px 0' }}>
-      <p style={{ fontFamily: 'DM Sans', fontSize: 15, lineHeight: 1.7, color: C.inkMid }}>{children}</p>
+    <div style={{ overflowX: 'auto', border: `1px solid ${C.border}`, borderRadius: 14, marginTop: 8 }}>
+      <table style={{ width: '100%', minWidth: 520, borderCollapse: 'collapse', fontFamily: 'DM Sans' }}>
+        <thead>
+          <tr style={{ background: C.creamCard }}>
+            <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', color: C.ink, borderBottom: `1px solid ${C.border}` }}>Param</th>
+            <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', color: C.ink, borderBottom: `1px solid ${C.border}` }}>Value</th>
+            <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', color: C.ink, borderBottom: `1px solid ${C.border}` }}>Why it helped</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={r[0]} style={{ borderBottom: i < rows.length - 1 ? `1px solid ${C.border}` : 'none' }}>
+              <td style={{ padding: '12px 16px', fontSize: 13, fontWeight: 600, color: ACC, whiteSpace: 'nowrap', fontFamily: 'monospace' }}>{r[0]}</td>
+              <td style={{ padding: '12px 16px', fontSize: 13, fontWeight: 600, color: C.ink }}>{r[1]}</td>
+              <td style={{ padding: '12px 16px', fontSize: 13, lineHeight: 1.55, color: C.inkMid }}>{r[2]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -312,26 +338,26 @@ function ProjectPage() {
           <a href="../index.html#projects" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'DM Sans', fontSize: 13, fontWeight: 500, color: T.inkMid, textDecoration: 'none', marginBottom: 24, transition: 'color 0.2s' }}
             onMouseEnter={e => e.currentTarget.style.color = ACC} onMouseLeave={e => e.currentTarget.style.color = T.inkMid}
           >← Back to Projects</a>
-          <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: T.inkLight, marginBottom: 16 }}>Professional · Product Analytics</p>
+          <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: T.inkLight, marginBottom: 16 }}>Professional · ML Engineering</p>
           <h1 style={{ fontFamily: 'Playfair Display', fontWeight: 900, fontSize: 'clamp(36px, 5vw, 68px)', letterSpacing: '-0.025em', color: T.ink, lineHeight: 1.0, marginBottom: 24 }}>
-            Instagram Shopping<br /><span style={{ fontStyle: 'italic', color: ACC }}>Latency Optimization</span>
+            Region (State)<br /><span style={{ fontStyle: 'italic', color: ACC }}>Prediction Model</span>
           </h1>
           <p style={{ fontFamily: 'DM Sans', fontSize: isMobile ? 15 : 17, lineHeight: 1.7, color: T.inkMid, maxWidth: 620, marginBottom: 32 }}>
-            Answered a director-level question on latency ROI through deep funnel analysis — identifying and driving experiments that cut page load time by 40–50%, translating to a 10% lift in conversions and $80M ARR.
+            Built a dedicated, GPS-grounded LightGBM model to predict a user's home state at Meta — replacing an error-prone city→state pipeline, fixing region-targeted Ads misdelivery, and unlocking $196M in annual recurring revenue.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 56 }}>
-            {['Product Analytics','SQL','Experimentation','Funnel Analysis'].map(t => (
+            {['LightGBM','Python','Ads Targeting','ML'].map(t => (
               <span key={t} style={{ background: `${ACC}15`, color: ACC, border: `1px solid ${ACC}30`, borderRadius: 100, padding: '5px 14px', fontSize: 12, fontWeight: 500 }}>{t}</span>
             ))}
           </div>
         </div>
 
         <div style={{ background: dark ? '#0D0B09' : '#1C1810', borderTop: `1px solid ${T.border}` }}>
-          <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? '32px 20px' : '40px 56px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 0 : 0 }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? '32px 20px' : '40px 56px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)' }}>
             {[
-              { num: '40–50%', label: 'Reduction in page load time', sub: 'Product Description Page' },
-              { num: '+10%', label: 'Increase in conversions', sub: 'Instagram Shopping' },
-              { num: '$80M', label: 'Incremental ARR', sub: 'Meta Shopping' },
+              { num: '$196M', label: 'Annual Recurring Revenue', sub: 'From region-targeted Ads delivery' },
+              { num: '95%', label: 'Offline precision', sub: 'Tight per-state CIs (<0.5%)' },
+              { num: '73M', label: 'Daily training samples', sub: 'GPS-grounded · 1000× surveys' },
             ].map((s, i) => (
               <div key={i} style={{
                 padding: isMobile ? '20px 0' : '0 32px',
@@ -350,48 +376,97 @@ function ProjectPage() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: contentPad }}>
 
         <Section>
+          <SectionLabel>Case Study Deck</SectionLabel>
+          <SectionTitle>The full presentation</SectionTitle>
+          <Body>The complete deck — problem discovery, the GPS-grounded data pipeline, feature engineering, model optimization, evaluation, and business impact. Use the controls to step through, or open it fullscreen.</Body>
+          <div style={{ position: 'relative', width: '100%', paddingBottom: '59.27%', height: 0, borderRadius: 14, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.white, boxShadow: '0 2px 8px rgba(28,24,16,0.04)' }}>
+            <iframe
+              src="https://docs.google.com/presentation/d/1niMuIWZS_9PYP-3Vf9F2LkVRKTWYb7AqfbuialsOVcQ/embed?start=false&loop=false&delayms=5000"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="Region Prediction Model — case study deck"
+            ></iframe>
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <a href="https://docs.google.com/presentation/d/1niMuIWZS_9PYP-3Vf9F2LkVRKTWYb7AqfbuialsOVcQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 600, color: ACC, textDecoration: 'none', transition: 'opacity 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.7'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >Open in Google Slides →</a>
+          </div>
+        </Section>
+
+        <Section>
           <SectionLabel>Overview</SectionLabel>
           <SectionTitle>The problem</SectionTitle>
-          <Body>Instagram has a native in-app shopping flow integrated with Ads, allowing users to browse and purchase products without leaving the app. My team owned the latency of the Product Description Page (PDP) — the core page in the shopping funnel where users decide whether to convert.</Body>
-          <Body><strong>Role &amp; Scope:</strong> The Director of the Ads org asked a direct question: what is the ROI on maintaining latency? I structured and led the full analysis to answer it, then identified the highest-impact engineering improvements and drove two experiments to production.</Body>
+          <Body>Meta lets advertisers target campaigns by region — but <strong>13–15% of region-targeted ads were being misdelivered</strong>, wasting 6–7% of advertiser spend and creating regulatory exposure. The root cause: a user's state was inferred <em>indirectly</em>, by mapping an IP-driven city prediction to a state. That mapping failed systematically near state borders and for anyone whose work location differed from their home.</Body>
+          <Body>The problem surfaced when an advertiser running a grocery-discount campaign in Washington, D.C. reported that their employees living in Virginia were seeing D.C. store ads — the employees' D.C. work IP had made D.C. their primary city and state. Border cities like Kansas City, Philadelphia, Cincinnati, Memphis, St. Louis, and Texarkana amplified the issue across the U.S.</Body>
+          <Body><strong>Role &amp; Scope:</strong> I owned the effort end to end — problem framing, building a GPS-grounded ground-truth and evaluation pipeline, feature engineering, model development and tuning, a per-state confidence-interval framework, and production deployment via a REST API — working across Product, Engineering, Privacy, Legal, and Ads/Monetization.</Body>
         </Section>
 
         <Section>
           <SectionLabel>Approach</SectionLabel>
-          <SectionTitle>Two-part analysis</SectionTitle>
-          <Body>The analysis was structured in two parts: first establishing the business value of latency, then diagnosing where time was being lost.</Body>
+          <SectionTitle>How I built it</SectionTitle>
+          <Body>The core insight was that reliable state prediction required a <strong>dedicated model with a GPS-grounded training set</strong> — not another patch on the two-stage city-prediction → city-to-state pipeline, which compounded error at every hop.</Body>
 
-          <SubTitle>Part 1 — Establishing the Value of Latency</SubTitle>
-          <Body>I mapped page load time against conversion rate, transaction volume, and cancellation rates across the user base. This analysis revealed a clear threshold: pages loading beyond 1 second saw conversion rates fall sharply and cancellation rates spike.</Body>
-          <Callout>1 second became the golden standard for PDP load duration — anything above it was treated as a conversion risk. To operationalize this, I developed a new metric: TTRC % (Time To Responsive Content %) — measuring the share of page loads completing within 1 second per session. Baseline: only 40% of page loads were meeting the 1s threshold.</Callout>
-
-          <SubTitle>Part 2 — Diagnosing the Remaining 60%</SubTitle>
-          <Body>I conducted a full funnel breakdown of the PDP loading sequence, decomposing total load time by individual component and analyzing each by device type, network condition, and user cohort. Key findings:</Body>
+          <SubTitle>Training &amp; Evaluation Set</SubTitle>
+          <Body>The previous ground truth came from an in-feed city survey — just 60–70K samples, with wide confidence intervals, poor cohort coverage, and high cost. I built a full logging and data pipeline on daily GPS signals, yielding <strong>73M samples (≈1000×)</strong> mapped from location to home state.</Body>
           <BulletList items={[
-            "Image loading: Images were loading eagerly, but 60% of users never scrolled past the first 3 images — a clear opportunity for lazy loading the rest",
-            "Async shipping/tax/coupon calculations: These were computed synchronously on page load; converting them to async based on a user's predicted conversion probability eliminated a significant blocking delay",
-            'CTA button complexity: The call-to-action button had unnecessary complexity contributing to render time; simplifying it yielded a quick win',
-            'Preloading strategies: Explored preloading key assets to reclaim time earlier in the loading sequence',
+            <span><strong>Day/night sampling &amp; state mapping</strong> — weighting overnight signal more heavily to isolate a true home (vs. work) location</span>,
+            <span><strong>14-day stabilization window</strong> — averaging over time to reduce noise and travel-driven flapping</span>,
+            <span><strong>Representivity weighting</strong> — reweighting by age, gender, tenure, friend count, and interface to correct bias toward highly-active users</span>,
+            <span><strong>Confidence intervals within 0.5%</strong>, with spoofing resistance against VPN/proxy masking — a hard requirement for the compliance use case</span>,
           ]} />
-          <Body>I proposed 4 experiments based on these findings. Two were greenlit and implemented by engineering.</Body>
+
+          <SubTitle>Feature Engineering</SubTitle>
+          <BulletList items={[
+            <span><strong>IP-based region signals:</strong> normalized &amp; max scores, ranking, <code>distance_to_top_ip_region</code>, and <code>shares_border_with</code> — an accuracy anchor that lets the model reason about relative confidence and resolve ambiguity at state borders</span>,
+            <span><strong>Friend-graph signals:</strong> 1-hop and 2-hop friend features, mutual-friend region score, likelihood / log-odds, and <code>count_of_friends_region_match</code> — a strong <em>IP-independent</em> signal for new users, VPN users, and shared/mobile IPs</span>,
+            <span><strong>Same-cohort friend features:</strong> region group among same-age-bucket friends — cleaner signal for the teen/youth compliance case, where a teen's location correlates most with same-age peers</span>,
+            <span><strong>Content-based signals:</strong> media and ad interactions within a region, content region relevance, and media created in-region — rich, high-coverage signal for complex patterns</span>,
+            <span><strong>Core dimensions:</strong> age bracket, tenure, L30, primary interface — lets the tree model learn feature priorities per cohort and reduces overfitting</span>,
+            <span><strong>Locale &amp; keyboard language:</strong> cheap, near-total coverage — the only fully-covered signal on day 0 for brand-new users when everything else is sparse</span>,
+          ]} />
+
+          <SubTitle>Algorithm choice: LightGBM</SubTitle>
+          <Body>The model had to run <strong>daily inference on 1B+ users</strong> and handle heavy class imbalance (states have very different label volumes). I chose a LightGBM classifier with L2 regularization and explicit leaf controls over a neural network: 95% offline precision already cleared the bar, added complexity wasn't justified, batch inference stayed fast at scale, and native SHAP interpretability was essential for communicating state-level precision to Legal and the Ads launch committee.</Body>
+          <ParamTable />
+
+          <SubTitle>Deployment</SubTitle>
+          <Body>Daily batch inference feeds a post-inference pipeline: the LightGBM score runs through the 14-day stabilization window to produce a robust <strong>home-region label</strong> (stable even while a user travels), then a use-case-specific <strong>value-model config</strong> sets the final precision/recall trade-off before serving over a REST API. One model, tuned thresholds per use case — Ads (high precision), recommendations (high recall), and teen compliance (near-perfect precision) — keeping the maintenance and monitoring surface small.</Body>
+
+          <SubTitle>Evaluation &amp; confidence intervals</SubTitle>
+          <Body>I built an end-to-end weighted + unweighted binomial CI framework (Kish / design-effect method), computed analytically rather than by bootstrap, producing precision and recall CIs at the region and region-cohort (teen) level — e.g. California 96.85% ±0.01%, Texas 96.16% ±0.02%. These intervals backed external compliance reporting and a deep-dive Ads-metrics analysis mapping model precision to liquidity and delivery, which became the launch proposal to the Ads launch committee.</Body>
+        </Section>
+
+        <Section>
+          <SectionLabel>Key Decisions</SectionLabel>
+          <SectionTitle>Tradeoffs that shaped the system</SectionTitle>
+          <SubTitle>Dedicated model vs. patching the existing pipeline</SubTitle>
+          <Body>Patching the city→state mapping would only have trimmed errors at the margin — it couldn't fix two compounded error sources that failed systematically at borders. A standalone model with GPS-grounded labels was the only path to the precision floor Legal and Ads required.</Body>
+          <SubTitle>GPS training set vs. user surveys</SubTitle>
+          <Body>Surveys gave clean labels but topped out at ~60–70K samples — nowhere near enough for sub-0.5% per-state CIs. GPS delivered the scale, with spoofing filters, multi-day windowing, and representivity weighting to control noise.</Body>
+          <SubTitle>Use-case thresholds vs. separate models</SubTitle>
+          <Body>Rather than train and maintain three models, I deployed one model with per-use-case value configs — high precision for Ads, high recall for recommendations, near-perfect precision with tight CIs for teen compliance.</Body>
+          <SubTitle>LightGBM vs. neural networks</SubTitle>
+          <Body>At 1B+ daily inferences, LightGBM's speed, native class-imbalance handling, and SHAP interpretability outweighed any marginal accuracy from deep learning once 95% precision was already met.</Body>
         </Section>
 
         <Section>
           <SectionLabel>Results</SectionLabel>
           <SectionTitle>Measured business impact</SectionTitle>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 24 }}>
-            <ResultCard prefix="" value={45} suffix="%" label="Latency reduction" sub="Page load time improvement" />
-            <ResultCard prefix="+" value={10} suffix="%" label="Conversion lift" sub="Instagram Shopping" />
-            <ResultCard prefix="$" value={80} suffix="M" label="Incremental ARR" sub="Meta Shopping" />
+            <ResultCard prefix="$" value={196} suffix="M" label="Incremental ARR" sub="Region-targeted Ads delivery" />
+            <ResultCard prefix="" value={95} suffix="%" label="Offline precision" sub="Tight per-state CIs (<0.5%)" />
+            <ResultCard prefix="+" value={0} suffix=".3%" label="Ads score lift" sub="Online experiment" />
           </div>
-          <Body>Beyond the direct impact, the methodology — establishing a latency threshold first, then optimizing against it — was adopted across other pages in the shopping flow and later extended throughout the session experience.</Body>
+          <Body>The region model delivered <strong>$196M ARR</strong> from improved region-targeted Ads as its primary outcome, with a statistically significant +0.3% Ads score lift in the online experiment. Beyond Ads, it now serves as a <strong>high-recall location feature</strong> in Meta's recommendation algorithms for local content, a <strong>high-precision state-inference signal</strong> for teen regulatory compliance, and a reusable core feature feeding other location models (city, interested-location, broad-geo prediction).</Body>
         </Section>
 
         <Section>
           <SectionLabel>Tech Stack</SectionLabel>
           <SectionTitle>Tools &amp; technologies</SectionTitle>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            {['SQL','Python','Tableau','A/B Testing','Funnel Analysis','Statistical Modeling'].map(t => (
+            {['LightGBM','Python','SQL','GPS Data Pipelines','SHAP','Binomial CIs (Kish)','REST API','A/B Testing'].map(t => (
               <span key={t} style={{ background: T.creamCard, border: `1px solid ${T.border}`, borderRadius: 8, padding: '10px 16px', fontSize: 13, fontWeight: 500, color: T.inkMid }}>{t}</span>
             ))}
           </div>
@@ -402,7 +477,7 @@ function ProjectPage() {
             onMouseEnter={e => { e.currentTarget.style.borderColor = ACC; e.currentTarget.style.color = ACC; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; }}
           >← Back to Projects</a>
-          <a href="region-prediction-model.html" style={{ background: ACC, color: '#fff', border: 'none', borderRadius: 100, padding: '11px 24px', fontSize: 14, fontWeight: 600, fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s' }}
+          <a href="user-language-model.html" style={{ background: ACC, color: '#fff', border: 'none', borderRadius: 100, padding: '11px 24px', fontSize: 14, fontWeight: 600, fontFamily: 'DM Sans', textDecoration: 'none', transition: 'opacity 0.2s' }}
             onMouseEnter={e => e.currentTarget.style.opacity = '0.85'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}
           >Next Project →</a>
         </div>
