@@ -28,6 +28,78 @@ body { background: #F4EFE6; color: #1C1810; font-family: 'DM Sans', sans-serif; 
 html.dark body { background: #1C1A17; color: #F0EBE1; }
 ::selection { background: #D95F2B; color: #fff; }
 @keyframes availPulse { 0% { box-shadow: 0 0 0 0 rgba(31,164,99,0.5); } 70% { box-shadow: 0 0 0 6px rgba(31,164,99,0); } 100% { box-shadow: 0 0 0 0 rgba(31,164,99,0); } }
+
+/* ---- Hero phrase rotator (ported from prototype.html) ----------------------
+   The slot is a fixed-height window (overflow:hidden) that phrases roll through,
+   so the line below it never shifts. Each phrase is a layer at inset:0, and every
+   glyph animates on its own timeline: rises from below the window, holds, exits
+   through the top. Adjacent phrases are offset by exactly one beat (--d), so glyph
+   i of the old phrase leaves as glyph i of the new one arrives — one continuous roll.
+
+   The per-glyph offset is centre-out (--s = |i - (n-1)/2|), not left-to-right, and
+   that is a timing decision as much as a stylistic one: a left-to-right sweep would
+   spread "Strategic analysis" (18 glyphs) over 0.60s while "ML models" finished in
+   0.28s, and the long phrase would visibly drag. Centre-out halves the max offset
+   (0.14s to 0.30s across the four). --stagger is the ripple-intensity knob.
+
+   content-box is load-bearing against the global border-box reset above. Vertical
+   padding must stay 0: overflow clips at the *padding* box, so padding-top/bottom
+   would widen the window past one cell and leak the next phrase's ascenders in.
+
+   padding-LEFT is the exception, and it is required. Playfair italic glyphs carry a
+   negative left side bearing — their ink starts left of the inline-block origin, by
+   up to 0.09em (the A of "AI agents" at 67px overhangs 6px). With the slot clipping
+   at x=0 that sliver was being shaved off. Padding the clip box out and pulling it
+   back with an equal negative margin keeps the ink whole and the text still optically
+   flush with the headline above. Both values must stay in lockstep.
+
+   --cell is both the glyph travel distance (translateY 100% of the inline-block box,
+   i.e. its line-height) and the window height. 1.4em is a floor, not a preference:
+   Playfair italic 800 descenders (the g/y in "Strategic analysis", p in "pipelines")
+   overhang far enough that at 1.2em their tips poke through the top of the window
+   while the next phrase is resting. Don't tighten it without re-checking that. */
+.rot-slot { --cell: 1.4em; --stagger: 0.035s; --bleed: 0.14em; box-sizing: content-box;
+  display: block; position: relative; overflow: hidden; height: var(--cell); max-width: 100%;
+  padding: 0 0 0 var(--bleed); margin-left: calc(-1 * var(--bleed)); }
+/* left: var(--bleed), NOT 0. An absolutely-positioned box resolves inset against its
+   containing block's PADDING box, so inset:0 would park the phrase at the padding edge
+   and the --bleed gutter below would shift the text left of the headline instead of
+   widening the clip region around it. */
+.rot-slot .rot-phrase { position: absolute; top: 0; right: 0; bottom: 0; left: var(--bleed);
+  white-space: nowrap; line-height: var(--cell); }
+/* inline-block so translateY applies at all — inline boxes ignore transforms.
+   fill-mode backwards is load-bearing: during its --d delay a glyph would otherwise
+   sit at its untransformed position, so all four phrases would render stacked on top
+   of one another until their animations began. backwards parks them below the window. */
+.rot-slot i { display: inline-block; font-style: inherit;
+  animation: heroRoll 11.2s infinite backwards cubic-bezier(0.76, 0, 0.24, 1);
+  animation-delay: calc(var(--d) + var(--s) * var(--stagger)); }
+/* 4% ≈ 0.45s to rise, held to 25% (2.8s), 4% to leave, then parked above the window
+   for the other three beats. The 100% → 0% wrap jumps -100% to +100%, both clipped.
+   These percentages assume 4 phrases at one quarter of the cycle each. */
+@keyframes heroRoll {
+  0%        { transform: translateY(100%); }
+  4%, 25%   { transform: translateY(0); }
+  29%, 100% { transform: translateY(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* Without this the glyphs would still animate. Pin phrase one, hide the rest —
+     never leave them all at their untransformed position, i.e. stacked. */
+  .rot-slot i { animation: none; transform: none; }
+  .rot-slot .rot-phrase { opacity: 0; }
+  .rot-slot .rot-phrase:first-child { opacity: 1; }
+}
+/* Fallback for engines without container-query units (pre-2023 Chrome/Safari/Firefox).
+   The rotator's font-size is set inline as min(clamp(...), 12.5cqw); if cqw is
+   unparseable the browser discards that whole declaration and the element would fall
+   back to the inherited 16px. This rule catches it. It is deliberately smaller than
+   the cqw-capped size so the longest phrase cannot clip at any width. */
+.rot-size { font-size: clamp(30px, 7.5vw, 59px); }
+/* Screen-reader-only: the rotator itself is aria-hidden, so the phrase list is
+   exposed here as static text instead of a word that mutates under the reader. */
+.vh { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 </style>
 <script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})()</script>
 <script type="application/ld+json">
@@ -281,21 +353,38 @@ function Nav({ dark, setDark }) {
 
 const ROLES = ['ML models', 'Data pipelines', 'AI agents', 'Strategic analysis'];
 
+// Must match the heroRoll keyframes, which divide the cycle into ROLES.length beats.
+// Changing the phrase count means re-deriving the 4%/25%/29% stops in the CSS.
+const ROT_CYCLE = 11.2;
+
+// Emits one absolutely-positioned layer per phrase, one <i> per glyph. --s is the
+// centre-out offset |i - (n-1)/2|, which depends on phrase length — deriving it here
+// rather than hand-authoring it means editing a phrase can never skew its ripple.
+function RotatingPhrases({ phrases }) {
+  const beat = ROT_CYCLE / phrases.length;
+  return (
+    <span className="rot-slot" aria-hidden="true">
+      {phrases.map((phrase, p) => (
+        <span key={phrase} className="rot-phrase" style={{ '--d': `${(p * beat).toFixed(2)}s` }}>
+          {Array.from(phrase).map((ch, i) => (
+            <i key={i} style={{ '--s': String(Math.abs(i - (phrase.length - 1) / 2)) }}>
+              {/* NBSP, not a space: each <i> is inline-block, i.e. its own block
+                  container, so a plain space would be stripped as leading/trailing
+                  whitespace and the phrase would render as "MLmodels". */}
+              {ch === ' ' ? '\u00A0' : ch}
+            </i>
+          ))}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function Hero() {
   const C = useC();
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [fading, setFading] = useState(false);
   const w = useWindowWidth();
   const isMobile = w < 768;
   const isTablet = w < 1024;
-
-  useEffect(() => {
-    const iv = setInterval(() => {
-      setFading(true);
-      setTimeout(() => { setRoleIdx(i => (i+1) % ROLES.length); setFading(false); }, 280);
-    }, 2400);
-    return () => clearInterval(iv);
-  }, []);
 
   return (
     <section id="hero" style={{
@@ -312,7 +401,11 @@ function Hero() {
     }}>
       <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(circle, ${C.border} 1px, transparent 1px)`, backgroundSize: '28px 28px', pointerEvents: 'none', opacity: 0.6 }}></div>
 
-      <div style={{ flex: '1 1 0', maxWidth: isMobile ? '100%' : 620, paddingTop: isMobile ? 0 : 80, paddingBottom: isMobile ? 0 : 80, position: 'relative', width: '100%' }}>
+      {/* containerType makes this column a query container so the rotator below can
+          cap its font-size in cqw. The column — not the viewport — is the real
+          constraint: from 768px up the hero is a row, so the column is roughly half
+          the viewport and vw-based math would badly overestimate the room available. */}
+      <div style={{ flex: '1 1 0', maxWidth: isMobile ? '100%' : 620, paddingTop: isMobile ? 0 : 80, paddingBottom: isMobile ? 0 : 80, position: 'relative', width: '100%', containerType: 'inline-size' }}>
         <div style={{ minHeight: isMobile ? 0 : 37, marginBottom: isMobile ? 16 : 28, display: 'flex', alignItems: 'center' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9, background: `${GREEN}15`, border: `1px solid ${GREEN}38`, borderRadius: 100, padding: '6px 14px 6px 12px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: GREEN, flexShrink: 0, animation: 'availPulse 2s infinite' }}></span>
@@ -320,28 +413,40 @@ function Hero() {
           </span>
         </div>
 
-        <p style={{ fontFamily: 'DM Sans', fontSize: 11, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.inkLight, marginBottom: 18 }}>Data Scientist &amp; ML Engineer at Meta</p>
-
         <h1 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: isMobile ? 'clamp(45px, 11vw, 59px)' : 'clamp(49px, 5vw, 67px)', lineHeight: 1.0, letterSpacing: '-0.025em', color: C.ink, marginBottom: 4 }}>
           Hi, I'm Rohan.<br />I build
         </h1>
-        <div style={{
+        <div className="rot-size" style={{
           fontFamily: 'Playfair Display, serif',
           fontWeight: 800,
           fontStyle: 'italic',
-          fontSize: isMobile ? 'clamp(45px, 11vw, 59px)' : 'clamp(49px, 5vw, 67px)',
+          // The roll needs white-space:nowrap, so a phrase too wide for the mask gets
+          // its tail clipped rather than wrapped — "Strategic analysis" lost its final
+          // "s" at 375px. 12.5cqw caps the type at column-width/8, and 8 is the measured
+          // px-of-width per px-of-font-size for the longest phrase (7.82) plus headroom.
+          // Only bites below ~390px and in the narrow 768-820px column; desktop is
+          // unchanged. Re-measure this ratio if a longer phrase is added to ROLES.
+          fontSize: `min(${isMobile ? 'clamp(45px, 11vw, 59px)' : 'clamp(49px, 5vw, 67px)'}, 12.5cqw)`,
           lineHeight: 1.05,
           letterSpacing: '-0.025em',
           color: ACC,
-          opacity: fading ? 0 : 1,
-          transform: fading ? 'translateY(8px)' : 'translateY(0)',
-          transition: 'opacity 0.28s ease, transform 0.28s ease',
-          minHeight: '1.05em',
-          marginBottom: 28,
-        }}>{ROLES[roleIdx]}</div>
+          marginBottom: 12,
+        }}>
+          <RotatingPhrases phrases={ROLES} />
+          <span className="vh">{ROLES.join(', ')}</span>
+        </div>
 
         <div style={{ fontFamily: 'DM Sans', fontSize: 16, lineHeight: 1.7, color: C.inkMid, maxWidth: 480, marginBottom: 36 }}>
-          <p style={{ marginBottom: 10 }}>Full-stack data scientist with 5+ years at Meta. I specialize in:</p>
+          {/* Lede runs 3px above the bullets below it; emphasis matches the testimonial
+              treatment — weight 600 plus a step up from C.inkMid to C.ink. */}
+          <p style={{ fontSize: 19, marginBottom: 10 }}>
+            Full-stack <strong style={{ fontWeight: 600, color: C.ink }}>data scientist</strong> with{' '}
+            <strong style={{ fontWeight: 600, color: C.ink }}>5+ years</strong> at Meta.
+            {/* NBSP binds "I" to "specialize" so the line can never break after the
+                pronoun. The wrap lands on the sentence boundary instead, and it stays
+                correct at any width rather than pinning a break with <br>. */}
+            {' I\u00A0specialize in:'}
+          </p>
           <p style={{ paddingLeft: 16, borderLeft: `2px solid ${ACC}`, marginBottom: 8 }}>Transforming data into actionable product insights.</p>
           <p style={{ paddingLeft: 16, borderLeft: `2px solid ${ACC}` }}>Building AI systems to solve real world problems.</p>
         </div>
@@ -437,21 +542,21 @@ const PROJECTS = [
     num: '01', type: 'professional', category: 'ML Engineering',
     title: 'User Language Prediction Model',
     desc: "Built a multilabel language classifier to improve Ads targeting accuracy at Meta, driving $36M incremental ARR by matching ads to users' actual language preferences.",
-    impact: '$36M ARR', tags: ['Gradient Boosting','Python','Ads Targeting','ML'],
+    fig: 'language', impact: '$36M ARR', tags: ['Gradient Boosting','Python','Ads Targeting','ML'],
     href: 'projects/user-language-model.html',
   },
   {
     num: '02', type: 'professional', category: 'Product Analytics',
     title: 'Instagram Shopping Latency Optimization',
     desc: 'Analyzed and optimized the Instagram Shopping product description page, achieving a 40–50% latency reduction, 10% lift in conversions, and $80M ARR.',
-    impact: '$80M ARR', tags: ['Product Analytics','SQL','Experimentation','Funnel Analysis'],
+    fig: 'latency', impact: '$80M ARR', tags: ['Product Analytics','SQL','Experimentation','Funnel Analysis'],
     href: 'projects/instagram-latency.html',
   },
   {
     num: '03', type: 'professional', category: 'ML Engineering',
     title: 'Region Prediction Model',
     desc: "Built a dedicated, GPS-grounded LightGBM model to predict users' home state at Meta — fixing region-targeted Ads misdelivery and unlocking $196M in annual recurring revenue.",
-    impact: '$196M ARR', tags: ['LightGBM','Python','Ads Targeting','ML'],
+    fig: 'region', impact: '$196M ARR', tags: ['LightGBM','Python','Ads Targeting','ML'],
     href: 'projects/region-prediction-model.html',
   },
   {
@@ -472,32 +577,146 @@ const PROJECTS = [
   },
 ];
 
+// Inline data-viz cover band for professional cards, ported from prototype.html's
+// .figband. The prototype's argument is that a work card should lead with the
+// measurement rather than a stock screenshot, so each chart states that project's
+// headline result in its own units.
+//
+// IBM Plex Mono (the prototype's choice) is not loaded on this page; rather than add
+// a webfont request for a handful of chart labels, these fall back to the system mono
+// stack. Numerals are tabular so figures stay column-aligned.
+const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+
+function FigBand({ kind }) {
+  const C = useC();
+  const ref = useRef(null);
+  const visible = useInView(ref);
+
+  const axis  = { stroke: C.borderMid, strokeWidth: 1 };
+  const tick  = { fill: C.inkLight, fontFamily: MONO, fontSize: 8.5, fontWeight: 500 };
+  const val   = { fill: C.ink, fontFamily: MONO, fontSize: 12, fontWeight: 600 };
+  const track = { fill: C.border };
+  const dot   = { fill: ACC };
+  const whisk = { stroke: ACC, strokeWidth: 1.5 };
+  const thresh = { stroke: C.ink, strokeWidth: 1.25, strokeDasharray: '3 3' };
+  // Bars fill from the left when the card scrolls in; transform-origin keeps it
+  // reading as "filling up" rather than scaling out from the middle.
+  const grow = { fill: ACC, transformOrigin: 'left center',
+    transform: visible ? 'scaleX(1)' : 'scaleX(0)', transition: 'transform 1s cubic-bezier(0.22,1,0.36,1)' };
+
+  const CHARTS = {
+    region: {
+      caption: 'Per-state precision, GPS-grounded eval · CIs <0.5%',
+      svg: (
+        <svg viewBox="0 0 300 74" role="img" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+          aria-label="Per-state precision: California 96.85% plus or minus 0.01%, Texas 96.16% plus or minus 0.02%. The legal precision floor is 95%.">
+          <line style={axis} x1="0" y1="60" x2="300" y2="60" />
+          <line style={thresh} x1="96" y1="6" x2="96" y2="60" />
+          <text style={tick} x="96" y="71" textAnchor="middle">95% floor</text>
+          <text style={tick} x="298" y="71" textAnchor="end">97%</text>
+          <g>
+            <line style={whisk} x1="238" y1="20" x2="248" y2="20" />
+            <circle style={dot} cx="243" cy="20" r="4" />
+            <text style={val} x="228" y="24" textAnchor="end">CA 96.85%</text>
+          </g>
+          <g>
+            <line style={whisk} x1="219" y1="44" x2="233" y2="44" />
+            <circle style={dot} cx="226" cy="44" r="4" />
+            <text style={val} x="210" y="48" textAnchor="end">TX 96.16%</text>
+          </g>
+        </svg>
+      ),
+    },
+    latency: {
+      caption: 'TTRC% — the metric I defined for this work',
+      svg: (
+        <svg viewBox="0 0 300 74" role="img" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+          aria-label="Time To Responsive Content: 40 percent of page loads completed within one second at baseline, 60 percent did not.">
+          <rect style={track} x="0" y="16" width="300" height="20" rx="4" />
+          <rect style={grow} x="0" y="16" width="120" height="20" rx="4" />
+          <line style={thresh} x1="120" y1="8" x2="120" y2="44" />
+          <text style={val} x="0" y="60">40%</text>
+          <text style={tick} x="36" y="60">of loads under 1s (baseline)</text>
+          <text style={tick} x="300" y="60" textAnchor="end">100%</text>
+        </svg>
+      ),
+    },
+    // The prototype's third band claimed "95% recall at the operating point". That
+    // figure appears nowhere in projects/user-language-model.html — the page's only
+    // stated result is the +0.03% experiment lift — so this chart shows that instead.
+    // Same dot-and-whisker vocabulary as the region band, against a zero baseline.
+    language: {
+      caption: 'Revenue lift in experiment · CI excludes zero',
+      svg: (
+        <svg viewBox="0 0 300 74" role="img" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+          aria-label="Revenue lift in experiment: plus 0.03 percent, statistically significant — the confidence interval sits entirely above zero.">
+          <line style={axis} x1="0" y1="60" x2="300" y2="60" />
+          <line style={thresh} x1="120" y1="6" x2="120" y2="60" />
+          <text style={tick} x="120" y="71" textAnchor="middle">0% (control)</text>
+          <text style={tick} x="298" y="71" textAnchor="end">interval, not to scale</text>
+          {/* The estimate sits just right of zero on purpose. A true linear axis would
+              put a +0.03% effect on top of the zero line and render it unreadable, so
+              this is a schematic of the test result — the point that carries meaning is
+              that the whisker never crosses zero. The tick says so rather than implying
+              a magnitude the geometry cannot honestly convey. */}
+          <g>
+            <line style={whisk} x1="150" y1="32" x2="186" y2="32" />
+            <circle style={dot} cx="168" cy="32" r="4" />
+            <text style={val} x="196" y="36">+0.03%</text>
+          </g>
+        </svg>
+      ),
+    },
+  };
+
+  const chart = CHARTS[kind];
+  if (!chart) return null;
+  return (
+    <figure ref={ref} style={{ background: C.creamDark, borderBottom: `1px solid ${C.border}`, padding: '16px 22px 13px', flexShrink: 0 }}>
+      {chart.svg}
+      <figcaption style={{ fontFamily: MONO, fontSize: 11.5, fontWeight: 500, letterSpacing: '0.02em',
+        color: C.inkLight, marginTop: 9, fontVariantNumeric: 'tabular-nums' }}>{chart.caption}</figcaption>
+    </figure>
+  );
+}
+
+// Personal projects render a compact variant: the two of them fill the row edge to
+// edge, so they can't be made narrower without leaving dead space. They read as
+// secondary through a shorter shot and a smaller type scale instead of less width.
+// Scale values follow the prototype's .card / .card-side pair.
 function ProjectCard({ project }) {
   const C = useC();
   const [hovered, setHovered] = useState(false);
   const isExternal = project.href.startsWith('http');
+  const compact = project.type === 'personal';
+  const s = compact
+    ? { shot: 140, pad: '20px 22px 18px', title: 18, body: 13,   titleGap: 10, bodyGap: 14, tagGap: 16, cta: 12.5 }
+    : { shot: 180, pad: '24px 24px 20px', title: 21, body: 14,   titleGap: 12, bodyGap: 18, tagGap: 20, cta: 13 };
   return (
     <a href={project.href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}
       style={{ background: hovered ? C.white : C.creamCard, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', display: 'flex', flexDirection: 'column', transition: 'background 0.2s, box-shadow 0.2s, transform 0.2s', boxShadow: hovered ? '0 12px 40px rgba(28,24,16,0.12)' : '0 2px 8px rgba(28,24,16,0.04)', transform: hovered ? 'translateY(-3px)' : 'none', cursor: 'pointer', textDecoration: 'none' }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     >
+      {project.fig && <FigBand kind={project.fig} />}
       {project.image && (
-        <div style={{ width: '100%', height: 180, overflow: 'hidden', background: C.creamCard, flexShrink: 0, position: 'relative' }}>
+        <div style={{ width: '100%', height: s.shot, overflow: 'hidden', background: C.creamCard, flexShrink: 0, position: 'relative' }}>
           <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.4s ease', transform: hovered ? 'scale(1.04)' : 'scale(1)' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, rgba(28,24,16,0.18) 100%)' }}></div>
         </div>
       )}
-      <div style={{ padding: '24px 24px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div style={{ padding: s.pad, display: 'flex', flexDirection: 'column', flex: 1 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, flexWrap: 'wrap', gap: '6px 8px' }}>
           <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.inkLight, flex: '1 1 auto', minWidth: 0 }}>{project.category}</p>
           <span style={{ background: ACC, color: '#fff', borderRadius: 100, padding: '4px 12px', fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0, whiteSpace: 'nowrap' }}>{project.impact}</span>
         </div>
-        <h3 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: 20, lineHeight: 1.2, color: C.ink, marginBottom: 12, letterSpacing: '-0.01em' }}>{project.title}</h3>
-        <p style={{ fontSize: 13.5, lineHeight: 1.65, color: C.inkMid, marginBottom: 18 }}>{project.desc}</p>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+        <h3 style={{ fontFamily: 'Playfair Display', fontWeight: 800, fontSize: s.title, lineHeight: 1.2, color: C.ink, marginBottom: s.titleGap, letterSpacing: '-0.01em' }}>{project.title}</h3>
+        {/* 52ch keeps the compact card's line length readable at 630px wide, where an
+            unconstrained measure would run to ~95 characters. */}
+        <p style={{ fontSize: s.body, lineHeight: 1.65, color: C.inkMid, marginBottom: s.bodyGap, maxWidth: compact ? '52ch' : 'none' }}>{project.desc}</p>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: s.tagGap }}>
           {project.tags.map(t => <span key={t} style={{ background: `${ACC}15`, color: ACC, border: `1px solid ${ACC}30`, borderRadius: 100, padding: '3px 10px', fontSize: 11, fontWeight: 500 }}>{t}</span>)}
         </div>
-        <span style={{ fontFamily: 'DM Sans', fontSize: 13, fontWeight: 600, color: ACC, marginTop: 'auto' }}>View Project →</span>
+        <span style={{ fontFamily: 'DM Sans', fontSize: s.cta, fontWeight: 600, color: ACC, marginTop: 'auto' }}>View Project →</span>
       </div>
     </a>
   );
@@ -643,16 +862,54 @@ function StatStrip() {
   );
 }
 
+// `logo` keys map to images/logo-<key>.png. Keys with a dark variant are listed in LOGO_DARK.
+const LOGO_DARK = { openai: true };
+const LOGO_LABEL = { meta: 'Meta', netflix: 'Netflix', openai: 'OpenAI' };
+
 const TESTIMONIALS = [
-  { initials: 'JZ', name: 'Jessica Zhou', role: 'Staff Data Scientist, Meta', quote: "He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle. A massive asset to any team looking for a senior-level DS." },
-  { initials: 'CF', name: 'Cristina Fernandez', role: 'Product Manager, Meta', quote: 'He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.' },
-  { initials: 'GS', name: 'George Schick', role: 'Data Science Manager, Netflix', quote: 'Rohan consistently works well across product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.' },
-  { initials: 'JL', name: 'Jessie Li', role: 'Data Science, OpenAI', quote: "He's the fastest Data Engineer I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed." },
-  { initials: 'AJ', name: 'Apoorvi Jain', role: 'Director, Meta AI Wearables', quote: 'Rohan showcased strong ownership, distinctly addressed the needs of his cross-functional partners, and demonstrated a strong product sense — quickly building a robust data foundation for new products.' },
-  { initials: 'XX', name: 'Xiaolu Xiong', role: 'Engineering Manager, Meta', quote: 'Rohan played a pivotal role conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.' },
-  { initials: 'JL2', name: 'Jenny Lu', role: 'Data Science Manager, Meta', quote: "Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without his deep technical insights." },
-  { initials: 'AD', name: 'Aditya Dasnurkar', role: 'Data Engineering Manager, Meta', quote: 'Rohan was an idea guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.' },
+  { initials: 'JZ', logo: 'meta', name: 'Jessica Zhou', role: 'Staff Data Scientist, Meta', bold: 'technical insights into actionable summaries', quote: "He doesn't just deliver data — he distills complex technical insights into actionable summaries that move the needle. A massive asset to any team looking for a senior-level DS." },
+  { initials: 'CF', logo: 'meta', name: 'Cristina Fernandez', role: 'Product Manager, Meta', bold: 'proactively explore new areas', quote: 'He would proactively explore new areas and suggest data-driven directions for our product roadmap, demonstrating his ability to think critically and strategically.' },
+  { initials: 'GS', logo: 'netflix', name: 'George Schick', role: 'Data Science Manager, Netflix', bold: 'land collaborative, influential product enhancements.', quote: 'Rohan consistently works well across product management, software engineering, and data engineering in order to land collaborative, influential product enhancements.' },
+  { initials: 'JL', logo: 'openai', name: 'Jessie Li', role: 'Data Science, OpenAI', bold: 'strong execution and fast turnaround', quote: "He's the fastest Data Engineer I had worked with during my almost 5 years at Meta — strong execution and fast turnaround when needed." },
+  { initials: 'AJ', logo: 'meta', name: 'Apoorvi Jain', role: 'Director, Meta AI Wearables', bold: 'strong product sense', quote: 'Rohan showcased strong ownership, distinctly addressed the needs of his cross-functional partners, and demonstrated a strong product sense — quickly building a robust data foundation for new products.' },
+  { initials: 'XX', logo: 'meta', name: 'Xiaolu Xiong', role: 'Engineering Manager, Meta', bold: 'in-depth investigations and analyses', quote: 'Rohan played a pivotal role conducting in-depth investigations and analyses, and effectively communicating the status and capabilities of the location platform to various stakeholders.' },
+  { initials: 'JL2', logo: 'meta', name: 'Jenny Lu', role: 'Data Science Manager, Meta', bold: 'deep technical insights.', quote: "Rohan contributed directly to a significant portion of his team and pillar's goals which would not have been possible without his deep technical insights." },
+  { initials: 'AD', logo: 'meta', name: 'Aditya Dasnurkar', role: 'Data Engineering Manager, Meta', bold: 'idea guy', quote: 'Rohan was an idea guy and it was evident in team meetings and brainstorming sessions when his suggestions helped others in building their product.' },
 ];
+
+// Wraps the `bold` phrase of a quote in a heavier, darker span. Returns the quote
+// untouched if the phrase is absent, so a copy edit can never drop text.
+function emphasize(text, phrase, C) {
+  const i = phrase ? text.indexOf(phrase) : -1;
+  if (i === -1) return text;
+  return [
+    text.slice(0, i),
+    <strong key="b" style={{ fontWeight: 600, color: C.ink }}>{phrase}</strong>,
+    text.slice(i + phrase.length),
+  ];
+}
+
+// Company logo, sitting directly on the card with no backing tile.
+// Falls back to the orange initials chip if the asset fails to load.
+function TestiAvatar({ t }) {
+  const dark = React.useContext(ThemeCtx);
+  const [failed, setFailed] = useState(false);
+  const box = {
+    width: 34, height: 34, flexShrink: 0,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+  };
+  if (!t.logo || failed) {
+    return <div style={{ ...box, borderRadius: 8, background: ACC, fontFamily: 'DM Sans', fontWeight: 700, fontSize: 12, color: '#fff' }}>{t.initials.replace('2','')}</div>;
+  }
+  const src = `images/logo-${t.logo}${dark && LOGO_DARK[t.logo] ? '-dark' : ''}.png`;
+  return (
+    <div style={{ ...box, padding: 3 }}>
+      <img src={src} alt={LOGO_LABEL[t.logo] || ''} width="34" height="34" loading="lazy"
+        onError={() => setFailed(true)}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+    </div>
+  );
+}
 
 function TestiCard({ t, delay }) {
   const C = useC();
@@ -675,9 +932,9 @@ function TestiCard({ t, delay }) {
     }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
     >
-      <p style={{ fontFamily: 'DM Sans', fontSize: 14, fontWeight: 400, lineHeight: 1.7, color: C.inkMid, flex: 1 }}>{t.quote}</p>
+      <p style={{ fontFamily: 'DM Sans', fontSize: 16, fontWeight: 400, lineHeight: 1.7, color: C.inkMid, flex: 1 }}>{emphasize(t.quote, t.bold, C)}</p>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, borderTop: `1px solid ${C.border}`, paddingTop: 14 }}>
-        <div style={{ width: 34, height: 34, borderRadius: 8, background: ACC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'DM Sans', fontWeight: 700, fontSize: 12, color: '#fff', flexShrink: 0 }}>{t.initials.replace('2','')}</div>
+        <TestiAvatar t={t} />
         <div>
           <div style={{ fontSize: 13, fontWeight: 600, color: C.ink }}>{t.name}</div>
           <div style={{ fontSize: 11, color: C.inkLight }}>{t.role}</div>
